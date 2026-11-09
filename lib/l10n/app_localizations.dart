@@ -956,18 +956,6 @@ abstract class AppLocalizations {
   /// **'{count, plural, =0{Aún nadie la abrió} =1{1 persona la abrió} other{{count} personas la abrieron}}'**
   String detailReaders(int count);
 
-  /// No description provided for @readerComingSoon.
-  ///
-  /// In es, this message translates to:
-  /// **'El lector inmersivo llega en la próxima versión de la app.'**
-  String get readerComingSoon;
-
-  /// No description provided for @libraryComingSoon.
-  ///
-  /// In es, this message translates to:
-  /// **'Aquí verás lo que estás leyendo, lo que guardaste y lo que terminaste.'**
-  String get libraryComingSoon;
-
   /// No description provided for @vocabularyComingSoon.
   ///
   /// In es, this message translates to:
@@ -1081,6 +1069,522 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Dificultad'**
   String get profileDifficulty;
+
+  /// No description provided for @readerBack.
+  ///
+  /// In es, this message translates to:
+  /// **'Salir de la lectura'**
+  String get readerBack;
+
+  /// No description provided for @readerSettings.
+  ///
+  /// In es, this message translates to:
+  /// **'Texto y ayudas'**
+  String get readerSettings;
+
+  /// No description provided for @readerNotes.
+  ///
+  /// In es, this message translates to:
+  /// **'Notas'**
+  String get readerNotes;
+
+  /// No description provided for @readerFocus.
+  ///
+  /// In es, this message translates to:
+  /// **'Modo sin distracciones'**
+  String get readerFocus;
+
+  /// No description provided for @readerFocusExit.
+  ///
+  /// In es, this message translates to:
+  /// **'Mostrar los controles'**
+  String get readerFocusExit;
+
+  /// No description provided for @readerRemaining.
+  ///
+  /// In es, this message translates to:
+  /// **'Quedan {count} min'**
+  String readerRemaining(int count);
+
+  /// No description provided for @readerAlmostDone.
+  ///
+  /// In es, this message translates to:
+  /// **'Casi terminas'**
+  String get readerAlmostDone;
+
+  /// No description provided for @readerProgress.
+  ///
+  /// In es, this message translates to:
+  /// **'Avance de la lectura: {percent} %'**
+  String readerProgress(int percent);
+
+  /// No description provided for @readerHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca cualquier palabra para ver qué significa.'**
+  String get readerHint;
+
+  /// No description provided for @readerOldVersion.
+  ///
+  /// In es, this message translates to:
+  /// **'Estás leyendo la versión {version}, la que empezaste. Hay una versión más reciente.'**
+  String readerOldVersion(int version);
+
+  /// No description provided for @readerTranslateParagraph.
+  ///
+  /// In es, this message translates to:
+  /// **'Traducir el párrafo'**
+  String get readerTranslateParagraph;
+
+  /// No description provided for @readerHideParagraph.
+  ///
+  /// In es, this message translates to:
+  /// **'Ocultar la traducción'**
+  String get readerHideParagraph;
+
+  /// No description provided for @readerNoParagraphTranslation.
+  ///
+  /// In es, this message translates to:
+  /// **'Este párrafo aún no tiene traducción.'**
+  String get readerNoParagraphTranslation;
+
+  /// No description provided for @readerSavePending.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardado en el dispositivo; se enviará al volver la conexión.'**
+  String get readerSavePending;
+
+  /// No description provided for @readerFinish.
+  ///
+  /// In es, this message translates to:
+  /// **'Terminé de leer'**
+  String get readerFinish;
+
+  /// No description provided for @readerFinishing.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardando…'**
+  String get readerFinishing;
+
+  /// No description provided for @wordLoading.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscando la palabra…'**
+  String get wordLoading;
+
+  /// No description provided for @wordTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'La palabra «{word}»'**
+  String wordTitle(String word);
+
+  /// No description provided for @wordNoEntry.
+  ///
+  /// In es, this message translates to:
+  /// **'Todavía no tenemos esta palabra en el diccionario.'**
+  String get wordNoEntry;
+
+  /// No description provided for @wordNoEntryBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Preferimos decirlo antes que inventar una traducción.'**
+  String get wordNoEntryBody;
+
+  /// No description provided for @wordFormOf.
+  ///
+  /// In es, this message translates to:
+  /// **'«{form}» es una forma de «{lemma}».'**
+  String wordFormOf(String form, String lemma);
+
+  /// No description provided for @wordDefinition.
+  ///
+  /// In es, this message translates to:
+  /// **'Definición'**
+  String get wordDefinition;
+
+  /// No description provided for @wordExamples.
+  ///
+  /// In es, this message translates to:
+  /// **'Ejemplos'**
+  String get wordExamples;
+
+  /// No description provided for @wordSynonyms.
+  ///
+  /// In es, this message translates to:
+  /// **'Sinónimos'**
+  String get wordSynonyms;
+
+  /// No description provided for @wordAntonyms.
+  ///
+  /// In es, this message translates to:
+  /// **'Antónimos'**
+  String get wordAntonyms;
+
+  /// No description provided for @wordRelated.
+  ///
+  /// In es, this message translates to:
+  /// **'Relacionadas'**
+  String get wordRelated;
+
+  /// No description provided for @wordForms.
+  ///
+  /// In es, this message translates to:
+  /// **'Formas'**
+  String get wordForms;
+
+  /// No description provided for @wordGrammar.
+  ///
+  /// In es, this message translates to:
+  /// **'Gramática'**
+  String get wordGrammar;
+
+  /// No description provided for @wordNote.
+  ///
+  /// In es, this message translates to:
+  /// **'Ten en cuenta'**
+  String get wordNote;
+
+  /// No description provided for @wordAlternatives.
+  ///
+  /// In es, this message translates to:
+  /// **'También puede ser'**
+  String get wordAlternatives;
+
+  /// No description provided for @wordSave.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar en mi vocabulario'**
+  String get wordSave;
+
+  /// No description provided for @wordSaving.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardando…'**
+  String get wordSaving;
+
+  /// No description provided for @wordSaved.
+  ///
+  /// In es, this message translates to:
+  /// **'En tu vocabulario'**
+  String get wordSaved;
+
+  /// No description provided for @wordSaveFailed.
+  ///
+  /// In es, this message translates to:
+  /// **'No pudimos guardar la palabra. Inténtalo de nuevo.'**
+  String get wordSaveFailed;
+
+  /// No description provided for @wordMore.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver todo'**
+  String get wordMore;
+
+  /// No description provided for @wordLess.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver menos'**
+  String get wordLess;
+
+  /// No description provided for @wordInContext.
+  ///
+  /// In es, this message translates to:
+  /// **'En esta oración'**
+  String get wordInContext;
+
+  /// No description provided for @wordTranslateSentence.
+  ///
+  /// In es, this message translates to:
+  /// **'Traducir la oración'**
+  String get wordTranslateSentence;
+
+  /// No description provided for @wordHideSentence.
+  ///
+  /// In es, this message translates to:
+  /// **'Ocultar la traducción'**
+  String get wordHideSentence;
+
+  /// No description provided for @wordSentenceUnavailable.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta oración aún no tiene traducción.'**
+  String get wordSentenceUnavailable;
+
+  /// No description provided for @wordSaveSentence.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar la oración en mis notas'**
+  String get wordSaveSentence;
+
+  /// No description provided for @wordSentenceSaved.
+  ///
+  /// In es, this message translates to:
+  /// **'Oración guardada en tus notas'**
+  String get wordSentenceSaved;
+
+  /// No description provided for @wordCopySentence.
+  ///
+  /// In es, this message translates to:
+  /// **'Copiar la oración'**
+  String get wordCopySentence;
+
+  /// No description provided for @wordCopied.
+  ///
+  /// In es, this message translates to:
+  /// **'Copiada'**
+  String get wordCopied;
+
+  /// No description provided for @wordAddNote.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir una nota (opcional)'**
+  String get wordAddNote;
+
+  /// No description provided for @wordPronunciation.
+  ///
+  /// In es, this message translates to:
+  /// **'Pronunciación'**
+  String get wordPronunciation;
+
+  /// No description provided for @settingsSize.
+  ///
+  /// In es, this message translates to:
+  /// **'Tamaño de letra'**
+  String get settingsSize;
+
+  /// No description provided for @settingsSmaller.
+  ///
+  /// In es, this message translates to:
+  /// **'Letra más pequeña'**
+  String get settingsSmaller;
+
+  /// No description provided for @settingsLarger.
+  ///
+  /// In es, this message translates to:
+  /// **'Letra más grande'**
+  String get settingsLarger;
+
+  /// No description provided for @settingsLeading.
+  ///
+  /// In es, this message translates to:
+  /// **'Interlineado'**
+  String get settingsLeading;
+
+  /// No description provided for @leadingcompact.
+  ///
+  /// In es, this message translates to:
+  /// **'Junto'**
+  String get leadingcompact;
+
+  /// No description provided for @leadingcomfortable.
+  ///
+  /// In es, this message translates to:
+  /// **'Cómodo'**
+  String get leadingcomfortable;
+
+  /// No description provided for @leadingairy.
+  ///
+  /// In es, this message translates to:
+  /// **'Amplio'**
+  String get leadingairy;
+
+  /// No description provided for @settingsWidth.
+  ///
+  /// In es, this message translates to:
+  /// **'Ancho del texto'**
+  String get settingsWidth;
+
+  /// No description provided for @widthnarrow.
+  ///
+  /// In es, this message translates to:
+  /// **'Estrecho'**
+  String get widthnarrow;
+
+  /// No description provided for @widthmedium.
+  ///
+  /// In es, this message translates to:
+  /// **'Medio'**
+  String get widthmedium;
+
+  /// No description provided for @widthwide.
+  ///
+  /// In es, this message translates to:
+  /// **'Ancho'**
+  String get widthwide;
+
+  /// No description provided for @settingsTheme.
+  ///
+  /// In es, this message translates to:
+  /// **'Tema de lectura'**
+  String get settingsTheme;
+
+  /// No description provided for @themelight.
+  ///
+  /// In es, this message translates to:
+  /// **'Claro'**
+  String get themelight;
+
+  /// No description provided for @themesepia.
+  ///
+  /// In es, this message translates to:
+  /// **'Sepia'**
+  String get themesepia;
+
+  /// No description provided for @themedark.
+  ///
+  /// In es, this message translates to:
+  /// **'Oscuro'**
+  String get themedark;
+
+  /// No description provided for @settingsAssistance.
+  ///
+  /// In es, this message translates to:
+  /// **'Ayudas'**
+  String get settingsAssistance;
+
+  /// No description provided for @settingsHighlightSaved.
+  ///
+  /// In es, this message translates to:
+  /// **'Resaltar las palabras que guardaste'**
+  String get settingsHighlightSaved;
+
+  /// No description provided for @settingsHighlightNew.
+  ///
+  /// In es, this message translates to:
+  /// **'Marcar las palabras nuevas para ti'**
+  String get settingsHighlightNew;
+
+  /// No description provided for @settingsHighlightNewHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Las que no aparecieron en ninguna lectura que terminaste ni guardaste.'**
+  String get settingsHighlightNewHint;
+
+  /// No description provided for @settingsHighlightLearned.
+  ///
+  /// In es, this message translates to:
+  /// **'Marcar las palabras que ya aprendiste'**
+  String get settingsHighlightLearned;
+
+  /// No description provided for @settingsParagraphTranslations.
+  ///
+  /// In es, this message translates to:
+  /// **'Mostrar la traducción de cada párrafo'**
+  String get settingsParagraphTranslations;
+
+  /// No description provided for @settingsParagraphTranslationsHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Mejor apagada: intenta entender primero y traduce solo lo que necesites.'**
+  String get settingsParagraphTranslationsHint;
+
+  /// No description provided for @settingsResume.
+  ///
+  /// In es, this message translates to:
+  /// **'Volver a donde lo dejé al abrir'**
+  String get settingsResume;
+
+  /// No description provided for @notesTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tus notas'**
+  String get notesTitle;
+
+  /// No description provided for @notesEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no guardaste oraciones de esta lectura. Toca una palabra y elige «Guardar la oración».'**
+  String get notesEmpty;
+
+  /// No description provided for @notesRemove.
+  ///
+  /// In es, this message translates to:
+  /// **'Borrar la nota'**
+  String get notesRemove;
+
+  /// No description provided for @notesGo.
+  ///
+  /// In es, this message translates to:
+  /// **'Ir a la oración'**
+  String get notesGo;
+
+  /// No description provided for @endTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Lectura terminada!'**
+  String get endTitle;
+
+  /// No description provided for @endBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Leíste {words} palabras en {language}.'**
+  String endBody(int words, String language);
+
+  /// No description provided for @endTime.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{Le dedicaste 1 minuto.} other{Le dedicaste {count} minutos.}}'**
+  String endTime(int count);
+
+  /// No description provided for @endSaved.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =0{No guardaste palabras esta vez.} =1{Guardaste 1 palabra.} other{Guardaste {count} palabras.}}'**
+  String endSaved(int count);
+
+  /// No description provided for @endDiscover.
+  ///
+  /// In es, this message translates to:
+  /// **'Volver a Descubrir'**
+  String get endDiscover;
+
+  /// No description provided for @endLibrary.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver mis lecturas'**
+  String get endLibrary;
+
+  /// No description provided for @endFailed.
+  ///
+  /// In es, this message translates to:
+  /// **'No pudimos marcarla como terminada. Inténtalo de nuevo.'**
+  String get endFailed;
+
+  /// No description provided for @libraryInProgress.
+  ///
+  /// In es, this message translates to:
+  /// **'Leyendo'**
+  String get libraryInProgress;
+
+  /// No description provided for @libraryBookmarked.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardadas para después'**
+  String get libraryBookmarked;
+
+  /// No description provided for @libraryCompleted.
+  ///
+  /// In es, this message translates to:
+  /// **'Terminadas'**
+  String get libraryCompleted;
+
+  /// No description provided for @libraryEmptyTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu biblioteca está esperando'**
+  String get libraryEmptyTitle;
+
+  /// No description provided for @libraryEmptyBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo que empieces, guardes o termines aparecerá aquí.'**
+  String get libraryEmptyBody;
+
+  /// No description provided for @librarySearch.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar en mis lecturas'**
+  String get librarySearch;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -486,12 +486,6 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get readerComingSoon => 'El lector inmersivo llega en la próxima versión de la app.';
-
-  @override
-  String get libraryComingSoon => 'Aquí verás lo que estás leyendo, lo que guardaste y lo que terminaste.';
-
-  @override
   String get vocabularyComingSoon => 'Aquí vivirán las palabras que guardes al leer, listas para repasar.';
 
   @override
@@ -551,4 +545,286 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get profileDifficulty => 'Dificultad';
+
+  @override
+  String get readerBack => 'Salir de la lectura';
+
+  @override
+  String get readerSettings => 'Texto y ayudas';
+
+  @override
+  String get readerNotes => 'Notas';
+
+  @override
+  String get readerFocus => 'Modo sin distracciones';
+
+  @override
+  String get readerFocusExit => 'Mostrar los controles';
+
+  @override
+  String readerRemaining(int count) {
+    return 'Quedan $count min';
+  }
+
+  @override
+  String get readerAlmostDone => 'Casi terminas';
+
+  @override
+  String readerProgress(int percent) {
+    return 'Avance de la lectura: $percent %';
+  }
+
+  @override
+  String get readerHint => 'Toca cualquier palabra para ver qué significa.';
+
+  @override
+  String readerOldVersion(int version) {
+    return 'Estás leyendo la versión $version, la que empezaste. Hay una versión más reciente.';
+  }
+
+  @override
+  String get readerTranslateParagraph => 'Traducir el párrafo';
+
+  @override
+  String get readerHideParagraph => 'Ocultar la traducción';
+
+  @override
+  String get readerNoParagraphTranslation => 'Este párrafo aún no tiene traducción.';
+
+  @override
+  String get readerSavePending => 'Guardado en el dispositivo; se enviará al volver la conexión.';
+
+  @override
+  String get readerFinish => 'Terminé de leer';
+
+  @override
+  String get readerFinishing => 'Guardando…';
+
+  @override
+  String get wordLoading => 'Buscando la palabra…';
+
+  @override
+  String wordTitle(String word) {
+    return 'La palabra «$word»';
+  }
+
+  @override
+  String get wordNoEntry => 'Todavía no tenemos esta palabra en el diccionario.';
+
+  @override
+  String get wordNoEntryBody => 'Preferimos decirlo antes que inventar una traducción.';
+
+  @override
+  String wordFormOf(String form, String lemma) {
+    return '«$form» es una forma de «$lemma».';
+  }
+
+  @override
+  String get wordDefinition => 'Definición';
+
+  @override
+  String get wordExamples => 'Ejemplos';
+
+  @override
+  String get wordSynonyms => 'Sinónimos';
+
+  @override
+  String get wordAntonyms => 'Antónimos';
+
+  @override
+  String get wordRelated => 'Relacionadas';
+
+  @override
+  String get wordForms => 'Formas';
+
+  @override
+  String get wordGrammar => 'Gramática';
+
+  @override
+  String get wordNote => 'Ten en cuenta';
+
+  @override
+  String get wordAlternatives => 'También puede ser';
+
+  @override
+  String get wordSave => 'Guardar en mi vocabulario';
+
+  @override
+  String get wordSaving => 'Guardando…';
+
+  @override
+  String get wordSaved => 'En tu vocabulario';
+
+  @override
+  String get wordSaveFailed => 'No pudimos guardar la palabra. Inténtalo de nuevo.';
+
+  @override
+  String get wordMore => 'Ver todo';
+
+  @override
+  String get wordLess => 'Ver menos';
+
+  @override
+  String get wordInContext => 'En esta oración';
+
+  @override
+  String get wordTranslateSentence => 'Traducir la oración';
+
+  @override
+  String get wordHideSentence => 'Ocultar la traducción';
+
+  @override
+  String get wordSentenceUnavailable => 'Esta oración aún no tiene traducción.';
+
+  @override
+  String get wordSaveSentence => 'Guardar la oración en mis notas';
+
+  @override
+  String get wordSentenceSaved => 'Oración guardada en tus notas';
+
+  @override
+  String get wordCopySentence => 'Copiar la oración';
+
+  @override
+  String get wordCopied => 'Copiada';
+
+  @override
+  String get wordAddNote => 'Añadir una nota (opcional)';
+
+  @override
+  String get wordPronunciation => 'Pronunciación';
+
+  @override
+  String get settingsSize => 'Tamaño de letra';
+
+  @override
+  String get settingsSmaller => 'Letra más pequeña';
+
+  @override
+  String get settingsLarger => 'Letra más grande';
+
+  @override
+  String get settingsLeading => 'Interlineado';
+
+  @override
+  String get leadingcompact => 'Junto';
+
+  @override
+  String get leadingcomfortable => 'Cómodo';
+
+  @override
+  String get leadingairy => 'Amplio';
+
+  @override
+  String get settingsWidth => 'Ancho del texto';
+
+  @override
+  String get widthnarrow => 'Estrecho';
+
+  @override
+  String get widthmedium => 'Medio';
+
+  @override
+  String get widthwide => 'Ancho';
+
+  @override
+  String get settingsTheme => 'Tema de lectura';
+
+  @override
+  String get themelight => 'Claro';
+
+  @override
+  String get themesepia => 'Sepia';
+
+  @override
+  String get themedark => 'Oscuro';
+
+  @override
+  String get settingsAssistance => 'Ayudas';
+
+  @override
+  String get settingsHighlightSaved => 'Resaltar las palabras que guardaste';
+
+  @override
+  String get settingsHighlightNew => 'Marcar las palabras nuevas para ti';
+
+  @override
+  String get settingsHighlightNewHint => 'Las que no aparecieron en ninguna lectura que terminaste ni guardaste.';
+
+  @override
+  String get settingsHighlightLearned => 'Marcar las palabras que ya aprendiste';
+
+  @override
+  String get settingsParagraphTranslations => 'Mostrar la traducción de cada párrafo';
+
+  @override
+  String get settingsParagraphTranslationsHint => 'Mejor apagada: intenta entender primero y traduce solo lo que necesites.';
+
+  @override
+  String get settingsResume => 'Volver a donde lo dejé al abrir';
+
+  @override
+  String get notesTitle => 'Tus notas';
+
+  @override
+  String get notesEmpty => 'Aún no guardaste oraciones de esta lectura. Toca una palabra y elige «Guardar la oración».';
+
+  @override
+  String get notesRemove => 'Borrar la nota';
+
+  @override
+  String get notesGo => 'Ir a la oración';
+
+  @override
+  String get endTitle => '¡Lectura terminada!';
+
+  @override
+  String endBody(int words, String language) {
+    return 'Leíste $words palabras en $language.';
+  }
+
+  @override
+  String endTime(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: 'Le dedicaste $count minutos.', one: 'Le dedicaste 1 minuto.');
+    return '$_temp0';
+  }
+
+  @override
+  String endSaved(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Guardaste $count palabras.',
+      one: 'Guardaste 1 palabra.',
+      zero: 'No guardaste palabras esta vez.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get endDiscover => 'Volver a Descubrir';
+
+  @override
+  String get endLibrary => 'Ver mis lecturas';
+
+  @override
+  String get endFailed => 'No pudimos marcarla como terminada. Inténtalo de nuevo.';
+
+  @override
+  String get libraryInProgress => 'Leyendo';
+
+  @override
+  String get libraryBookmarked => 'Guardadas para después';
+
+  @override
+  String get libraryCompleted => 'Terminadas';
+
+  @override
+  String get libraryEmptyTitle => 'Tu biblioteca está esperando';
+
+  @override
+  String get libraryEmptyBody => 'Lo que empieces, guardes o termines aparecerá aquí.';
+
+  @override
+  String get librarySearch => 'Buscar en mis lecturas';
 }

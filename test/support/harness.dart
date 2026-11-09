@@ -10,6 +10,7 @@ import 'package:lesen/core/networking/api_client.dart';
 import 'package:lesen/core/session/session.dart';
 import 'package:lesen/core/session/session_controller.dart';
 import 'package:lesen/core/session/session_store.dart';
+import 'package:lesen/core/storage/local_store.dart';
 import 'package:lesen/l10n/app_localizations.dart';
 
 import 'fake_backend.dart';
@@ -31,14 +32,21 @@ Session testSession() => Session.fromJson({
   },
 });
 
-List<Override> backendOverrides(FakeBackend backend, {SessionStore? store}) => [
+List<Override> backendOverrides(FakeBackend backend, {SessionStore? store, LocalStore? local}) => [
   appConfigProvider.overrideWithValue(testConfig),
   httpAdapterProvider.overrideWithValue(backend),
   sessionStoreProvider.overrideWithValue(store ?? MemorySessionStore()),
+  localStoreProvider.overrideWithValue(local ?? MemoryLocalStore()),
 ];
 
 /// La app entera contra un [FakeBackend].
-Future<ProviderContainer> pumpLesenApp(WidgetTester tester, FakeBackend backend, {SessionStore? store, Size size = const Size(390, 844)}) async {
+Future<ProviderContainer> pumpLesenApp(
+  WidgetTester tester,
+  FakeBackend backend, {
+  SessionStore? store,
+  LocalStore? local,
+  Size size = const Size(390, 844),
+}) async {
   tester.view.devicePixelRatio = 1;
   tester.view.physicalSize = size;
   addTearDown(tester.view.reset);
@@ -47,7 +55,7 @@ Future<ProviderContainer> pumpLesenApp(WidgetTester tester, FakeBackend backend,
   addTearDown(tester.platformDispatcher.clearAllTestValues);
   final container = ProviderContainer(
     retry: (_, _) => null,
-    overrides: backendOverrides(backend, store: store),
+    overrides: backendOverrides(backend, store: store, local: local),
   );
   addTearDown(container.dispose);
   await tester.pumpWidget(UncontrolledProviderScope(container: container, child: const LesenApp()));
@@ -85,4 +93,11 @@ Future<void> pumpWidgetUnderTest(
     ),
   );
   await tester.pumpAndSettle();
+}
+
+/// Un contenedor sin widgets para probar repositorios contra el [FakeBackend].
+ProviderContainer createContainerForTest(FakeBackend backend) {
+  final c = ProviderContainer(retry: (_, _) => null, overrides: backendOverrides(backend));
+  addTearDown(c.dispose);
+  return c;
 }

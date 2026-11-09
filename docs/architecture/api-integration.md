@@ -50,6 +50,7 @@ Lo que el móvil necesitaría y el backend no tiene. Ninguno se simula: la app l
 | URL absolutas              | Portadas y audio llegan relativas; el cliente las resuelve contra su `API_BASE_URL` | Aceptable; si se mueven a wasichai-files (fase 6 del backend), que lleguen absolutas                   | `lesen`            |
 | Texto de oración y offsets | El cliente reconstruye el texto con `text + space`                                  | Opcional: `sentence.text` en la vista de contenido                                                     | `lesen`            |
 | Varios idiomas de estudio  | El perfil tiene un solo `targetLanguage`; cambiarlo es editar el perfil             | Perfiles por idioma; fuera del alcance actual                                                          | `lesen`            |
+| Audio de pronunciación     | El panel muestra la IPA; no hay audio por palabra (la narración llega en la fase 3) | `audioUrl` opcional en la entrada del diccionario, generado como la narración                          | `lesen`            |
 | Borrado de cuenta          | Requisito de las tiendas: se documenta el procedimiento manual                      | `DELETE /api/lesen/me` (y el de Wasichai) antes de publicar en las tiendas                             | Wasichai + `lesen` |
 
 Nada de esto se implementa en el backend desde este repositorio: se abrirá como issue allí cuando haga falta.

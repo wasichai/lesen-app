@@ -6,8 +6,8 @@ vive en `wasichai/lesen` y la web en `wasichai/lesen-ui`. Antes de cambiar algo,
 
 ## Stack (no negociable sin ADR nueva)
 
-Flutter estable · Dart estable · Riverpod (ADR-0002) · go_router (ADR-0003) · dio con DTO propios (ADR-0004) · drift y
-flutter_secure_storage (ADR-0005) · just_audio + audio_service (ADR-0006) · ARB con `gen-l10n`.
+Flutter estable · Dart estable · Riverpod (ADR-0002) · go_router (ADR-0003) · dio con DTO propios (ADR-0004) · drift sin generación y
+flutter_secure_storage (ADR-0005, ADR-0009) · just_audio + audio_service (ADR-0006) · ARB con `gen-l10n`.
 
 ## Reglas
 
