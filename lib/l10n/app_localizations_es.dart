@@ -486,9 +486,6 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get vocabularyComingSoon => 'Aquí vivirán las palabras que guardes al leer, listas para repasar.';
-
-  @override
   String get progressComingSoon => 'Aquí verás tu progreso: lo medido y lo estimado, sin castigos.';
 
   @override
@@ -908,4 +905,429 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get audioTapToPlayHint => 'Mientras suena, toca una palabra para escuchar desde ella.';
+
+  @override
+  String get vocabTitle => 'Vocabulario';
+
+  @override
+  String get vocabSearch => 'Buscar en tu vocabulario';
+
+  @override
+  String get vocabAll => 'Todas';
+
+  @override
+  String get statusSAVED => 'Guardada';
+
+  @override
+  String get statusLEARNING => 'Aprendiendo';
+
+  @override
+  String get statusFAMILIAR => 'Familiar';
+
+  @override
+  String get statusMASTERED => 'Dominada';
+
+  @override
+  String get vocabEmptyTitle => 'Tu cuaderno está en blanco';
+
+  @override
+  String get vocabEmptyBody => 'Toca una palabra mientras lees y guárdala: aparecerá aquí, con la oración donde la encontraste.';
+
+  @override
+  String get vocabNoResults => 'Ninguna palabra coincide.';
+
+  @override
+  String get vocabReview => 'Repasar';
+
+  @override
+  String vocabReviewDue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Repasar $count palabras',
+      one: 'Repasar 1 palabra',
+      zero: 'Nada que repasar ahora',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String vocabStatsTotal(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count palabras', one: '1 palabra');
+    return '$_temp0';
+  }
+
+  @override
+  String vocabStatsToday(int count) {
+    return '$count repasadas hoy';
+  }
+
+  @override
+  String vocabStatsEncountered(int count) {
+    return '$count encontradas al leer';
+  }
+
+  @override
+  String vocabFrom(String title) {
+    return 'De «$title»';
+  }
+
+  @override
+  String get vocabDueNow => 'Toca repasarla';
+
+  @override
+  String vocabDueOn(String date) {
+    return 'Próximo repaso: $date';
+  }
+
+  @override
+  String vocabReviews(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count repasos', one: '1 repaso', zero: 'Sin repasos todavía');
+    return '$_temp0';
+  }
+
+  @override
+  String get vocabNote => 'Tu nota';
+
+  @override
+  String get vocabNoteHint => 'Algo que te ayude a recordarla';
+
+  @override
+  String get vocabRemove => 'Quitar del cuaderno';
+
+  @override
+  String vocabRemoveConfirm(String word) {
+    return '¿Quitar «$word» de tu cuaderno?';
+  }
+
+  @override
+  String get vocabOpenReading => 'Abrir la lectura';
+
+  @override
+  String get vocabOpenEntry => 'Abrir en el diccionario';
+
+  @override
+  String get reviewTitle => 'Repaso';
+
+  @override
+  String reviewProgress(int current, int total) {
+    return '$current de $total';
+  }
+
+  @override
+  String get reviewShow => 'Mostrar la respuesta';
+
+  @override
+  String get reviewPromptMeaning => '¿Qué significa?';
+
+  @override
+  String reviewPromptWord(String language) {
+    return '¿Cómo se dice en $language?';
+  }
+
+  @override
+  String get reviewPromptContext => '¿Qué palabra falta?';
+
+  @override
+  String get reviewHowWell => '¿Qué tal la recordaste?';
+
+  @override
+  String get ratingAGAIN => 'Otra vez';
+
+  @override
+  String get ratingHARD => 'Difícil';
+
+  @override
+  String get ratingGOOD => 'Bien';
+
+  @override
+  String get ratingEASY => 'Fácil';
+
+  @override
+  String reviewIn(String when) {
+    return 'en $when';
+  }
+
+  @override
+  String get reviewDoneTitle => '¡Repaso hecho!';
+
+  @override
+  String reviewDoneBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: 'Repasaste $count palabras.', one: 'Repasaste 1 palabra.');
+    return '$_temp0 Cada una vuelve cuando toca, ni antes ni después.';
+  }
+
+  @override
+  String get reviewNothing => 'Nada que repasar ahora';
+
+  @override
+  String get reviewNothingBody => 'Las palabras vuelven cuando toca. Sigue leyendo y guarda las que quieras aprender.';
+
+  @override
+  String reviewNext(String date) {
+    return 'Siguiente repaso: $date';
+  }
+
+  @override
+  String get reviewFailed => 'No se pudo guardar este repaso. Se reintentará.';
+
+  @override
+  String get dictTitle => 'Diccionario';
+
+  @override
+  String dictSearchHint(String target, String interface) {
+    return 'Busca en $target o en $interface';
+  }
+
+  @override
+  String get dictHistory => 'Búsquedas recientes';
+
+  @override
+  String get dictClearHistory => 'Borrar el historial';
+
+  @override
+  String get dictFavorites => 'Favoritas';
+
+  @override
+  String dictNoResults(String query) {
+    return 'No encontramos «$query» en el diccionario.';
+  }
+
+  @override
+  String get dictEmptyBody => 'Busca una palabra en cualquiera de tus dos idiomas.';
+
+  @override
+  String get dictFavorite => 'Añadir a favoritas';
+
+  @override
+  String get dictUnfavorite => 'Quitar de favoritas';
+
+  @override
+  String get dictAppearsIn => 'Aparece en';
+
+  @override
+  String dictOccurrences(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count veces', one: '1 vez');
+    return '$_temp0';
+  }
+
+  @override
+  String get dictMeanings => 'Significados';
+
+  @override
+  String get quizTitle => 'Comprensión';
+
+  @override
+  String quizStart(int count) {
+    return 'Comprueba lo que entendiste ($count preguntas)';
+  }
+
+  @override
+  String quizLastResult(int correct, int total) {
+    return 'Último intento: $correct de $total';
+  }
+
+  @override
+  String quizQuestion(int current, int total) {
+    return 'Pregunta $current de $total';
+  }
+
+  @override
+  String get quizNext => 'Siguiente';
+
+  @override
+  String get quizPrevious => 'Anterior';
+
+  @override
+  String get quizSubmit => 'Enviar respuestas';
+
+  @override
+  String get quizSubmitting => 'Enviando…';
+
+  @override
+  String get quizTrue => 'Verdadero';
+
+  @override
+  String get quizFalse => 'Falso';
+
+  @override
+  String get quizChooseMany => 'Elige todas las que correspondan';
+
+  @override
+  String get quizBank => 'Palabras para completar';
+
+  @override
+  String quizBlankEmpty(int n) {
+    return 'Hueco $n, vacío';
+  }
+
+  @override
+  String quizBlankFilled(int n, String word) {
+    return 'Hueco $n: $word. Toca para quitarla';
+  }
+
+  @override
+  String get quizMatchHint => 'Elige la pareja de cada una';
+
+  @override
+  String get quizMatchChoose => 'Elegir';
+
+  @override
+  String get quizOrderHint => 'Ordénalas como ocurren en el texto';
+
+  @override
+  String get quizMoveUp => 'Subir';
+
+  @override
+  String get quizMoveDown => 'Bajar';
+
+  @override
+  String get quizShortHint => 'Responde con tus palabras, en el idioma que prefieras';
+
+  @override
+  String quizUnanswered(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Quedan $count preguntas sin responder: contarán como incorrectas.',
+      one: 'Queda 1 pregunta sin responder: contará como incorrecta.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get quizResultTitle => 'Tu resultado';
+
+  @override
+  String quizScore(int correct, int total) {
+    return '$correct de $total correctas';
+  }
+
+  @override
+  String quizPartial(int count) {
+    return '$count en parte';
+  }
+
+  @override
+  String quizPending(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count respuestas se están corrigiendo…', one: '1 respuesta se está corrigiendo…');
+    return '$_temp0';
+  }
+
+  @override
+  String quizUngraded(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count respuestas abiertas para que las compares tú',
+      one: '1 respuesta abierta para que la compares tú',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get quizStrengths => 'Lo que te salió bien';
+
+  @override
+  String get quizImprove => 'Para practicar';
+
+  @override
+  String get resultCORRECT => 'Correcta';
+
+  @override
+  String get resultPARTIAL => 'En parte';
+
+  @override
+  String get resultINCORRECT => 'Incorrecta';
+
+  @override
+  String get resultPENDING => 'Corrigiendo…';
+
+  @override
+  String get resultUNGRADED => 'Para autoevaluar';
+
+  @override
+  String get quizYourAnswer => 'Tu respuesta';
+
+  @override
+  String get quizSolution => 'Respuesta';
+
+  @override
+  String get quizModelAnswer => 'Respuesta modelo';
+
+  @override
+  String get quizNoAnswer => 'Sin responder';
+
+  @override
+  String get quizExplanation => 'Por qué';
+
+  @override
+  String get quizInText => 'En el texto';
+
+  @override
+  String get quizAssisted => 'Corrección asistida, con las oraciones en que se apoya';
+
+  @override
+  String get quizRule => 'Corrección automática';
+
+  @override
+  String get quizSelf => 'Autoevaluada';
+
+  @override
+  String get quizSelfPrompt => 'Compara tu respuesta con la modelo. ¿Cómo te fue?';
+
+  @override
+  String get quizRetry => 'Intentarlo otra vez';
+
+  @override
+  String get quizBackToReading => 'Volver a la lectura';
+
+  @override
+  String get skillMULTIPLE_CHOICE => 'Opciones';
+
+  @override
+  String get skillTRUE_FALSE => 'Verdadero o falso';
+
+  @override
+  String get skillCOMPLETION => 'Completar oraciones';
+
+  @override
+  String get skillMATCHING => 'Emparejar';
+
+  @override
+  String get skillORDERING => 'Ordenar los hechos';
+
+  @override
+  String get skillSHORT_ANSWER => 'Respuesta breve';
+
+  @override
+  String get skillVOCABULARY_IN_CONTEXT => 'Vocabulario en contexto';
+
+  @override
+  String get skillMAIN_IDEA => 'Idea principal';
+
+  @override
+  String get skillINFERENCE => 'Inferencia';
+
+  @override
+  String get skillDETAIL => 'Detalles del texto';
+
+  @override
+  String get skillunknown => 'Otras';
+
+  @override
+  String durMinutes(int count) {
+    return '$count min';
+  }
+
+  @override
+  String durHours(int count) {
+    return '$count h';
+  }
+
+  @override
+  String durDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count días', one: '1 día');
+    return '$_temp0';
+  }
 }

@@ -956,12 +956,6 @@ abstract class AppLocalizations {
   /// **'{count, plural, =0{Aún nadie la abrió} =1{1 persona la abrió} other{{count} personas la abrieron}}'**
   String detailReaders(int count);
 
-  /// No description provided for @vocabularyComingSoon.
-  ///
-  /// In es, this message translates to:
-  /// **'Aquí vivirán las palabras que guardes al leer, listas para repasar.'**
-  String get vocabularyComingSoon;
-
   /// No description provided for @progressComingSoon.
   ///
   /// In es, this message translates to:
@@ -1735,6 +1729,690 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Mientras suena, toca una palabra para escuchar desde ella.'**
   String get audioTapToPlayHint;
+
+  /// No description provided for @vocabTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Vocabulario'**
+  String get vocabTitle;
+
+  /// No description provided for @vocabSearch.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar en tu vocabulario'**
+  String get vocabSearch;
+
+  /// No description provided for @vocabAll.
+  ///
+  /// In es, this message translates to:
+  /// **'Todas'**
+  String get vocabAll;
+
+  /// No description provided for @statusSAVED.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardada'**
+  String get statusSAVED;
+
+  /// No description provided for @statusLEARNING.
+  ///
+  /// In es, this message translates to:
+  /// **'Aprendiendo'**
+  String get statusLEARNING;
+
+  /// No description provided for @statusFAMILIAR.
+  ///
+  /// In es, this message translates to:
+  /// **'Familiar'**
+  String get statusFAMILIAR;
+
+  /// No description provided for @statusMASTERED.
+  ///
+  /// In es, this message translates to:
+  /// **'Dominada'**
+  String get statusMASTERED;
+
+  /// No description provided for @vocabEmptyTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu cuaderno está en blanco'**
+  String get vocabEmptyTitle;
+
+  /// No description provided for @vocabEmptyBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca una palabra mientras lees y guárdala: aparecerá aquí, con la oración donde la encontraste.'**
+  String get vocabEmptyBody;
+
+  /// No description provided for @vocabNoResults.
+  ///
+  /// In es, this message translates to:
+  /// **'Ninguna palabra coincide.'**
+  String get vocabNoResults;
+
+  /// No description provided for @vocabReview.
+  ///
+  /// In es, this message translates to:
+  /// **'Repasar'**
+  String get vocabReview;
+
+  /// No description provided for @vocabReviewDue.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =0{Nada que repasar ahora} =1{Repasar 1 palabra} other{Repasar {count} palabras}}'**
+  String vocabReviewDue(int count);
+
+  /// No description provided for @vocabStatsTotal.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 palabra} other{{count} palabras}}'**
+  String vocabStatsTotal(int count);
+
+  /// No description provided for @vocabStatsToday.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} repasadas hoy'**
+  String vocabStatsToday(int count);
+
+  /// No description provided for @vocabStatsEncountered.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} encontradas al leer'**
+  String vocabStatsEncountered(int count);
+
+  /// No description provided for @vocabFrom.
+  ///
+  /// In es, this message translates to:
+  /// **'De «{title}»'**
+  String vocabFrom(String title);
+
+  /// No description provided for @vocabDueNow.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca repasarla'**
+  String get vocabDueNow;
+
+  /// No description provided for @vocabDueOn.
+  ///
+  /// In es, this message translates to:
+  /// **'Próximo repaso: {date}'**
+  String vocabDueOn(String date);
+
+  /// No description provided for @vocabReviews.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =0{Sin repasos todavía} =1{1 repaso} other{{count} repasos}}'**
+  String vocabReviews(int count);
+
+  /// No description provided for @vocabNote.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu nota'**
+  String get vocabNote;
+
+  /// No description provided for @vocabNoteHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Algo que te ayude a recordarla'**
+  String get vocabNoteHint;
+
+  /// No description provided for @vocabRemove.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar del cuaderno'**
+  String get vocabRemove;
+
+  /// No description provided for @vocabRemoveConfirm.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Quitar «{word}» de tu cuaderno?'**
+  String vocabRemoveConfirm(String word);
+
+  /// No description provided for @vocabOpenReading.
+  ///
+  /// In es, this message translates to:
+  /// **'Abrir la lectura'**
+  String get vocabOpenReading;
+
+  /// No description provided for @vocabOpenEntry.
+  ///
+  /// In es, this message translates to:
+  /// **'Abrir en el diccionario'**
+  String get vocabOpenEntry;
+
+  /// No description provided for @reviewTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Repaso'**
+  String get reviewTitle;
+
+  /// No description provided for @reviewProgress.
+  ///
+  /// In es, this message translates to:
+  /// **'{current} de {total}'**
+  String reviewProgress(int current, int total);
+
+  /// No description provided for @reviewShow.
+  ///
+  /// In es, this message translates to:
+  /// **'Mostrar la respuesta'**
+  String get reviewShow;
+
+  /// No description provided for @reviewPromptMeaning.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Qué significa?'**
+  String get reviewPromptMeaning;
+
+  /// No description provided for @reviewPromptWord.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cómo se dice en {language}?'**
+  String reviewPromptWord(String language);
+
+  /// No description provided for @reviewPromptContext.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Qué palabra falta?'**
+  String get reviewPromptContext;
+
+  /// No description provided for @reviewHowWell.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Qué tal la recordaste?'**
+  String get reviewHowWell;
+
+  /// No description provided for @ratingAGAIN.
+  ///
+  /// In es, this message translates to:
+  /// **'Otra vez'**
+  String get ratingAGAIN;
+
+  /// No description provided for @ratingHARD.
+  ///
+  /// In es, this message translates to:
+  /// **'Difícil'**
+  String get ratingHARD;
+
+  /// No description provided for @ratingGOOD.
+  ///
+  /// In es, this message translates to:
+  /// **'Bien'**
+  String get ratingGOOD;
+
+  /// No description provided for @ratingEASY.
+  ///
+  /// In es, this message translates to:
+  /// **'Fácil'**
+  String get ratingEASY;
+
+  /// No description provided for @reviewIn.
+  ///
+  /// In es, this message translates to:
+  /// **'en {when}'**
+  String reviewIn(String when);
+
+  /// No description provided for @reviewDoneTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Repaso hecho!'**
+  String get reviewDoneTitle;
+
+  /// No description provided for @reviewDoneBody.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{Repasaste 1 palabra.} other{Repasaste {count} palabras.}} Cada una vuelve cuando toca, ni antes ni después.'**
+  String reviewDoneBody(int count);
+
+  /// No description provided for @reviewNothing.
+  ///
+  /// In es, this message translates to:
+  /// **'Nada que repasar ahora'**
+  String get reviewNothing;
+
+  /// No description provided for @reviewNothingBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Las palabras vuelven cuando toca. Sigue leyendo y guarda las que quieras aprender.'**
+  String get reviewNothingBody;
+
+  /// No description provided for @reviewNext.
+  ///
+  /// In es, this message translates to:
+  /// **'Siguiente repaso: {date}'**
+  String reviewNext(String date);
+
+  /// No description provided for @reviewFailed.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo guardar este repaso. Se reintentará.'**
+  String get reviewFailed;
+
+  /// No description provided for @dictTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Diccionario'**
+  String get dictTitle;
+
+  /// No description provided for @dictSearchHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Busca en {target} o en {interface}'**
+  String dictSearchHint(String target, String interface);
+
+  /// No description provided for @dictHistory.
+  ///
+  /// In es, this message translates to:
+  /// **'Búsquedas recientes'**
+  String get dictHistory;
+
+  /// No description provided for @dictClearHistory.
+  ///
+  /// In es, this message translates to:
+  /// **'Borrar el historial'**
+  String get dictClearHistory;
+
+  /// No description provided for @dictFavorites.
+  ///
+  /// In es, this message translates to:
+  /// **'Favoritas'**
+  String get dictFavorites;
+
+  /// No description provided for @dictNoResults.
+  ///
+  /// In es, this message translates to:
+  /// **'No encontramos «{query}» en el diccionario.'**
+  String dictNoResults(String query);
+
+  /// No description provided for @dictEmptyBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Busca una palabra en cualquiera de tus dos idiomas.'**
+  String get dictEmptyBody;
+
+  /// No description provided for @dictFavorite.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir a favoritas'**
+  String get dictFavorite;
+
+  /// No description provided for @dictUnfavorite.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar de favoritas'**
+  String get dictUnfavorite;
+
+  /// No description provided for @dictAppearsIn.
+  ///
+  /// In es, this message translates to:
+  /// **'Aparece en'**
+  String get dictAppearsIn;
+
+  /// No description provided for @dictOccurrences.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 vez} other{{count} veces}}'**
+  String dictOccurrences(int count);
+
+  /// No description provided for @dictMeanings.
+  ///
+  /// In es, this message translates to:
+  /// **'Significados'**
+  String get dictMeanings;
+
+  /// No description provided for @quizTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Comprensión'**
+  String get quizTitle;
+
+  /// No description provided for @quizStart.
+  ///
+  /// In es, this message translates to:
+  /// **'Comprueba lo que entendiste ({count} preguntas)'**
+  String quizStart(int count);
+
+  /// No description provided for @quizLastResult.
+  ///
+  /// In es, this message translates to:
+  /// **'Último intento: {correct} de {total}'**
+  String quizLastResult(int correct, int total);
+
+  /// No description provided for @quizQuestion.
+  ///
+  /// In es, this message translates to:
+  /// **'Pregunta {current} de {total}'**
+  String quizQuestion(int current, int total);
+
+  /// No description provided for @quizNext.
+  ///
+  /// In es, this message translates to:
+  /// **'Siguiente'**
+  String get quizNext;
+
+  /// No description provided for @quizPrevious.
+  ///
+  /// In es, this message translates to:
+  /// **'Anterior'**
+  String get quizPrevious;
+
+  /// No description provided for @quizSubmit.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviar respuestas'**
+  String get quizSubmit;
+
+  /// No description provided for @quizSubmitting.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviando…'**
+  String get quizSubmitting;
+
+  /// No description provided for @quizTrue.
+  ///
+  /// In es, this message translates to:
+  /// **'Verdadero'**
+  String get quizTrue;
+
+  /// No description provided for @quizFalse.
+  ///
+  /// In es, this message translates to:
+  /// **'Falso'**
+  String get quizFalse;
+
+  /// No description provided for @quizChooseMany.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige todas las que correspondan'**
+  String get quizChooseMany;
+
+  /// No description provided for @quizBank.
+  ///
+  /// In es, this message translates to:
+  /// **'Palabras para completar'**
+  String get quizBank;
+
+  /// No description provided for @quizBlankEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Hueco {n}, vacío'**
+  String quizBlankEmpty(int n);
+
+  /// No description provided for @quizBlankFilled.
+  ///
+  /// In es, this message translates to:
+  /// **'Hueco {n}: {word}. Toca para quitarla'**
+  String quizBlankFilled(int n, String word);
+
+  /// No description provided for @quizMatchHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige la pareja de cada una'**
+  String get quizMatchHint;
+
+  /// No description provided for @quizMatchChoose.
+  ///
+  /// In es, this message translates to:
+  /// **'Elegir'**
+  String get quizMatchChoose;
+
+  /// No description provided for @quizOrderHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Ordénalas como ocurren en el texto'**
+  String get quizOrderHint;
+
+  /// No description provided for @quizMoveUp.
+  ///
+  /// In es, this message translates to:
+  /// **'Subir'**
+  String get quizMoveUp;
+
+  /// No description provided for @quizMoveDown.
+  ///
+  /// In es, this message translates to:
+  /// **'Bajar'**
+  String get quizMoveDown;
+
+  /// No description provided for @quizShortHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Responde con tus palabras, en el idioma que prefieras'**
+  String get quizShortHint;
+
+  /// No description provided for @quizUnanswered.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{Queda 1 pregunta sin responder: contará como incorrecta.} other{Quedan {count} preguntas sin responder: contarán como incorrectas.}}'**
+  String quizUnanswered(int count);
+
+  /// No description provided for @quizResultTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu resultado'**
+  String get quizResultTitle;
+
+  /// No description provided for @quizScore.
+  ///
+  /// In es, this message translates to:
+  /// **'{correct} de {total} correctas'**
+  String quizScore(int correct, int total);
+
+  /// No description provided for @quizPartial.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} en parte'**
+  String quizPartial(int count);
+
+  /// No description provided for @quizPending.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 respuesta se está corrigiendo…} other{{count} respuestas se están corrigiendo…}}'**
+  String quizPending(int count);
+
+  /// No description provided for @quizUngraded.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 respuesta abierta para que la compares tú} other{{count} respuestas abiertas para que las compares tú}}'**
+  String quizUngraded(int count);
+
+  /// No description provided for @quizStrengths.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo que te salió bien'**
+  String get quizStrengths;
+
+  /// No description provided for @quizImprove.
+  ///
+  /// In es, this message translates to:
+  /// **'Para practicar'**
+  String get quizImprove;
+
+  /// No description provided for @resultCORRECT.
+  ///
+  /// In es, this message translates to:
+  /// **'Correcta'**
+  String get resultCORRECT;
+
+  /// No description provided for @resultPARTIAL.
+  ///
+  /// In es, this message translates to:
+  /// **'En parte'**
+  String get resultPARTIAL;
+
+  /// No description provided for @resultINCORRECT.
+  ///
+  /// In es, this message translates to:
+  /// **'Incorrecta'**
+  String get resultINCORRECT;
+
+  /// No description provided for @resultPENDING.
+  ///
+  /// In es, this message translates to:
+  /// **'Corrigiendo…'**
+  String get resultPENDING;
+
+  /// No description provided for @resultUNGRADED.
+  ///
+  /// In es, this message translates to:
+  /// **'Para autoevaluar'**
+  String get resultUNGRADED;
+
+  /// No description provided for @quizYourAnswer.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu respuesta'**
+  String get quizYourAnswer;
+
+  /// No description provided for @quizSolution.
+  ///
+  /// In es, this message translates to:
+  /// **'Respuesta'**
+  String get quizSolution;
+
+  /// No description provided for @quizModelAnswer.
+  ///
+  /// In es, this message translates to:
+  /// **'Respuesta modelo'**
+  String get quizModelAnswer;
+
+  /// No description provided for @quizNoAnswer.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin responder'**
+  String get quizNoAnswer;
+
+  /// No description provided for @quizExplanation.
+  ///
+  /// In es, this message translates to:
+  /// **'Por qué'**
+  String get quizExplanation;
+
+  /// No description provided for @quizInText.
+  ///
+  /// In es, this message translates to:
+  /// **'En el texto'**
+  String get quizInText;
+
+  /// No description provided for @quizAssisted.
+  ///
+  /// In es, this message translates to:
+  /// **'Corrección asistida, con las oraciones en que se apoya'**
+  String get quizAssisted;
+
+  /// No description provided for @quizRule.
+  ///
+  /// In es, this message translates to:
+  /// **'Corrección automática'**
+  String get quizRule;
+
+  /// No description provided for @quizSelf.
+  ///
+  /// In es, this message translates to:
+  /// **'Autoevaluada'**
+  String get quizSelf;
+
+  /// No description provided for @quizSelfPrompt.
+  ///
+  /// In es, this message translates to:
+  /// **'Compara tu respuesta con la modelo. ¿Cómo te fue?'**
+  String get quizSelfPrompt;
+
+  /// No description provided for @quizRetry.
+  ///
+  /// In es, this message translates to:
+  /// **'Intentarlo otra vez'**
+  String get quizRetry;
+
+  /// No description provided for @quizBackToReading.
+  ///
+  /// In es, this message translates to:
+  /// **'Volver a la lectura'**
+  String get quizBackToReading;
+
+  /// No description provided for @skillMULTIPLE_CHOICE.
+  ///
+  /// In es, this message translates to:
+  /// **'Opciones'**
+  String get skillMULTIPLE_CHOICE;
+
+  /// No description provided for @skillTRUE_FALSE.
+  ///
+  /// In es, this message translates to:
+  /// **'Verdadero o falso'**
+  String get skillTRUE_FALSE;
+
+  /// No description provided for @skillCOMPLETION.
+  ///
+  /// In es, this message translates to:
+  /// **'Completar oraciones'**
+  String get skillCOMPLETION;
+
+  /// No description provided for @skillMATCHING.
+  ///
+  /// In es, this message translates to:
+  /// **'Emparejar'**
+  String get skillMATCHING;
+
+  /// No description provided for @skillORDERING.
+  ///
+  /// In es, this message translates to:
+  /// **'Ordenar los hechos'**
+  String get skillORDERING;
+
+  /// No description provided for @skillSHORT_ANSWER.
+  ///
+  /// In es, this message translates to:
+  /// **'Respuesta breve'**
+  String get skillSHORT_ANSWER;
+
+  /// No description provided for @skillVOCABULARY_IN_CONTEXT.
+  ///
+  /// In es, this message translates to:
+  /// **'Vocabulario en contexto'**
+  String get skillVOCABULARY_IN_CONTEXT;
+
+  /// No description provided for @skillMAIN_IDEA.
+  ///
+  /// In es, this message translates to:
+  /// **'Idea principal'**
+  String get skillMAIN_IDEA;
+
+  /// No description provided for @skillINFERENCE.
+  ///
+  /// In es, this message translates to:
+  /// **'Inferencia'**
+  String get skillINFERENCE;
+
+  /// No description provided for @skillDETAIL.
+  ///
+  /// In es, this message translates to:
+  /// **'Detalles del texto'**
+  String get skillDETAIL;
+
+  /// No description provided for @skillunknown.
+  ///
+  /// In es, this message translates to:
+  /// **'Otras'**
+  String get skillunknown;
+
+  /// No description provided for @durMinutes.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} min'**
+  String durMinutes(int count);
+
+  /// No description provided for @durHours.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} h'**
+  String durHours(int count);
+
+  /// No description provided for @durDays.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 día} other{{count} días}}'**
+  String durDays(int count);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

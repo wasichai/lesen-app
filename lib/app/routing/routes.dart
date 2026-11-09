@@ -10,6 +10,13 @@ abstract final class Routes {
   static const progress = '/progress';
   static const profile = '/profile';
   static const player = '/player';
+  static const dictionary = '/dictionary';
+  static const review = '/review';
+
+  static String entry(String key) => '/dictionary/entries/${Uri.encodeComponent(key)}';
+  static String quiz(String slug, int version) => '/read/$slug/quiz?version=$version';
+  static String attempt(String id, {required String slug, required int version}) =>
+      Uri(path: '/attempts/$id', queryParameters: {'slug': slug, 'version': '$version'}).toString();
 
   static final slugPattern = RegExp(r'^[a-z0-9][a-z0-9-]{0,119}$');
 

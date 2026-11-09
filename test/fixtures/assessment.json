@@ -1,0 +1,273 @@
+{
+ "id": "5fba76fc-9946-46cd-beb4-325f7683d233",
+ "slug": "der-alte-leuchtturm",
+ "version": 1,
+ "language": "de",
+ "questions": [
+  {
+   "id": "q1",
+   "type": "DETAIL",
+   "difficulty": 1,
+   "prompt": "¿Por qué hoy el faro ya no necesita farero?",
+   "refs": [
+    "p2s1"
+   ],
+   "multiple": false,
+   "options": [
+    {
+     "id": "a",
+     "text": "Porque ya no pasan barcos",
+     "lang": "es"
+    },
+    {
+     "id": "b",
+     "text": "Porque la lámpara funciona automáticamente",
+     "lang": "es"
+    },
+    {
+     "id": "c",
+     "text": "Porque el faro está cerrado",
+     "lang": "es"
+    },
+    {
+     "id": "d",
+     "text": "Porque el abuelo tiene la llave",
+     "lang": "es"
+    }
+   ],
+   "word": null,
+   "completion": null,
+   "left": null,
+   "right": null,
+   "items": null
+  },
+  {
+   "id": "q2",
+   "type": "TRUE_FALSE",
+   "difficulty": 1,
+   "prompt": "Antes, el abuelo de Mia trabajaba como farero.",
+   "refs": [
+    "p1s3"
+   ],
+   "multiple": null,
+   "options": null,
+   "word": null,
+   "completion": null,
+   "left": null,
+   "right": null,
+   "items": null
+  },
+  {
+   "id": "q3",
+   "type": "VOCABULARY_IN_CONTEXT",
+   "difficulty": 2,
+   "prompt": "En „der Großvater hat noch einen Schlüssel“, ¿qué significa „Schlüssel“?",
+   "refs": [
+    "p2s2"
+   ],
+   "multiple": false,
+   "options": [
+    {
+     "id": "a",
+     "text": "una llave",
+     "lang": "es"
+    },
+    {
+     "id": "b",
+     "text": "una lámpara",
+     "lang": "es"
+    },
+    {
+     "id": "c",
+     "text": "una escalera",
+     "lang": "es"
+    },
+    {
+     "id": "d",
+     "text": "un barco",
+     "lang": "es"
+    }
+   ],
+   "word": {
+    "id": "p2s2t7",
+    "text": "Schlüssel",
+    "sentence": "p2s2"
+   },
+   "completion": null,
+   "left": null,
+   "right": null,
+   "items": null
+  },
+  {
+   "id": "q4",
+   "type": "COMPLETION",
+   "difficulty": 1,
+   "prompt": "Completa la oración con las palabras del texto.",
+   "refs": [
+    "p2s4"
+   ],
+   "multiple": null,
+   "options": null,
+   "word": null,
+   "completion": {
+    "sentence": "p2s4",
+    "parts": [
+     {
+      "text": "Mia ",
+      "blank": null
+     },
+     {
+      "text": null,
+      "blank": "p2s4t2"
+     },
+     {
+      "text": " hundert ",
+      "blank": null
+     },
+     {
+      "text": null,
+      "blank": "p2s4t4"
+     },
+     {
+      "text": ".",
+      "blank": null
+     }
+    ],
+    "bank": [
+     "zählt",
+     "Stufen",
+     "öffnet",
+     "Wolken"
+    ]
+   },
+   "left": null,
+   "right": null,
+   "items": null
+  },
+  {
+   "id": "q5",
+   "type": "MATCHING",
+   "difficulty": 2,
+   "prompt": "Une cada palabra del texto con su significado.",
+   "refs": [
+    "p1s2",
+    "p2s3",
+    "p4s2",
+    "p5s2"
+   ],
+   "multiple": null,
+   "options": null,
+   "word": null,
+   "completion": null,
+   "left": [
+    {
+     "id": "1",
+     "text": "Leuchtturm",
+     "lang": "de"
+    },
+    {
+     "id": "2",
+     "text": "Treppe",
+     "lang": "de"
+    },
+    {
+     "id": "3",
+     "text": "Schalter",
+     "lang": "de"
+    },
+    {
+     "id": "4",
+     "text": "Hafen",
+     "lang": "de"
+    }
+   ],
+   "right": [
+    {
+     "id": "z",
+     "text": "la escalera",
+     "lang": "es"
+    },
+    {
+     "id": "w",
+     "text": "el interruptor",
+     "lang": "es"
+    },
+    {
+     "id": "v",
+     "text": "la ola",
+     "lang": "es"
+    },
+    {
+     "id": "y",
+     "text": "el faro",
+     "lang": "es"
+    },
+    {
+     "id": "x",
+     "text": "el puerto",
+     "lang": "es"
+    }
+   ],
+   "items": null
+  },
+  {
+   "id": "q6",
+   "type": "ORDERING",
+   "difficulty": 2,
+   "prompt": "Ordena lo que pasa esa noche.",
+   "refs": [
+    "p2s3",
+    "p3s4",
+    "p4s4",
+    "p5s1"
+   ],
+   "multiple": null,
+   "options": null,
+   "word": null,
+   "completion": null,
+   "left": null,
+   "right": null,
+   "items": [
+    {
+     "id": "a",
+     "text": "Se apaga la luz.",
+     "lang": "es"
+    },
+    {
+     "id": "b",
+     "text": "Ven un barco pequeño a lo lejos.",
+     "lang": "es"
+    },
+    {
+     "id": "c",
+     "text": "Mia y su abuelo suben la escalera.",
+     "lang": "es"
+    },
+    {
+     "id": "d",
+     "text": "Mia pulsa el interruptor rojo.",
+     "lang": "es"
+    }
+   ]
+  },
+  {
+   "id": "q7",
+   "type": "SHORT_ANSWER",
+   "difficulty": 3,
+   "prompt": "¿Por qué crees que Mia está un poco orgullosa al final?",
+   "refs": [
+    "p4s4",
+    "p5s2",
+    "p5s4"
+   ],
+   "multiple": null,
+   "options": null,
+   "word": null,
+   "completion": null,
+   "left": null,
+   "right": null,
+   "items": null
+  }
+ ],
+ "lastAttempt": null
+}

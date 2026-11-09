@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../app/l10n.dart';
+import '../../../../app/routing/routes.dart';
 import '../../../../app/theme/tokens.dart';
 import '../../../../core/networking/api_failure.dart';
 import '../../../../core/widgets/feedback_views.dart';
@@ -187,6 +189,14 @@ class _WordPanelState extends ConsumerState<WordPanel> {
             const SizedBox(width: 8),
             TextButton(onPressed: () => setState(() => _expanded = !_expanded), child: Text(_expanded ? l10n.wordLess : l10n.wordMore)),
           ],
+        ),
+        Align(
+          alignment: AlignmentDirectional.centerStart,
+          child: TextButton.icon(
+            onPressed: () => context.push(Routes.entry(entry.key)),
+            icon: const Icon(Icons.menu_book_outlined, size: 18),
+            label: Text(l10n.vocabOpenEntry),
+          ),
         ),
       ],
     );

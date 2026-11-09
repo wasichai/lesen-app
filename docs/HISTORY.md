@@ -1,5 +1,20 @@
 # Historial
 
+## Fase 4 — Cuaderno, repaso espaciado, diccionario y comprensión (2026-11-09)
+
+- Cuaderno: palabras con su oración y su lectura, estado con icono y texto, búsqueda y filtro por estado, notas,
+  quitar, estadísticas y «Repasar n palabras».
+- Repaso FSRS-5 del backend (el cliente no calcula intervalos): significado, palabra y oración con hueco, alternados;
+  cuatro respuestas con la fecha que daría cada una; `clientId` (UUID v4) para que un reintento no repase dos veces.
+- Diccionario: búsqueda en los dos idiomas (el historial se guarda al elegir un resultado), favoritas, entrada completa
+  con significados, ejemplos, gramática, formas, relacionadas y lecturas donde aparece.
+- Comprensión: los diez tipos de pregunta (opciones, verdadero/falso, completar con banco, emparejar con menús, ordenar
+  arrastrando o con botones, respuesta breve); resultado con cada respuesta, la solución, la explicación y las
+  oraciones del texto; corrección asistida solo con sus citas; pendientes cada 2 s; autoevaluación de las abiertas;
+  fortalezas y puntos a practicar por tipo.
+- Fixtures nuevas capturadas del backend local (`notebook.json`, `assessment.json`, `attempt.json`).
+- 73 pruebas; dos desbordes con texto grande corregidos. Verificado contra el backend real (repaso 200).
+
 ## Fase 3 — Motor de audio y sincronización palabra a palabra (2026-11-09)
 
 - just_audio dentro de audio_service (`LesenAudioHandler`), sesión de voz hablada con audio_session: segundo plano,
