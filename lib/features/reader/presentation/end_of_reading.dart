@@ -6,13 +6,15 @@ import '../../../app/l10n.dart';
 import '../../../app/routing/routes.dart';
 import '../../../app/theme/tokens.dart';
 import '../../catalog/domain/reading.dart';
+import '../../comprehension/application/comprehension_providers.dart';
 import '../../profile/application/profile_providers.dart';
 
 /// El cierre de una lectura: lo logrado, sin cifras que castiguen, y a dónde seguir.
 class EndOfReading extends ConsumerWidget {
-  const EndOfReading({super.key, required this.reading, required this.minutes, required this.savedWords});
+  const EndOfReading({super.key, required this.reading, required this.version, required this.minutes, required this.savedWords});
 
   final ReadingCard reading;
+  final int version;
   final int minutes;
   final int savedWords;
 
@@ -23,6 +25,7 @@ class EndOfReading extends ConsumerWidget {
     final text = Theme.of(context).textTheme;
     final language = ref.watch(languagesProvider).value?.nameOf(reading.language) ?? reading.language;
     final reduce = MediaQuery.disableAnimationsOf(context);
+    final assessment = ref.watch(assessmentProvider((slug: reading.slug, version: version))).value;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
@@ -56,9 +59,23 @@ class EndOfReading extends ConsumerWidget {
               style: text.bodyMedium?.copyWith(color: t.inkMuted),
             ),
             const SizedBox(height: 24),
+            if (assessment != null && assessment.questions.isNotEmpty) ...[
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton.icon(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    context.push(Routes.quiz(reading.slug, version));
+                  },
+                  icon: const Icon(Icons.quiz_outlined),
+                  label: Text(l10n.quizStart(assessment.questions.length)),
+                ),
+              ),
+              const SizedBox(height: 8),
+            ],
             SizedBox(
               width: double.infinity,
-              child: FilledButton(
+              child: (assessment == null ? FilledButton.new : OutlinedButton.new)(
                 onPressed: () {
                   Navigator.pop(context);
                   context.go(Routes.library);

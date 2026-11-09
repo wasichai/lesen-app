@@ -1,0 +1,157 @@
+{
+ "vocabulary": {
+  "content": [
+   {
+    "id": "8e7cbcbc-b7c6-499b-b4a7-ffde2dd9ed8a",
+    "entryKey": "de:verbringen",
+    "lemma": "verbringen",
+    "pos": "verb",
+    "language": "de",
+    "translations": [
+     "pasar (tiempo)"
+    ],
+    "surface": "verbringt",
+    "context": "Mia verbringt den Sommer bei ihrem Großvater an der Nordsee.",
+    "tokenRef": "p1s1t2",
+    "source": {
+     "slug": "der-alte-leuchtturm",
+     "title": "Der alte Leuchtturm",
+     "version": 1
+    },
+    "status": "SAVED",
+    "note": null,
+    "savedAt": "2026-11-09T22:03:19.904575Z",
+    "dueAt": "2026-11-09T22:03:19.904575Z",
+    "reviews": 0
+   }
+  ],
+  "page": 0,
+  "size": 24,
+  "totalElements": 1,
+  "totalPages": 1
+ },
+ "reviewsNext": {
+  "cards": [
+   {
+    "item": {
+     "id": "8e7cbcbc-b7c6-499b-b4a7-ffde2dd9ed8a",
+     "entryKey": "de:verbringen",
+     "lemma": "verbringen",
+     "pos": "verb",
+     "language": "de",
+     "translations": [
+      "pasar (tiempo)"
+     ],
+     "surface": "verbringt",
+     "context": "Mia verbringt den Sommer bei ihrem Großvater an der Nordsee.",
+     "tokenRef": "p1s1t2",
+     "source": {
+      "slug": "der-alte-leuchtturm",
+      "title": "Der alte Leuchtturm",
+      "version": 1
+     },
+     "status": "SAVED",
+     "note": null,
+     "savedAt": "2026-11-09T22:03:19.904575Z",
+     "dueAt": "2026-11-09T22:03:19.904575Z",
+     "reviews": 0
+    },
+    "state": "LEARNING",
+    "preview": {
+     "AGAIN": "2026-11-09T22:23:13.822976215Z",
+     "HARD": "2026-11-09T22:27:43.822976215Z",
+     "GOOD": "2026-11-09T22:32:13.822976215Z",
+     "EASY": "2026-11-25T22:22:13.822976215Z"
+    }
+   }
+  ],
+  "due": 1,
+  "nextDueAt": null
+ },
+ "stats": {
+  "total": 1,
+  "byStatus": {
+   "SAVED": 1,
+   "LEARNING": 0,
+   "FAMILIAR": 0,
+   "MASTERED": 0
+  },
+  "dueNow": 1,
+  "reviewedToday": 0,
+  "encountered": 0
+ },
+ "search": [
+  {
+   "key": "de:licht",
+   "language": "de",
+   "lemma": "Licht",
+   "pos": "noun",
+   "translations": [
+    "luz"
+   ],
+   "matchedBy": "LEMMA"
+  }
+ ],
+ "entry": {
+  "key": "de:licht",
+  "language": "de",
+  "lemma": "Licht",
+  "pos": "noun",
+  "ipa": "lɪçt",
+  "grammar": {
+   "gender": "n",
+   "plural": "Lichter"
+  },
+  "forms": [
+   "lichter",
+   "lichtern"
+  ],
+  "senses": [
+   {
+    "translations": [
+     "luz"
+    ],
+    "definition": "Lo que permite ver; también, una lámpara encendida.",
+    "examples": [
+     {
+      "text": "Mach bitte das Licht an.",
+      "translation": "Enciende la luz, por favor."
+     }
+    ],
+    "synonyms": [],
+    "antonyms": [
+     "de:dunkelheit"
+    ],
+    "related": [
+     {
+      "key": "de:lampe",
+      "lemma": "Lampe"
+     },
+     {
+      "key": "de:hell",
+      "lemma": "hell"
+     }
+    ],
+    "note": null
+   }
+  ],
+  "favorite": false,
+  "saved": false,
+  "readings": [
+   {
+    "slug": "ein-abend-mit-den-sternen",
+    "title": "Ein Abend mit den Sternen",
+    "level": "B1",
+    "occurrences": 2
+   },
+   {
+    "slug": "der-alte-leuchtturm",
+    "title": "Der alte Leuchtturm",
+    "level": "A2",
+    "occurrences": 1
+   }
+  ]
+ },
+ "history": [],
+ "favorites": []
+}

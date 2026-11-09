@@ -128,12 +128,12 @@ class FakeBackend implements HttpClientAdapter {
     };
   }
 
-  int count(String key) => requests.where((r) => '${r.method} ${r.path}' == key).length;
+  int count(String key) => requests.where((r) => '${r.method} ${Uri.decodeComponent(r.path)}' == key).length;
 
   @override
   Future<ResponseBody> fetch(RequestOptions options, Stream<Uint8List>? requestStream, Future<void>? cancelFuture) async {
     requests.add(options);
-    final handler = routes['${options.method} ${options.path}'];
+    final handler = routes['${options.method} ${Uri.decodeComponent(options.path)}'];
     if (handler == null) return _json(404, {'status': 404, 'detail': 'Sin ruta en FakeBackend: ${options.method} ${options.path}'});
     final result = handler(options);
     if (result is Reply) return _json(result.status, result.body);

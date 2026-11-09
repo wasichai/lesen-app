@@ -126,6 +126,7 @@ class _Header extends ConsumerWidget {
                 ),
               ),
               IconButton(tooltip: l10n.navSearch, onPressed: () => context.go(Routes.catalog), icon: const Icon(Icons.search)),
+              IconButton(tooltip: l10n.dictTitle, onPressed: () => context.push(Routes.dictionary), icon: const Icon(Icons.translate)),
               IconButton(tooltip: l10n.navProfile, onPressed: () => context.push(Routes.profile), icon: const Icon(Icons.account_circle_outlined)),
             ],
           ),

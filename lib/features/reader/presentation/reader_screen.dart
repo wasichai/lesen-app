@@ -14,6 +14,7 @@ import '../../audio/data/audio_repository.dart';
 import '../../audio/presentation/reader_audio_bar.dart';
 import '../../catalog/application/catalog_providers.dart';
 import '../../catalog/domain/reading.dart';
+import '../../comprehension/application/comprehension_providers.dart';
 import '../../library/data/library_repository.dart';
 import '../../profile/application/profile_providers.dart';
 import '../application/reader_providers.dart';
@@ -284,7 +285,8 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
         context: context,
         isScrollControlled: true,
         useSafeArea: true,
-        builder: (_) => EndOfReading(reading: widget.session.reading, minutes: (_tracker.secondsRead / 60).ceil(), savedWords: saved),
+        builder: (_) =>
+            EndOfReading(reading: widget.session.reading, version: _content.version, minutes: (_tracker.secondsRead / 60).ceil(), savedWords: saved),
       );
     } on ApiFailure {
       if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.endFailed)));
@@ -303,6 +305,7 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
     final wide = MediaQuery.sizeOf(context).width >= sidePanelBreakpoint;
     final paragraphTranslations = ref.watch(translationsProvider((slug: _content.slug, version: _content.version, unit: TranslationUnit.PARAGRAPH)));
     final remaining = remainingMinutes(reading.minutes, _percent);
+    final assessmentCount = ref.watch(assessmentProvider((slug: _content.slug, version: _content.version)).select((a) => a.value?.questions.length)) ?? 0;
     final hasAudio = ref.watch(playbackProvider.select((s) => s.now?.key == '${_content.slug}@${_content.version}'));
 
     final list = ListView.builder(
@@ -323,7 +326,20 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
             Padding(
               padding: const EdgeInsets.only(top: 32),
               child: _tracker.completed && _percent >= 100
-                  ? OutlinedButton.icon(onPressed: () => _leave(context, _content.slug), icon: const Icon(Icons.check), label: Text(l10n.cardCompleted))
+                  ? Wrap(
+                      alignment: WrapAlignment.center,
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        OutlinedButton.icon(onPressed: () => _leave(context, _content.slug), icon: const Icon(Icons.check), label: Text(l10n.cardCompleted)),
+                        if (assessmentCount > 0)
+                          FilledButton.icon(
+                            onPressed: () => context.push(Routes.quiz(_content.slug, _content.version)),
+                            icon: const Icon(Icons.quiz_outlined),
+                            label: Text(l10n.quizStart(assessmentCount)),
+                          ),
+                      ],
+                    )
                   : FilledButton.icon(
                       onPressed: _finishing ? null : _finish,
                       icon: const Icon(Icons.flag_outlined),

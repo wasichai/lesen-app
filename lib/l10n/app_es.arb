@@ -274,7 +274,6 @@
       }
     }
   },
-  "vocabularyComingSoon": "Aquí vivirán las palabras que guardes al leer, listas para repasar.",
   "progressComingSoon": "Aquí verás tu progreso: lo medido y lo estimado, sin castigos.",
   "comingSoonTitle": "Muy pronto",
   "profileTitle": "Tu perfil",
@@ -506,5 +505,340 @@
   "audioClose": "Cerrar el reproductor",
   "audioExpand": "Abrir el reproductor",
   "audioNowPlaying": "Ahora suena",
-  "audioTapToPlayHint": "Mientras suena, toca una palabra para escuchar desde ella."
+  "audioTapToPlayHint": "Mientras suena, toca una palabra para escuchar desde ella.",
+  "vocabTitle": "Vocabulario",
+  "vocabSearch": "Buscar en tu vocabulario",
+  "vocabAll": "Todas",
+  "statusSAVED": "Guardada",
+  "statusLEARNING": "Aprendiendo",
+  "statusFAMILIAR": "Familiar",
+  "statusMASTERED": "Dominada",
+  "vocabEmptyTitle": "Tu cuaderno está en blanco",
+  "vocabEmptyBody": "Toca una palabra mientras lees y guárdala: aparecerá aquí, con la oración donde la encontraste.",
+  "vocabNoResults": "Ninguna palabra coincide.",
+  "vocabReview": "Repasar",
+  "vocabReviewDue": "{count, plural, =0{Nada que repasar ahora} =1{Repasar 1 palabra} other{Repasar {count} palabras}}",
+  "@vocabReviewDue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vocabStatsTotal": "{count, plural, =1{1 palabra} other{{count} palabras}}",
+  "@vocabStatsTotal": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vocabStatsToday": "{count} repasadas hoy",
+  "@vocabStatsToday": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vocabStatsEncountered": "{count} encontradas al leer",
+  "@vocabStatsEncountered": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vocabFrom": "De «{title}»",
+  "@vocabFrom": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "vocabDueNow": "Toca repasarla",
+  "vocabDueOn": "Próximo repaso: {date}",
+  "@vocabDueOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vocabReviews": "{count, plural, =0{Sin repasos todavía} =1{1 repaso} other{{count} repasos}}",
+  "@vocabReviews": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vocabNote": "Tu nota",
+  "vocabNoteHint": "Algo que te ayude a recordarla",
+  "vocabRemove": "Quitar del cuaderno",
+  "vocabRemoveConfirm": "¿Quitar «{word}» de tu cuaderno?",
+  "@vocabRemoveConfirm": {
+    "placeholders": {
+      "word": {
+        "type": "String"
+      }
+    }
+  },
+  "vocabOpenReading": "Abrir la lectura",
+  "vocabOpenEntry": "Abrir en el diccionario",
+  "reviewTitle": "Repaso",
+  "reviewProgress": "{current} de {total}",
+  "@reviewProgress": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "reviewShow": "Mostrar la respuesta",
+  "reviewPromptMeaning": "¿Qué significa?",
+  "reviewPromptWord": "¿Cómo se dice en {language}?",
+  "@reviewPromptWord": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "reviewPromptContext": "¿Qué palabra falta?",
+  "reviewHowWell": "¿Qué tal la recordaste?",
+  "ratingAGAIN": "Otra vez",
+  "ratingHARD": "Difícil",
+  "ratingGOOD": "Bien",
+  "ratingEASY": "Fácil",
+  "reviewIn": "en {when}",
+  "@reviewIn": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "reviewDoneTitle": "¡Repaso hecho!",
+  "reviewDoneBody": "{count, plural, =1{Repasaste 1 palabra.} other{Repasaste {count} palabras.}} Cada una vuelve cuando toca, ni antes ni después.",
+  "@reviewDoneBody": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reviewNothing": "Nada que repasar ahora",
+  "reviewNothingBody": "Las palabras vuelven cuando toca. Sigue leyendo y guarda las que quieras aprender.",
+  "reviewNext": "Siguiente repaso: {date}",
+  "@reviewNext": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "reviewFailed": "No se pudo guardar este repaso. Se reintentará.",
+  "dictTitle": "Diccionario",
+  "dictSearchHint": "Busca en {target} o en {interface}",
+  "@dictSearchHint": {
+    "placeholders": {
+      "target": {
+        "type": "String"
+      },
+      "interface": {
+        "type": "String"
+      }
+    }
+  },
+  "dictHistory": "Búsquedas recientes",
+  "dictClearHistory": "Borrar el historial",
+  "dictFavorites": "Favoritas",
+  "dictNoResults": "No encontramos «{query}» en el diccionario.",
+  "@dictNoResults": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "dictEmptyBody": "Busca una palabra en cualquiera de tus dos idiomas.",
+  "dictFavorite": "Añadir a favoritas",
+  "dictUnfavorite": "Quitar de favoritas",
+  "dictAppearsIn": "Aparece en",
+  "dictOccurrences": "{count, plural, =1{1 vez} other{{count} veces}}",
+  "@dictOccurrences": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dictMeanings": "Significados",
+  "quizTitle": "Comprensión",
+  "quizStart": "Comprueba lo que entendiste ({count} preguntas)",
+  "@quizStart": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quizLastResult": "Último intento: {correct} de {total}",
+  "@quizLastResult": {
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "quizQuestion": "Pregunta {current} de {total}",
+  "@quizQuestion": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "quizNext": "Siguiente",
+  "quizPrevious": "Anterior",
+  "quizSubmit": "Enviar respuestas",
+  "quizSubmitting": "Enviando…",
+  "quizTrue": "Verdadero",
+  "quizFalse": "Falso",
+  "quizChooseMany": "Elige todas las que correspondan",
+  "quizBank": "Palabras para completar",
+  "quizBlankEmpty": "Hueco {n}, vacío",
+  "@quizBlankEmpty": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "quizBlankFilled": "Hueco {n}: {word}. Toca para quitarla",
+  "@quizBlankFilled": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "word": {
+        "type": "String"
+      }
+    }
+  },
+  "quizMatchHint": "Elige la pareja de cada una",
+  "quizMatchChoose": "Elegir",
+  "quizOrderHint": "Ordénalas como ocurren en el texto",
+  "quizMoveUp": "Subir",
+  "quizMoveDown": "Bajar",
+  "quizShortHint": "Responde con tus palabras, en el idioma que prefieras",
+  "quizUnanswered": "{count, plural, =1{Queda 1 pregunta sin responder: contará como incorrecta.} other{Quedan {count} preguntas sin responder: contarán como incorrectas.}}",
+  "@quizUnanswered": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quizResultTitle": "Tu resultado",
+  "quizScore": "{correct} de {total} correctas",
+  "@quizScore": {
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "quizPartial": "{count} en parte",
+  "@quizPartial": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quizPending": "{count, plural, =1{1 respuesta se está corrigiendo…} other{{count} respuestas se están corrigiendo…}}",
+  "@quizPending": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quizUngraded": "{count, plural, =1{1 respuesta abierta para que la compares tú} other{{count} respuestas abiertas para que las compares tú}}",
+  "@quizUngraded": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quizStrengths": "Lo que te salió bien",
+  "quizImprove": "Para practicar",
+  "resultCORRECT": "Correcta",
+  "resultPARTIAL": "En parte",
+  "resultINCORRECT": "Incorrecta",
+  "resultPENDING": "Corrigiendo…",
+  "resultUNGRADED": "Para autoevaluar",
+  "quizYourAnswer": "Tu respuesta",
+  "quizSolution": "Respuesta",
+  "quizModelAnswer": "Respuesta modelo",
+  "quizNoAnswer": "Sin responder",
+  "quizExplanation": "Por qué",
+  "quizInText": "En el texto",
+  "quizAssisted": "Corrección asistida, con las oraciones en que se apoya",
+  "quizRule": "Corrección automática",
+  "quizSelf": "Autoevaluada",
+  "quizSelfPrompt": "Compara tu respuesta con la modelo. ¿Cómo te fue?",
+  "quizRetry": "Intentarlo otra vez",
+  "quizBackToReading": "Volver a la lectura",
+  "skillMULTIPLE_CHOICE": "Opciones",
+  "skillTRUE_FALSE": "Verdadero o falso",
+  "skillCOMPLETION": "Completar oraciones",
+  "skillMATCHING": "Emparejar",
+  "skillORDERING": "Ordenar los hechos",
+  "skillSHORT_ANSWER": "Respuesta breve",
+  "skillVOCABULARY_IN_CONTEXT": "Vocabulario en contexto",
+  "skillMAIN_IDEA": "Idea principal",
+  "skillINFERENCE": "Inferencia",
+  "skillDETAIL": "Detalles del texto",
+  "skillunknown": "Otras",
+  "durMinutes": "{count} min",
+  "@durMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durHours": "{count} h",
+  "@durHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durDays": "{count, plural, =1{1 día} other{{count} días}}",
+  "@durDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

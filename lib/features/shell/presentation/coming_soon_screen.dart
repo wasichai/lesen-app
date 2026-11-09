@@ -7,7 +7,6 @@ import '../../../core/widgets/feedback_views.dart';
 class ComingSoonScreen extends StatelessWidget {
   const ComingSoonScreen._(this._kind);
 
-  const ComingSoonScreen.vocabulary() : this._(_Kind.vocabulary);
   const ComingSoonScreen.progress() : this._(_Kind.progress);
 
   final _Kind _kind;
@@ -16,7 +15,6 @@ class ComingSoonScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final (title, body, icon) = switch (_kind) {
-      _Kind.vocabulary => (l10n.navVocabulary, l10n.vocabularyComingSoon, Icons.style_outlined),
       _Kind.progress => (l10n.navProgress, l10n.progressComingSoon, Icons.insights_outlined),
     };
     return Scaffold(
@@ -26,4 +24,4 @@ class ComingSoonScreen extends StatelessWidget {
   }
 }
 
-enum _Kind { vocabulary, progress }
+enum _Kind { progress }

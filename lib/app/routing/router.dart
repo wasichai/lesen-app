@@ -7,6 +7,10 @@ import '../../features/audio/presentation/full_player_screen.dart';
 import '../../features/auth/presentation/login_screen.dart';
 import '../../features/auth/presentation/splash_screen.dart';
 import '../../features/catalog/domain/catalog_query.dart';
+import '../../features/comprehension/presentation/assessment_screen.dart';
+import '../../features/comprehension/presentation/attempt_screen.dart';
+import '../../features/dictionary/presentation/dictionary_screen.dart';
+import '../../features/dictionary/presentation/entry_screen.dart';
 import '../../features/catalog/domain/reading.dart';
 import '../../features/catalog/presentation/catalog_screen.dart';
 import '../../features/catalog/presentation/reading_detail_screen.dart';
@@ -18,6 +22,8 @@ import '../../features/profile/presentation/profile_screen.dart';
 import '../../features/reader/presentation/reader_screen.dart';
 import '../../features/shell/presentation/app_shell.dart';
 import '../../features/shell/presentation/coming_soon_screen.dart';
+import '../../features/vocabulary/presentation/review_screen.dart';
+import '../../features/vocabulary/presentation/vocabulary_screen.dart';
 import 'routes.dart';
 
 /// Qué hacer con una ruta según la sesión y el perfil. Pura, para probarla sin widgets.
@@ -75,7 +81,33 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/read/:slug',
         redirect: (_, state) => _validSlug(state) ? null : Routes.discover,
         builder: (_, state) => ReaderScreen(slug: state.pathParameters['slug']!),
+        routes: [
+          GoRoute(
+            path: 'quiz',
+            builder: (_, state) =>
+                AssessmentScreen(slug: state.pathParameters['slug']!, version: int.tryParse(state.uri.queryParameters['version'] ?? '') ?? 1),
+          ),
+        ],
       ),
+      GoRoute(
+        path: '/attempts/:id',
+        builder: (_, state) => AttemptScreen(
+          attemptId: state.pathParameters['id']!,
+          slug: state.uri.queryParameters['slug'] ?? '',
+          version: int.tryParse(state.uri.queryParameters['version'] ?? '') ?? 1,
+        ),
+      ),
+      GoRoute(
+        path: Routes.dictionary,
+        builder: (_, _) => const DictionaryScreen(),
+        routes: [
+          GoRoute(
+            path: 'entries/:key',
+            builder: (_, state) => EntryScreen(entryKey: state.pathParameters['key']!),
+          ),
+        ],
+      ),
+      GoRoute(path: Routes.review, builder: (_, _) => const ReviewScreen()),
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => AppShell(shell: shell),
         branches: [
@@ -102,7 +134,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [GoRoute(path: Routes.library, builder: (_, _) => const LibraryScreen())],
           ),
           StatefulShellBranch(
-            routes: [GoRoute(path: Routes.vocabulary, builder: (_, _) => const ComingSoonScreen.vocabulary())],
+            routes: [GoRoute(path: Routes.vocabulary, builder: (_, _) => const VocabularyScreen())],
           ),
           StatefulShellBranch(
             routes: [GoRoute(path: Routes.progress, builder: (_, _) => const ComingSoonScreen.progress())],

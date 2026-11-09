@@ -7,4 +7,7 @@ Copiadas de `wasichai/lesen-ui/e2e/fixtures/`, que las captura del backend real 
   audio y evaluación.
 - `audio/der-alte-leuchtturm.mp3`: narración eSpeak NG de la lectura con audio (licencia en su `voice.license`).
 
+- `notebook.json`, `assessment.json`, `attempt.json`: capturados del backend local con su demo (`lena` y `tomas`,
+  2026-11-09): cuaderno, repaso, estadísticas, búsqueda y entrada del diccionario, preguntas y un intento corregido.
+
 Al cambiar el contrato del backend, se vuelven a capturar allí y se copian aquí.
