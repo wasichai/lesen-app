@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,7 +14,10 @@ import 'package:lesen/core/networking/api_client.dart';
 import 'package:lesen/core/session/session.dart';
 import 'package:lesen/core/session/session_controller.dart';
 import 'package:lesen/core/session/session_store.dart';
+import 'package:lesen/core/storage/files.dart';
 import 'package:lesen/core/storage/local_store.dart';
+import 'package:lesen/core/sync/sync.dart';
+import 'package:lesen/features/downloads/application/downloads_controller.dart';
 import 'package:lesen/l10n/app_localizations.dart';
 
 import 'fake_backend.dart';
@@ -34,12 +39,15 @@ Session testSession() => Session.fromJson({
   },
 });
 
-List<Override> backendOverrides(FakeBackend backend, {SessionStore? store, LocalStore? local, NarrationEngine? engine}) => [
+List<Override> backendOverrides(FakeBackend backend, {SessionStore? store, LocalStore? local, NarrationEngine? engine, Directory? files, bool wifi = true}) => [
   appConfigProvider.overrideWithValue(testConfig),
   httpAdapterProvider.overrideWithValue(backend),
   sessionStoreProvider.overrideWithValue(store ?? MemorySessionStore()),
   localStoreProvider.overrideWithValue(local ?? MemoryLocalStore()),
   narrationEngineProvider.overrideWithValue(engine ?? FakeNarrationEngine()),
+  syncIntervalProvider.overrideWithValue(null),
+  filesDirProvider.overrideWith((_) async => files),
+  wifiCheckProvider.overrideWithValue(() async => wifi),
 ];
 
 /// La app entera contra un [FakeBackend].
@@ -49,6 +57,7 @@ Future<ProviderContainer> pumpLesenApp(
   SessionStore? store,
   LocalStore? local,
   NarrationEngine? engine,
+  Directory? files,
   Size size = const Size(390, 844),
 }) async {
   tester.view.devicePixelRatio = 1;
@@ -59,7 +68,7 @@ Future<ProviderContainer> pumpLesenApp(
   addTearDown(tester.platformDispatcher.clearAllTestValues);
   final container = ProviderContainer(
     retry: (_, _) => null,
-    overrides: backendOverrides(backend, store: store, local: local, engine: engine),
+    overrides: backendOverrides(backend, store: store, local: local, engine: engine, files: files),
   );
   addTearDown(container.dispose);
   await tester.pumpWidget(UncontrolledProviderScope(container: container, child: const LesenApp()));
@@ -100,10 +109,10 @@ Future<void> pumpWidgetUnderTest(
 }
 
 /// Un contenedor sin widgets para probar repositorios contra el [FakeBackend].
-ProviderContainer createContainerForTest(FakeBackend backend, {NarrationEngine? engine, LocalStore? local}) {
+ProviderContainer createContainerForTest(FakeBackend backend, {NarrationEngine? engine, LocalStore? local, Directory? files, bool wifi = true}) {
   final c = ProviderContainer(
     retry: (_, _) => null,
-    overrides: backendOverrides(backend, engine: engine, local: local),
+    overrides: backendOverrides(backend, engine: engine, local: local, files: files, wifi: wifi),
   );
   addTearDown(c.dispose);
   return c;

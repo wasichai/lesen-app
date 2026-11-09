@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/networking/api_failure.dart';
+import '../../../core/sync/sync.dart';
 import '../../../core/utilities/ids.dart';
 import '../../profile/application/profile_providers.dart';
 import '../data/vocabulary_repository.dart';
@@ -115,20 +118,19 @@ class ReviewController extends AsyncNotifier<ReviewSession> {
     state = AsyncData(ReviewSession(cards: s.cards, index: s.index, revealed: true, done: s.done, nextDueAt: s.nextDueAt, failed: s.failed));
   }
 
-  /// Responde la tarjeta actual. El intervalo lo decide el backend (FSRS-5); `clientId` evita repasar dos veces si se
-  /// reintenta. Un fallo de red no detiene la sesión: se cuenta y se sigue (la cola persistente llega en la fase 5).
+  /// Responde la tarjeta actual. El intervalo lo decide el backend (FSRS-5). Va por la cola con un `clientId`: sin red se
+  /// envía al volver, y repetirlo no repasa dos veces.
   Future<void> rate(ReviewRating rating) async {
     final s = state.value;
     final card = s?.current;
     if (s == null || card == null) return;
-    var failed = s.failed;
-    try {
-      await ref.read(vocabularyRepositoryProvider).review(vocabularyId: card.item.id, rating: rating, clientId: uuidV4());
-    } on ApiFailure {
-      failed++;
-    }
+    final outbox = ref.read(outboxProvider);
+    await outbox.enqueue(Ops.review, {
+      'body': {'vocabularyId': card.item.id, 'rating': rating.name, 'clientId': uuidV4()},
+    });
+    unawaited(outbox.flush());
     if (!ref.mounted) return;
-    state = AsyncData(ReviewSession(cards: s.cards, index: s.index + 1, revealed: false, done: s.done + 1, nextDueAt: s.nextDueAt, failed: failed));
+    state = AsyncData(ReviewSession(cards: s.cards, index: s.index + 1, revealed: false, done: s.done + 1, nextDueAt: s.nextDueAt));
     if (s.index + 1 >= s.cards.length) ref.invalidate(vocabularyStatsProvider);
   }
 }

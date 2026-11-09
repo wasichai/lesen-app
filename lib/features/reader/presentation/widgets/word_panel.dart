@@ -82,7 +82,9 @@ class _WordPanelState extends ConsumerState<WordPanel> {
     final note = await showDialog<String>(context: context, builder: (_) => const _NoteDialog());
     if (note == null) return;
     try {
-      await ref.read(notesProvider(widget.slug).notifier).add(version: widget.version, sentenceRef: widget.sentence.id, note: note);
+      await ref
+          .read(notesProvider(widget.slug).notifier)
+          .add(version: widget.version, sentenceRef: widget.sentence.id, quote: widget.sentence.text, note: note);
       messenger?.showSnackBar(SnackBar(content: Text(l10n.wordSentenceSaved)));
     } on ApiFailure catch (e) {
       messenger?.showSnackBar(SnackBar(content: Text(l10n.failure(e))));

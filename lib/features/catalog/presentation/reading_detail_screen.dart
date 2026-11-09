@@ -5,11 +5,11 @@ import 'package:go_router/go_router.dart';
 import '../../../app/l10n.dart';
 import '../../../app/routing/routes.dart';
 import '../../../app/theme/tokens.dart';
-import '../../../core/networking/api_failure.dart';
 import '../../../core/widgets/feedback_views.dart';
+import '../../downloads/presentation/download_button.dart';
 import '../../profile/application/profile_providers.dart';
 import '../application/catalog_providers.dart';
-import '../data/catalog_repository.dart';
+import '../../reader/data/reader_repository.dart';
 import '../domain/reading.dart';
 import 'widgets/cover_image.dart';
 import 'widgets/reading_card_view.dart';
@@ -61,15 +61,8 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
       _bookmarked = next;
       _saving = true;
     });
-    try {
-      await ref.read(catalogRepositoryProvider).setBookmark(widget.detail.reading.slug, next);
-    } on ApiFailure {
-      if (!mounted) return;
-      setState(() => _bookmarked = !next);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.detailBookmarkFailed)));
-    } finally {
-      if (mounted) setState(() => _saving = false);
-    }
+    await ref.read(readerRepositoryProvider).setBookmark(widget.detail.reading.slug, next);
+    if (mounted) setState(() => _saving = false);
   }
 
   @override
@@ -116,6 +109,7 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
           children: [
             Expanded(
               child: FilledButton.icon(
+                key: const ValueKey('start-reading'),
                 onPressed: () => context.push(Routes.reader(r.slug)),
                 icon: const Icon(Icons.menu_book_outlined),
                 label: Text(primaryLabel),
@@ -134,6 +128,8 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
             ),
           ],
         ),
+        const SizedBox(height: 8),
+        DownloadButton(slug: r.slug),
       ],
     );
 

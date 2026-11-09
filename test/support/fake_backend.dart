@@ -48,6 +48,9 @@ class FakeBackend implements HttpClientAdapter {
   final Map<String, Handler> routes;
   final List<RequestOptions> requests = [];
 
+  /// Sin red: cada petición falla como un modo avión.
+  bool offline = false;
+
   static Map<String, Handler> defaults() => {
     'POST /auth/login': (_) => {
       'token': 'token-de-prueba',
@@ -100,6 +103,8 @@ class FakeBackend implements HttpClientAdapter {
       },
       'GET $base/notes': (_) => <Object>[],
       'GET $base/versions/$version/audio': (_) => r['audio'] ?? const Reply(404, {'status': 404}),
+      'GET /lesen/public/audio/$slug.mp3': (_) =>
+          File('test/fixtures/audio/$slug.mp3').existsSync() ? File('test/fixtures/audio/$slug.mp3').readAsBytesSync() : const Reply(404),
       'GET /lesen/vocabulary/known': (_) => {'saved': <Object>[], 'encountered': <Object>[]},
       'POST /lesen/vocabulary': (req) => const Reply(201, {'id': 'v1'}),
       'GET /lesen/dictionary/lookup': (req) {
@@ -128,15 +133,35 @@ class FakeBackend implements HttpClientAdapter {
     };
   }
 
-  int count(String key) => requests.where((r) => '${r.method} ${Uri.decodeComponent(r.path)}' == key).length;
+  /// La ruta bajo `/api`, venga relativa o absoluta (portadas y audio se piden por URL completa).
+  static String pathOf(RequestOptions r) {
+    final path = Uri.decodeComponent(r.uri.path);
+    return path.startsWith('/api/') ? path.substring(4) : path;
+  }
+
+  int count(String key) => requests.where((r) => '${r.method} ${pathOf(r)}' == key).length;
 
   @override
   Future<ResponseBody> fetch(RequestOptions options, Stream<Uint8List>? requestStream, Future<void>? cancelFuture) async {
+    // lo que no llega al servidor (modo avión) no cuenta como petición recibida
+    if (offline) {
+      throw DioException(requestOptions: options, type: DioExceptionType.connectionError, error: const SocketException('modo avión'));
+    }
     requests.add(options);
-    final handler = routes['${options.method} ${Uri.decodeComponent(options.path)}'];
+    final handler = routes['${options.method} ${pathOf(options)}'];
     if (handler == null) return _json(404, {'status': 404, 'detail': 'Sin ruta en FakeBackend: ${options.method} ${options.path}'});
     final result = handler(options);
     if (result is Reply) return _json(result.status, result.body);
+    if (result is List<int>) {
+      return ResponseBody.fromBytes(
+        result,
+        200,
+        headers: {
+          Headers.contentTypeHeader: ['audio/mpeg'],
+          Headers.contentLengthHeader: ['${result.length}'],
+        },
+      );
+    }
     if (result == null) return ResponseBody.fromString('', 204);
     return _json(200, result);
   }

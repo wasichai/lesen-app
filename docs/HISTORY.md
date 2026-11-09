@@ -1,5 +1,18 @@
 # Historial
 
+## Fase 5 — Sin conexión primero (2026-11-09)
+
+- Cola de operaciones persistente (`Outbox`): progreso, terminar, marcador, guardar palabra, repaso, nota e intento;
+  orden de llegada, colapso por clave, espera exponencial con tope, rechazos definitivos visibles y descartables, pausa
+  ante un 401; se vacía al entrar, al volver la red, al volver a primer plano y cada minuto.
+- Lo inmutable de una versión (contenido, traducciones, tiempos) se lee del dispositivo una vez pedido; ficha,
+  biblioteca, Descubrir, idiomas, temas y preguntas caen a su última copia sin red; portadas guardadas en archivos.
+- Descargas: texto, traducciones, preguntas, portada, tiempos y audio, con progreso, cancelación, reintento, espacio
+  usado y audio solo por Wi-Fi (ADR-0010); el audio descargado suena desde el archivo.
+- Intentos sin red: «Respuestas guardadas · pendiente de evaluar»; al sincronizar, el servidor corrige.
+- Estado de sincronización en el perfil; el aviso sin conexión cuenta lo pendiente.
+- 83 pruebas, con el recorrido de modo avión completo.
+
 ## Fase 4 — Cuaderno, repaso espaciado, diccionario y comprensión (2026-11-09)
 
 - Cuaderno: palabras con su oración y su lectura, estado con icono y texto, búsqueda y filtro por estado, notas,

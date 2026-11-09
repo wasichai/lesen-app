@@ -1330,4 +1330,104 @@ class AppLocalizationsEs extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count días', one: '1 día');
     return '$_temp0';
   }
+
+  @override
+  String get quizQueuedTitle => 'Respuestas guardadas';
+
+  @override
+  String get quizQueuedBody =>
+      'No hay conexión: tus respuestas están en el dispositivo. Se enviarán y se corregirán al volver la red; el resultado lo da el servidor, no la app.';
+
+  @override
+  String get quizQueuedPending => 'Pendiente de evaluar';
+
+  @override
+  String get quizSeeResult => 'Ver el último resultado';
+
+  @override
+  String get downloadsTitle => 'Descargas';
+
+  @override
+  String get downloadAction => 'Descargar para leer sin conexión';
+
+  @override
+  String get downloadQueued => 'En espera…';
+
+  @override
+  String downloadProgress(int percent) {
+    return 'Descargando… $percent %';
+  }
+
+  @override
+  String get downloadDone => 'Descargada · disponible sin conexión';
+
+  @override
+  String get downloadFailed => 'La descarga falló';
+
+  @override
+  String get downloadWaitingWifi => 'Esperando una red Wi-Fi para el audio';
+
+  @override
+  String get downloadCancel => 'Cancelar la descarga';
+
+  @override
+  String get downloadRetry => 'Reintentar la descarga';
+
+  @override
+  String get downloadRemove => 'Quitar la descarga';
+
+  @override
+  String get downloadsEmpty => 'Nada descargado todavía';
+
+  @override
+  String get downloadsEmptyBody =>
+      'En la ficha de una lectura, «Descargar» guarda su texto, sus traducciones, su audio y sus preguntas para leerla sin conexión.';
+
+  @override
+  String downloadsStorage(String size) {
+    return 'Ocupan $size en el dispositivo';
+  }
+
+  @override
+  String get downloadsWifiOnly => 'Descargar el audio solo con Wi-Fi';
+
+  @override
+  String get syncTitle => 'Sincronización';
+
+  @override
+  String syncPending(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count cambios pendientes de enviar',
+      one: '1 cambio pendiente de enviar',
+      zero: 'Todo está sincronizado',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get syncNow => 'Sincronizar ahora';
+
+  @override
+  String get syncing => 'Sincronizando…';
+
+  @override
+  String syncRejected(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count cambios', one: '1 cambio');
+    return 'El servidor no aceptó $_temp0';
+  }
+
+  @override
+  String get syncDiscard => 'Descartar';
+
+  @override
+  String syncLast(String time) {
+    return 'Última sincronización: $time';
+  }
+
+  @override
+  String offlinePending(int count) {
+    return 'Sin conexión · $count cambios esperan para enviarse';
+  }
 }

@@ -21,8 +21,7 @@ Una descarga es explícita («Descargar para leer sin conexión») e incluye con
 el idioma de interfaz), metadatos de audio y tiempos, el archivo de audio, la evaluación y la portada. Estados:
 `queued → downloading(progress) → done | failed | cancelled`. Se puede cancelar, reintentar y borrar; la pantalla de
 descargas muestra el espacio usado. Con «solo por Wi-Fi», el archivo de audio espera a una red sin coste. Lo
-descargado se reproduce desde el archivo local; lo no descargado, en streaming con rangos. Se usa
-`background_downloader` para que una descarga larga siga en segundo plano (ADR-0007).
+descargado se reproduce desde el archivo local; lo no descargado, en streaming con rangos. La descarga va por dio con la app abierta (ADR-0010).
 
 ## 3. Cola de operaciones
 
@@ -39,8 +38,9 @@ Cada escritura se aplica primero a la proyección local (la pantalla responde al
 | Nota de oración | `POST readings/{slug}/notes`          | No natural: se envía una vez; si la respuesta se pierde, se reconcilia con `GET notes` por (sentenceRef, nota) |
 | Intento         | `POST assessments/{id}/attempts`      | Igual que las notas, con `GET attempts` del `lastAttempt`                                                      |
 
-La cola se vacía en orden, al arrancar, al volver la red, al volver la app a primer plano y tras cada escritura. Errores
-de red → espera exponencial con tope (2 s, 4 s, … 5 min). Un 4xx que no sea 401/408/429 es definitivo: la operación se
+La cola se vacía en orden, al arrancar, al volver la red, al volver la app a primer plano, cada minuto y tras cada
+escritura. Errores de red → espera exponencial con tope (2 s, 4 s, … 5 min); mientras la primera espera, las de detrás
+también, para no alterar el orden. Un 4xx que no sea 401/408/429 es definitivo: la operación se
 marca como rechazada y se muestra en el estado de sincronización, nunca se borra en silencio. Un 401 detiene la cola
 hasta volver a entrar.
 
@@ -65,3 +65,16 @@ autoridad, ADR-0009 del backend).
 
 Un aviso discreto en la cabecera («Sin conexión: puedes leer lo descargado»), nunca diálogos; las acciones que
 necesitan red se desactivan con su motivo; un indicador de sincronización con lo pendiente y lo rechazado.
+
+## 7. Implementación
+
+| Pieza                                            | Dónde                                                          |
+| ------------------------------------------------ | -------------------------------------------------------------- |
+| Cola, colapso, espera, rechazos                  | `lib/core/sync/outbox.dart`                                    |
+| Tipos de operación, disparadores, estado         | `lib/core/sync/sync.dart`                                      |
+| Lecturas con copia (`cacheFirst`/`networkFirst`) | `lib/core/storage/cache.dart`                                  |
+| Descargas y preferencia de Wi-Fi                 | `lib/features/downloads/application/downloads_controller.dart` |
+| Unión de progresos                               | `lib/features/reader/domain/reading_progress.dart`             |
+
+El recorrido completo (descargar, modo avión, leer, avanzar, volver la red, sincronizar) está probado en
+`test/features/offline_test.dart`; el modo avión real en un teléfono queda en `docs/platform/device-verification.md`.

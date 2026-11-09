@@ -11,6 +11,7 @@ import '../../features/comprehension/presentation/assessment_screen.dart';
 import '../../features/comprehension/presentation/attempt_screen.dart';
 import '../../features/dictionary/presentation/dictionary_screen.dart';
 import '../../features/dictionary/presentation/entry_screen.dart';
+import '../../features/downloads/presentation/downloads_screen.dart';
 import '../../features/catalog/domain/reading.dart';
 import '../../features/catalog/presentation/catalog_screen.dart';
 import '../../features/catalog/presentation/reading_detail_screen.dart';
@@ -108,6 +109,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         ],
       ),
       GoRoute(path: Routes.review, builder: (_, _) => const ReviewScreen()),
+      GoRoute(path: Routes.downloads, builder: (_, _) => const DownloadsScreen()),
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => AppShell(shell: shell),
         branches: [

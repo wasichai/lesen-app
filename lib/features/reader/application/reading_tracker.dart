@@ -1,13 +1,12 @@
 import 'dart:async';
 
-import '../../../core/networking/api_failure.dart';
 import '../data/reader_repository.dart';
 import '../domain/reading_content.dart';
 import '../domain/reading_progress.dart';
 
 /// Lleva la posición y el tiempo de una sesión de lectura y los guarda: siempre en el dispositivo, y en el servidor con
-/// una pausa de [debounce] tras cada cambio, al salir y al pasar la app a segundo plano. Un fallo de red no pierde nada:
-/// queda pendiente en el dispositivo y se reenvía en el siguiente guardado (la cola completa llega en la fase 5).
+/// una pausa de [debounce] tras cada cambio, al salir y al pasar la app a segundo plano. Sin red no se pierde nada: queda
+/// en el dispositivo y en la cola de operaciones (ADR-0007).
 class ReadingTracker {
   ReadingTracker({
     required this.repository,
@@ -68,31 +67,24 @@ class ReadingTracker {
     updatedAt: _clock().toUtc(),
   );
 
-  /// Guarda ya. Devuelve `true` si el servidor lo confirmó.
-  Future<bool> flush() async {
+  /// Guarda ya en el dispositivo y encola el envío (la cola lo manda cuando hay red).
+  Future<void> flush() async {
     _timer?.cancel();
-    if (!_dirty && _watch.elapsed.inSeconds == 0) return true;
+    if (!_dirty && _watch.elapsed.inSeconds == 0) return;
     await _saving;
     _dirty = false;
     final save = repository.saveProgress(content.slug, snapshot());
     _saving = save.then((_) {}, onError: (_) {});
-    try {
-      await save;
-      return true;
-    } on ApiFailure {
-      _dirty = true;
-      return false;
-    }
+    await save;
   }
 
-  /// Termina la lectura (`POST completion`).
+  /// Termina la lectura: al momento en el dispositivo y, por la cola, en el servidor.
   Future<ReadingProgress> complete() async {
     _timer?.cancel();
     await _saving;
-    final done = await repository.complete(content.slug, content.version, secondsRead);
     _completed = true;
     _percent = 100;
-    return done;
+    return repository.complete(content.slug, snapshot());
   }
 
   void dispose() {

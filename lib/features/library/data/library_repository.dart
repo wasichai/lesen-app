@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/networking/api_client.dart';
+import '../../../core/storage/cache.dart';
+import '../../../core/storage/local_store.dart';
 import '../../catalog/data/catalog_dto.dart';
 import '../../catalog/domain/reading.dart';
 
@@ -15,7 +17,8 @@ class Library {
 }
 
 final libraryProvider = FutureProvider.autoDispose<Library>((ref) async {
-  final j = await ref.watch(apiProvider).getJson('/lesen/library');
+  final api = ref.watch(apiProvider);
+  final j = await ref.watch(localStoreProvider).networkFirst('library', () => api.getJson('/lesen/library'));
   return Library(
     inProgress: [for (final c in (j['inProgress'] as List? ?? const [])) CatalogDto.card((c as Map).cast<String, dynamic>())],
     bookmarked: [for (final c in (j['bookmarked'] as List? ?? const [])) CatalogDto.card((c as Map).cast<String, dynamic>())],

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/networking/api_failure.dart';
 import '../../../core/storage/local_store.dart';
+import '../../../core/sync/sync.dart';
 import '../../catalog/data/catalog_repository.dart';
 import '../../catalog/domain/reading.dart';
 import '../../dictionary/data/dictionary_repository.dart';
@@ -103,10 +104,14 @@ class KnownWordsController extends Notifier<KnownWords> {
     }
   }
 
-  /// Guarda una palabra en el cuaderno. Lanza [ApiFailure] si el servidor no la acepta.
+  /// Guarda una palabra en el cuaderno: al momento en pantalla y, por la cola, en el servidor (es idempotente allí).
   Future<void> save({required String entryKey, required String slug, required int version, required String tokenRef}) async {
-    await ref.read(vocabularyRepositoryProvider).save(entryKey: entryKey, slug: slug, version: version, tokenRef: tokenRef);
-    if (ref.mounted) state = state.withSaved(entryKey);
+    state = state.withSaved(entryKey);
+    final outbox = ref.read(outboxProvider);
+    await outbox.enqueue(Ops.saveWord, {
+      'body': {'entryKey': entryKey, 'reading': slug, 'version': version, 'tokenRef': tokenRef},
+    }, collapseKey: 'saveWord:$entryKey');
+    unawaited(outbox.flush());
   }
 }
 
@@ -118,15 +123,24 @@ class NotesController extends AsyncNotifier<List<Note>> {
   final String slug;
 
   @override
-  Future<List<Note>> build() => ref.watch(readerRepositoryProvider).notes(slug);
+  Future<List<Note>> build() {
+    // cuando una nota encolada llega al servidor, se recarga la lista con su id definitivo
+    final sub = ref.watch(outboxProvider).completed.where((e) => e.$1.kind == Ops.note && e.$1.payload['slug'] == slug).listen((_) => ref.invalidateSelf());
+    ref.onDispose(sub.cancel);
+    return ref.watch(readerRepositoryProvider).notes(slug);
+  }
 
-  Future<void> add({required int version, required String sentenceRef, String? note}) async {
-    final created = await ref.read(readerRepositoryProvider).addNote(slug, version: version, sentenceRef: sentenceRef, note: note);
+  Future<void> add({required int version, required String sentenceRef, required String quote, String? note}) async {
+    final created = await ref.read(readerRepositoryProvider).addNote(slug, version: version, sentenceRef: sentenceRef, quote: quote, note: note);
     state = AsyncData([...?state.value, created]);
   }
 
   Future<void> remove(String id) async {
-    await ref.read(readerRepositoryProvider).deleteNote(id);
+    if (id.startsWith('pending:')) {
+      await ref.read(outboxProvider).cancel(id.substring('pending:'.length));
+    } else {
+      await ref.read(readerRepositoryProvider).deleteNote(id);
+    }
     state = AsyncData([...?state.value?.where((n) => n.id != id)]);
   }
 }

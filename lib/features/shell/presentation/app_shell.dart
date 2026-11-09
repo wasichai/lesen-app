@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../app/l10n.dart';
 import '../../../app/theme/tokens.dart';
 import '../../../core/connectivity/connectivity.dart';
+import '../../../core/sync/sync.dart';
 import '../../../core/widgets/lesen_mark.dart';
 import '../../audio/presentation/mini_player.dart';
 
@@ -67,12 +68,13 @@ class AppShell extends ConsumerWidget {
   }
 }
 
-class _OfflineBanner extends StatelessWidget {
+class _OfflineBanner extends ConsumerWidget {
   const _OfflineBanner();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = LesenTokens.of(context);
+    final pending = ref.watch(syncStatusProvider.select((s) => s.value?.pending ?? 0));
     return Semantics(
       liveRegion: true,
       child: Material(
@@ -85,7 +87,9 @@ class _OfflineBanner extends StatelessWidget {
               children: [
                 Icon(Icons.cloud_off_outlined, size: 18, color: t.inkMuted),
                 const SizedBox(width: 8),
-                Expanded(child: Text(context.l10n.offlineBanner, style: Theme.of(context).textTheme.bodySmall)),
+                Expanded(
+                  child: Text(pending > 0 ? context.l10n.offlinePending(pending) : context.l10n.offlineBanner, style: Theme.of(context).textTheme.bodySmall),
+                ),
               ],
             ),
           ),

@@ -12,6 +12,7 @@ abstract final class Routes {
   static const player = '/player';
   static const dictionary = '/dictionary';
   static const review = '/review';
+  static const downloads = '/downloads';
 
   static String entry(String key) => '/dictionary/entries/${Uri.encodeComponent(key)}';
   static String quiz(String slug, int version) => '/read/$slug/quiz?version=$version';
