@@ -81,8 +81,9 @@ class SessionController extends Notifier<SessionState> {
     state = const SessionState.signedOut(SignOutReason.expired);
   }
 
-  /// Espacios locales con datos de quien lee; el contenido publicado (público e inmutable) se conserva.
-  static const personalNamespaces = ['progress', 'prefs', 'audio'];
+  /// Espacios locales con datos de quien lee (progreso, cola, descargas, copias de su biblioteca y su panel). Lo
+  /// público e inmutable (contenido de versiones) se conserva: no es personal.
+  static const personalNamespaces = ['progress', 'prefs', 'audio', 'outbox', 'downloads', 'attempts', 'cache'];
 
   Future<void> signOut() async {
     await ref.read(sessionStoreProvider).clear();

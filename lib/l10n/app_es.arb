@@ -1132,5 +1132,15 @@
       }
     }
   },
-  "listsEmptyList": "Esta lista está vacía. Añade lecturas desde su ficha."
+  "listsEmptyList": "Esta lista está vacía. Añade lecturas desde su ficha.",
+  "signOutPendingTitle": "Hay cambios sin enviar",
+  "signOutPendingBody": "{count, plural, =1{1 cambio no ha llegado aún al servidor.} other{{count} cambios no han llegado aún al servidor.}} Si cierras sesión ahora, se perderán. Conéctate para sincronizar antes.",
+  "@signOutPendingBody": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "signOutAnyway": "Cerrar sesión igualmente"
 }

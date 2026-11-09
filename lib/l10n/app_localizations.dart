@@ -3139,6 +3139,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Esta lista está vacía. Añade lecturas desde su ficha.'**
   String get listsEmptyList;
+
+  /// No description provided for @signOutPendingTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Hay cambios sin enviar'**
+  String get signOutPendingTitle;
+
+  /// No description provided for @signOutPendingBody.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 cambio no ha llegado aún al servidor.} other{{count} cambios no han llegado aún al servidor.}} Si cierras sesión ahora, se perderán. Conéctate para sincronizar antes.'**
+  String signOutPendingBody(int count);
+
+  /// No description provided for @signOutAnyway.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrar sesión igualmente'**
+  String get signOutAnyway;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

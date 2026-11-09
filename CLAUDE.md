@@ -30,3 +30,4 @@ flutter_secure_storage (ADR-0005, ADR-0009) · just_audio + audio_service (ADR-0
 - Definition of Done, ejecutado y en verde: `dart format --set-exit-if-changed lib test`, `flutter analyze`,
   `flutter test` y `yarn format:check`.
 - Cada fase: una issue, una PR que la cierra y merge con la CI en verde.
+- Antes de publicar: `docs/release/README.md` y `docs/platform/device-verification.md`.

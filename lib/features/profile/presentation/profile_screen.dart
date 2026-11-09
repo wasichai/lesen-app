@@ -9,6 +9,8 @@ import '../../../core/networking/api_client.dart';
 import '../../../core/session/session_controller.dart';
 import '../../../core/sync/outbox.dart';
 import '../../../core/sync/sync.dart';
+import '../../audio/application/playback_controller.dart';
+import '../../downloads/application/downloads_controller.dart';
 import '../../../core/widgets/feedback_views.dart';
 import '../application/profile_providers.dart';
 
@@ -104,7 +106,27 @@ class ProfileScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 16),
             OutlinedButton.icon(
-              onPressed: () => ref.read(sessionControllerProvider.notifier).signOut(),
+              onPressed: () async {
+                // nada se pierde en silencio: si queda algo por enviar, se avisa antes
+                final pending = ref.read(syncStatusProvider).value?.pending ?? 0;
+                if (pending > 0) {
+                  final ok = await showDialog<bool>(
+                    context: context,
+                    builder: (c) => AlertDialog(
+                      title: Text(l10n.signOutPendingTitle),
+                      content: Text(l10n.signOutPendingBody(pending)),
+                      actions: [
+                        TextButton(onPressed: () => Navigator.pop(c, false), child: Text(l10n.commonCancel)),
+                        TextButton(onPressed: () => Navigator.pop(c, true), child: Text(l10n.signOutAnyway)),
+                      ],
+                    ),
+                  );
+                  if (ok != true) return;
+                }
+                await ref.read(playbackProvider.notifier).close();
+                await ref.read(downloadsProvider.notifier).removeAll();
+                await ref.read(sessionControllerProvider.notifier).signOut();
+              },
               icon: const Icon(Icons.logout),
               label: Text(l10n.profileSignOut),
             ),

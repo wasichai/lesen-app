@@ -1742,4 +1742,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get listsEmptyList => 'This list is empty. Add readings from their page.';
+
+  @override
+  String get signOutPendingTitle => 'There are unsynced changes';
+
+  @override
+  String signOutPendingBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count changes haven\'t reached the server yet.',
+      one: '1 change hasn\'t reached the server yet.',
+    );
+    return '$_temp0 If you sign out now, they\'ll be lost. Connect to sync first.';
+  }
+
+  @override
+  String get signOutAnyway => 'Sign out anyway';
 }

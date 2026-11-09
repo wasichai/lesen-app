@@ -19,7 +19,7 @@ flutter pub get
 ```
 
 ```bash
-flutter run --dart-define-from-file=config/dev.json
+flutter run --flavor dev --dart-define-from-file=config/dev.json
 ```
 
 En el emulador de Android, `localhost` es el propio emulador: usa `API_BASE_URL=http://10.0.2.2:8095`, por ejemplo con
@@ -52,6 +52,9 @@ yarn install && yarn format:check
 
 Las pruebas usan respuestas reales del backend capturadas por `lesen-ui` (`test/fixtures/`), servidas por un adaptador
 HTTP en memoria (`test/support/fake_backend.dart`); nunca llegan a la app.
+
+Publicación, firma y tiendas: [`docs/release/README.md`](docs/release/README.md). Calidad:
+[`docs/quality/`](docs/quality/) (seguridad, accesibilidad, rendimiento).
 
 ### Entornos
 

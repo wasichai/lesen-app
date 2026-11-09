@@ -153,6 +153,13 @@ class DownloadsController extends Notifier<Map<String, DownloadInfo>> {
     await ref.read(localStoreProvider).delete(ns, slug);
   }
 
+  /// Quita todas las descargas y sus archivos (al cerrar sesión).
+  Future<void> removeAll() async {
+    for (final slug in state.keys.toList()) {
+      await remove(slug);
+    }
+  }
+
   /// El archivo de audio en el dispositivo, si existe.
   String? localAudio(String slug, int version) {
     final d = state[slug];

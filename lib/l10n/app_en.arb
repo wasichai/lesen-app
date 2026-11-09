@@ -507,5 +507,8 @@
   "listsDuplicate": "You already have a list with that name.",
   "listsDelete": "Delete list",
   "listsDeleteConfirm": "Delete the list “{name}”? The readings aren't deleted.",
-  "listsEmptyList": "This list is empty. Add readings from their page."
+  "listsEmptyList": "This list is empty. Add readings from their page.",
+  "signOutPendingTitle": "There are unsynced changes",
+  "signOutPendingBody": "{count, plural, =1{1 change hasn't reached the server yet.} other{{count} changes haven't reached the server yet.}} If you sign out now, they'll be lost. Connect to sync first.",
+  "signOutAnyway": "Sign out anyway"
 }
