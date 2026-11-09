@@ -17,7 +17,16 @@ import '../../domain/reading_content.dart';
 /// El diccionario en contexto: primero lo esencial (lema, traducción, categoría, pronunciación) y, al expandir, el
 /// resto. Debajo, la oración con sus acciones. Sirve igual en la hoja inferior del teléfono y en el panel de la tableta.
 class WordPanel extends ConsumerStatefulWidget {
-  const WordPanel({super.key, required this.slug, required this.version, required this.language, required this.token, required this.sentence, this.onClose});
+  const WordPanel({
+    super.key,
+    required this.slug,
+    required this.version,
+    required this.language,
+    required this.token,
+    required this.sentence,
+    this.onClose,
+    this.onPlayFrom,
+  });
 
   final String slug;
   final int version;
@@ -25,6 +34,9 @@ class WordPanel extends ConsumerStatefulWidget {
   final Token token;
   final Sentence sentence;
   final VoidCallback? onClose;
+
+  /// Si la lectura tiene narración: escucharla desde esta palabra.
+  final VoidCallback? onPlayFrom;
 
   @override
   ConsumerState<WordPanel> createState() => _WordPanelState();
@@ -270,6 +282,8 @@ class _WordPanelState extends ConsumerState<WordPanel> {
             spacing: 4,
             runSpacing: 4,
             children: [
+              if (widget.onPlayFrom != null)
+                TextButton.icon(onPressed: widget.onPlayFrom, icon: const Icon(Icons.play_circle_outline, size: 18), label: Text(l10n.audioFromHere)),
               TextButton.icon(
                 onPressed: () => setState(() => _showSentence = !_showSentence),
                 icon: const Icon(Icons.translate, size: 18),

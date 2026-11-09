@@ -11,7 +11,5 @@ Se piden solo los que usa una función ya entregada, y cada uno con su motivo. A
 
 Pendientes, con la fase que los introduce:
 
-- Fase 3, audio en segundo plano: `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_MEDIA_PLAYBACK` y `WAKE_LOCK` en Android;
-  `UIBackgroundModes: audio` en iOS.
 - Fase 6, recordatorios locales: `POST_NOTIFICATIONS` (Android 13+) y la autorización de notificaciones de iOS, pedidas
   solo cuando la persona activa un recordatorio.

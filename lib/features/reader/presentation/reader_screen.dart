@@ -9,6 +9,9 @@ import '../../../app/l10n.dart';
 import '../../../app/routing/routes.dart';
 import '../../../core/networking/api_failure.dart';
 import '../../../core/widgets/feedback_views.dart';
+import '../../audio/application/playback_controller.dart';
+import '../../audio/data/audio_repository.dart';
+import '../../audio/presentation/reader_audio_bar.dart';
 import '../../catalog/application/catalog_providers.dart';
 import '../../catalog/domain/reading.dart';
 import '../../library/data/library_repository.dart';
@@ -80,6 +83,9 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
   late bool _bookmarked = widget.session.reading.bookmarked;
   Timer? _scrollThrottle;
   late final ProviderContainer _container;
+  late final PlaybackController _playback;
+  DateTime _lastUserScroll = DateTime.fromMillisecondsSinceEpoch(0);
+  String? _followedSentence;
   int _percent = 0;
 
   ReadingContent get _content => widget.session.content;
@@ -93,11 +99,51 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
     _lifecycle = AppLifecycleListener(onHide: _tracker.pause, onShow: _tracker.resume);
     _scroll.addListener(_onScroll);
     _container = ProviderScope.containerOf(context, listen: false);
+    _playback = ref.read(playbackProvider.notifier);
+    _playback.active.addListener(_onSpoken);
+    // si la versión tiene narración, se prepara (sin sonar); si ya sonaba esta lectura, sigue donde iba
+    ref.listenManual(readingAudioProvider((slug: _content.slug, version: _content.version)), (_, next) {
+      final asset = next.value;
+      if (asset != null) unawaited(_playback.open(reading: widget.session.reading, content: _content, asset: asset));
+    }, fireImmediately: true);
     WidgetsBinding.instance.addPostFrameCallback((_) => _restore());
+  }
+
+  bool get _hasAudio => ref.read(playbackProvider).now?.key == '${_content.slug}@${_content.version}';
+
+  /// Seguir la lectura: si la oración que suena salió de la pantalla, se lleva arriba. El dedo manda: tras desplazar a
+  /// mano, el seguimiento espera unos segundos.
+  void _onSpoken() {
+    final sentence = _playback.active.value?.sentenceId;
+    if (sentence == null || sentence == _followedSentence || !_hasAudio) return;
+    _followedSentence = sentence;
+    final state = ref.read(playbackProvider);
+    if (!state.follow || !state.playing) return;
+    if (DateTime.now().difference(_lastUserScroll) < const Duration(seconds: 4)) return;
+    if (_isSentenceVisible(sentence)) return;
+    unawaited(_scrollToSentence(sentence));
+  }
+
+  bool _isSentenceVisible(String sentenceId) {
+    final p = _content.index.paragraphOfSentence[sentenceId];
+    final box = p == null ? null : _keys[p].currentContext?.findRenderObject() as RenderBox?;
+    final viewport = context.findRenderObject() as RenderBox?;
+    if (box == null || viewport == null) return false;
+    final top = viewport.localToGlobal(Offset.zero).dy + 96;
+    final bottom = viewport.localToGlobal(Offset.zero).dy + viewport.size.height - 220;
+    final y = box.localToGlobal(Offset.zero).dy + (_keys[p!].currentState?.offsetOfSentence(sentenceId) ?? 0);
+    return y >= top && y <= bottom;
+  }
+
+  void _followNow() {
+    _lastUserScroll = DateTime.fromMillisecondsSinceEpoch(0);
+    final sentence = _playback.active.value?.sentenceId;
+    if (sentence != null) unawaited(_scrollToSentence(sentence));
   }
 
   @override
   void dispose() {
+    _playback.active.removeListener(_onSpoken);
     _scrollThrottle?.cancel();
     _lifecycle.dispose();
     _tracker.dispose();
@@ -172,6 +218,12 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
   }
 
   Future<void> _onWordTap(Token token, Sentence sentence) async {
+    // mientras suena, tocar una palabra lleva la narración a ella; en pausa, abre el diccionario
+    if (_hasAudio && ref.read(playbackProvider).playing) {
+      _lastUserScroll = DateTime.fromMillisecondsSinceEpoch(0);
+      await _playback.playFromToken(token.id);
+      return;
+    }
     setState(() => _selected = (token: token, sentence: sentence));
     if (MediaQuery.sizeOf(context).width >= sidePanelBreakpoint) return;
     await showModalBottomSheet<void>(
@@ -189,7 +241,19 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
           builder: (context, scroll) => SingleChildScrollView(
             controller: scroll,
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
-            child: WordPanel(slug: _content.slug, version: _content.version, language: _content.language, token: token, sentence: sentence),
+            child: WordPanel(
+              slug: _content.slug,
+              version: _content.version,
+              language: _content.language,
+              token: token,
+              sentence: sentence,
+              onPlayFrom: _hasAudio
+                  ? () {
+                      Navigator.pop(context);
+                      unawaited(_playback.playFromToken(token.id));
+                    }
+                  : null,
+            ),
           ),
         ),
       ),
@@ -239,6 +303,7 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
     final wide = MediaQuery.sizeOf(context).width >= sidePanelBreakpoint;
     final paragraphTranslations = ref.watch(translationsProvider((slug: _content.slug, version: _content.version, unit: TranslationUnit.PARAGRAPH)));
     final remaining = remainingMinutes(reading.minutes, _percent);
+    final hasAudio = ref.watch(playbackProvider.select((s) => s.now?.key == '${_content.slug}@${_content.version}'));
 
     final list = ListView.builder(
       controller: _scroll,
@@ -283,6 +348,8 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
               known: known,
               selectedToken: _selected?.token.id,
               onWordTap: _onWordTap,
+              index: i - 1,
+              active: hasAudio ? _playback.active : null,
               translation: missing ? l10n.readerNoParagraphTranslation : translation,
               trailing: prefs.paragraphTranslations
                   ? null
@@ -324,6 +391,7 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
                             token: _selected!.token,
                             sentence: _selected!.sentence,
                             onClose: () => setState(() => _selected = null),
+                            onPlayFrom: hasAudio ? () => _playback.playFromToken(_selected!.token.id) : null,
                           ),
                         ),
                       ),
@@ -351,10 +419,19 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
                 onSettings: () => showReaderSettings(context, palette: palette, wide: MediaQuery.sizeOf(context).width >= 600),
                 onFocus: () => setState(() => _focus = true),
               ),
-            Expanded(child: body),
+            Expanded(
+              child: NotificationListener<UserScrollNotification>(
+                onNotification: (_) {
+                  _lastUserScroll = DateTime.now();
+                  return false;
+                },
+                child: body,
+              ),
+            ),
           ],
         ),
       ),
+      bottomNavigationBar: hasAudio && !_focus ? ReaderAudioBar(paper: palette.paper, onFollow: _followNow) : null,
       floatingActionButton: _focus
           ? FloatingActionButton.small(
               tooltip: l10n.readerFocusExit,

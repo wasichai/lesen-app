@@ -82,7 +82,7 @@ class SessionController extends Notifier<SessionState> {
   }
 
   /// Espacios locales con datos de quien lee; el contenido publicado (público e inmutable) se conserva.
-  static const personalNamespaces = ['progress', 'prefs'];
+  static const personalNamespaces = ['progress', 'prefs', 'audio'];
 
   Future<void> signOut() async {
     await ref.read(sessionStoreProvider).clear();

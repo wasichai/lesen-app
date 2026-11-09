@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import '../../../audio/application/playback_controller.dart';
 import '../../../vocabulary/domain/known_words.dart';
 import '../../domain/reader_preferences.dart';
 import '../../domain/reading_content.dart';
@@ -19,9 +21,17 @@ class ParagraphView extends StatefulWidget {
     required this.known,
     required this.selectedToken,
     required this.onWordTap,
+    this.index = 0,
+    this.active,
     this.translation,
     this.trailing,
   });
+
+  /// Posición del párrafo en el contenido, para saber si lo que suena es de aquí.
+  final int index;
+
+  /// Lo que suena ahora; el párrafo solo se reconstruye si la palabra o la oración habladas son suyas o lo eran.
+  final ValueListenable<ActiveSpan?>? active;
 
   final Paragraph paragraph;
   final String language;
@@ -44,12 +54,48 @@ class ParagraphView extends StatefulWidget {
 class ParagraphViewState extends State<ParagraphView> {
   final _textKey = GlobalKey();
   final _recognizers = <String, TapGestureRecognizer>{};
+  String? _spokenToken;
+  String? _spokenSentence;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.active?.addListener(_onActive);
+    _readActive();
+  }
+
+  @override
+  void didUpdateWidget(ParagraphView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.active != widget.active) {
+      oldWidget.active?.removeListener(_onActive);
+      widget.active?.addListener(_onActive);
+      _readActive();
+    }
+  }
+
+  /// `true` si cambió lo que suena en este párrafo.
+  bool _readActive() {
+    final a = widget.active?.value;
+    final mine = a != null && a.paragraph == widget.index;
+    final token = mine ? a.tokenId : null;
+    final sentence = mine ? a.sentenceId : null;
+    if (token == _spokenToken && sentence == _spokenSentence) return false;
+    _spokenToken = token;
+    _spokenSentence = sentence;
+    return true;
+  }
+
+  void _onActive() {
+    if (_readActive() && mounted) setState(() {});
+  }
 
   /// Desplazamiento (en caracteres) donde empieza cada oración dentro del texto del párrafo.
   final _sentenceStart = <String, int>{};
 
   @override
   void dispose() {
+    widget.active?.removeListener(_onActive);
     for (final r in _recognizers.values) {
       r.dispose();
     }
@@ -84,8 +130,16 @@ class ParagraphViewState extends State<ParagraphView> {
     return render.getOffsetForCaret(TextPosition(offset: start), Rect.zero).dy;
   }
 
+  /// Cuántas veces se construyó algún párrafo: las pruebas comprueban que el audio no reconstruye el documento.
+  @visibleForTesting
+  static int builds = 0;
+
   @override
   Widget build(BuildContext context) {
+    assert(() {
+      builds++;
+      return true;
+    }());
     final prefs = widget.preferences;
     final palette = widget.palette;
     final base = TextStyle(fontFamily: 'Newsreader', fontSize: prefs.fontSize, height: prefs.leading.height, color: palette.ink, letterSpacing: 0.05);
@@ -100,7 +154,7 @@ class ParagraphViewState extends State<ParagraphView> {
         offset += 1;
       }
       _sentenceStart[sentence.id] = offset;
-      final selectedHere = widget.selectedToken != null && sentence.tokens.any((t) => t.id == widget.selectedToken);
+      final selectedHere = (widget.selectedToken != null && sentence.tokens.any((t) => t.id == widget.selectedToken)) || sentence.id == _spokenSentence;
       for (final token in sentence.tokens) {
         final text = token.space ? '${token.text} ' : token.text;
         offset += text.length;
@@ -114,7 +168,8 @@ class ParagraphViewState extends State<ParagraphView> {
           continue;
         }
         final key = token.entry;
-        final selected = token.id == widget.selectedToken;
+        // la abierta en el diccionario o la que suena: fondo, negrita y subrayado grueso
+        final selected = token.id == widget.selectedToken || token.id == _spokenToken;
         final saved = key != null && prefs.highlightSaved && widget.known.isSaved(key);
         final learned = key != null && prefs.highlightLearned && widget.known.isLearned(key);
         final fresh = key != null && prefs.highlightNew && widget.known.isNew(key);

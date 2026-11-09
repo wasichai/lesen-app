@@ -82,9 +82,12 @@ void main() {
 
   testWidgets('la traducción del párrafo aparece a demanda', (tester) async {
     await openReader(tester, FakeBackend({...profileRoute(), ...FakeBackend.readingRoutes(slug)}));
+    await tester.ensureVisible(find.text('Traducir el párrafo').first);
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Traducir el párrafo').first);
     await tester.pumpAndSettle();
     expect(find.textContaining('Mia pasa el verano'), findsOneWidget);
+    await closeApp(tester);
   });
 
   testWidgets('al salir se guarda el progreso; sin red, queda pendiente en el dispositivo', (tester) async {
@@ -119,9 +122,7 @@ void main() {
     final scrollable = tester.state<ScrollableState>(find.byType(Scrollable).first);
     expect(scrollable.position.pixels, greaterThan(200));
     expect(find.text('Quedan 1 min'), findsOneWidget);
-    // cerrar el lector deja salir su último guardado
-    await tester.pumpWidget(const SizedBox());
-    await tester.pump(const Duration(seconds: 30));
+    await closeApp(tester);
   });
 
   test('el rastreador nunca baja el porcentaje y guarda con pausa', () async {

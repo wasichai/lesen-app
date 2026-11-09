@@ -6,6 +6,7 @@ import '../../../app/l10n.dart';
 import '../../../app/theme/tokens.dart';
 import '../../../core/connectivity/connectivity.dart';
 import '../../../core/widgets/lesen_mark.dart';
+import '../../audio/presentation/mini_player.dart';
 
 /// Ancho a partir del cual se usa la composición de tableta.
 const tabletBreakpoint = 600.0;
@@ -33,6 +34,7 @@ class AppShell extends ConsumerWidget {
       children: [
         if (offline) const _OfflineBanner(),
         Expanded(child: shell),
+        const MiniPlayer(),
       ],
     );
 
