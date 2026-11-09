@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/session/session_controller.dart';
+import '../../features/audio/presentation/full_player_screen.dart';
 import '../../features/auth/presentation/login_screen.dart';
 import '../../features/auth/presentation/splash_screen.dart';
 import '../../features/catalog/domain/catalog_query.dart';
@@ -69,6 +70,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (_, state) => OnboardingScreen(editing: state.uri.queryParameters['edit'] == '1'),
       ),
       GoRoute(path: Routes.profile, builder: (_, _) => const ProfileScreen()),
+      GoRoute(path: Routes.player, builder: (_, _) => const FullPlayerScreen()),
       GoRoute(
         path: '/read/:slug',
         redirect: (_, state) => _validSlug(state) ? null : Routes.discover,

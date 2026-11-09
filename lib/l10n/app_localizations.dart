@@ -1585,6 +1585,156 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Buscar en mis lecturas'**
   String get librarySearch;
+
+  /// No description provided for @audioLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Audio de la lectura'**
+  String get audioLabel;
+
+  /// No description provided for @audioPlay.
+  ///
+  /// In es, this message translates to:
+  /// **'Escuchar'**
+  String get audioPlay;
+
+  /// No description provided for @audioPause.
+  ///
+  /// In es, this message translates to:
+  /// **'Pausar'**
+  String get audioPause;
+
+  /// No description provided for @audioBack.
+  ///
+  /// In es, this message translates to:
+  /// **'Retroceder 5 segundos'**
+  String get audioBack;
+
+  /// No description provided for @audioForward.
+  ///
+  /// In es, this message translates to:
+  /// **'Avanzar 5 segundos'**
+  String get audioForward;
+
+  /// No description provided for @audioPreviousSentence.
+  ///
+  /// In es, this message translates to:
+  /// **'Oración anterior'**
+  String get audioPreviousSentence;
+
+  /// No description provided for @audioNextSentence.
+  ///
+  /// In es, this message translates to:
+  /// **'Oración siguiente'**
+  String get audioNextSentence;
+
+  /// No description provided for @audioPreviousParagraph.
+  ///
+  /// In es, this message translates to:
+  /// **'Párrafo anterior'**
+  String get audioPreviousParagraph;
+
+  /// No description provided for @audioNextParagraph.
+  ///
+  /// In es, this message translates to:
+  /// **'Párrafo siguiente'**
+  String get audioNextParagraph;
+
+  /// No description provided for @audioPosition.
+  ///
+  /// In es, this message translates to:
+  /// **'Posición del audio'**
+  String get audioPosition;
+
+  /// No description provided for @audioPositionValue.
+  ///
+  /// In es, this message translates to:
+  /// **'{current} de {total}'**
+  String audioPositionValue(String current, String total);
+
+  /// No description provided for @audioRate.
+  ///
+  /// In es, this message translates to:
+  /// **'Velocidad'**
+  String get audioRate;
+
+  /// No description provided for @audioRateValue.
+  ///
+  /// In es, this message translates to:
+  /// **'Velocidad {rate}×'**
+  String audioRateValue(String rate);
+
+  /// No description provided for @audioFollow.
+  ///
+  /// In es, this message translates to:
+  /// **'Seguir la lectura'**
+  String get audioFollow;
+
+  /// No description provided for @audioFollowBack.
+  ///
+  /// In es, this message translates to:
+  /// **'Volver a lo que suena'**
+  String get audioFollowBack;
+
+  /// No description provided for @audioLoading.
+  ///
+  /// In es, this message translates to:
+  /// **'Cargando el audio…'**
+  String get audioLoading;
+
+  /// No description provided for @audioVoice.
+  ///
+  /// In es, this message translates to:
+  /// **'Voz: {voice}'**
+  String audioVoice(String voice);
+
+  /// No description provided for @audioError.
+  ///
+  /// In es, this message translates to:
+  /// **'No pudimos cargar el audio. Puedes seguir leyendo igual.'**
+  String get audioError;
+
+  /// No description provided for @audioFromHere.
+  ///
+  /// In es, this message translates to:
+  /// **'Escuchar desde aquí'**
+  String get audioFromHere;
+
+  /// No description provided for @audioParagraph.
+  ///
+  /// In es, this message translates to:
+  /// **'Escuchar este párrafo'**
+  String get audioParagraph;
+
+  /// No description provided for @audioOpenReading.
+  ///
+  /// In es, this message translates to:
+  /// **'Abrir la lectura'**
+  String get audioOpenReading;
+
+  /// No description provided for @audioClose.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrar el reproductor'**
+  String get audioClose;
+
+  /// No description provided for @audioExpand.
+  ///
+  /// In es, this message translates to:
+  /// **'Abrir el reproductor'**
+  String get audioExpand;
+
+  /// No description provided for @audioNowPlaying.
+  ///
+  /// In es, this message translates to:
+  /// **'Ahora suena'**
+  String get audioNowPlaying;
+
+  /// No description provided for @audioTapToPlayHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Mientras suena, toca una palabra para escuchar desde ella.'**
+  String get audioTapToPlayHint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

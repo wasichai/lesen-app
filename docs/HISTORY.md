@@ -1,5 +1,18 @@
 # Historial
 
+## Fase 3 — Motor de audio y sincronización palabra a palabra (2026-11-09)
+
+- just_audio dentro de audio_service (`LesenAudioHandler`), sesión de voz hablada con audio_session: segundo plano,
+  notificación y pantalla de bloqueo, auriculares (siguiente y anterior por párrafo), pausa al desconectar.
+- Tiempos por palabra del backend con búsqueda binaria (`TimingIndex`, margen de 250 ms); `PlaybackController`
+  notifica lo activo solo al cambiar de palabra y cada párrafo se reconstruye solo si es el suyo.
+- Barra de audio en el lector (posición, ±5 s, oración y párrafo, velocidad 0,75–1,5, seguir la lectura), mini
+  reproductor en la navegación y reproductor a pantalla completa con la oración que suena.
+- Tocar una palabra mientras suena lleva el audio a ella; «Escuchar desde aquí» en el diccionario; la posición se guarda
+  por versión y se restaura sin sonar sola.
+- 61 pruebas. Verificado contra el backend real en la web (MP3 con rangos 206 y palabra hablada resaltada). Lo que
+  exige un teléfono queda en `docs/platform/device-verification.md`, sin marcar.
+
 ## Fase 2 — Lector inmersivo, diccionario en contexto y biblioteca (2026-11-09)
 
 - Lector a pantalla completa: Newsreader con seis tamaños, tres interlineados, tres anchos y temas claro, sepia y

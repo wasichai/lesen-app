@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lesen/app/app.dart';
 import 'package:lesen/app/config.dart';
 import 'package:lesen/app/theme/theme.dart';
+import 'package:lesen/core/audio/narration_engine.dart';
+import 'package:lesen/features/audio/application/playback_controller.dart';
 import 'package:lesen/core/networking/api_client.dart';
 import 'package:lesen/core/session/session.dart';
 import 'package:lesen/core/session/session_controller.dart';
@@ -32,11 +34,12 @@ Session testSession() => Session.fromJson({
   },
 });
 
-List<Override> backendOverrides(FakeBackend backend, {SessionStore? store, LocalStore? local}) => [
+List<Override> backendOverrides(FakeBackend backend, {SessionStore? store, LocalStore? local, NarrationEngine? engine}) => [
   appConfigProvider.overrideWithValue(testConfig),
   httpAdapterProvider.overrideWithValue(backend),
   sessionStoreProvider.overrideWithValue(store ?? MemorySessionStore()),
   localStoreProvider.overrideWithValue(local ?? MemoryLocalStore()),
+  narrationEngineProvider.overrideWithValue(engine ?? FakeNarrationEngine()),
 ];
 
 /// La app entera contra un [FakeBackend].
@@ -45,6 +48,7 @@ Future<ProviderContainer> pumpLesenApp(
   FakeBackend backend, {
   SessionStore? store,
   LocalStore? local,
+  NarrationEngine? engine,
   Size size = const Size(390, 844),
 }) async {
   tester.view.devicePixelRatio = 1;
@@ -55,7 +59,7 @@ Future<ProviderContainer> pumpLesenApp(
   addTearDown(tester.platformDispatcher.clearAllTestValues);
   final container = ProviderContainer(
     retry: (_, _) => null,
-    overrides: backendOverrides(backend, store: store, local: local),
+    overrides: backendOverrides(backend, store: store, local: local, engine: engine),
   );
   addTearDown(container.dispose);
   await tester.pumpWidget(UncontrolledProviderScope(container: container, child: const LesenApp()));
@@ -96,8 +100,17 @@ Future<void> pumpWidgetUnderTest(
 }
 
 /// Un contenedor sin widgets para probar repositorios contra el [FakeBackend].
-ProviderContainer createContainerForTest(FakeBackend backend) {
-  final c = ProviderContainer(retry: (_, _) => null, overrides: backendOverrides(backend));
+ProviderContainer createContainerForTest(FakeBackend backend, {NarrationEngine? engine, LocalStore? local}) {
+  final c = ProviderContainer(
+    retry: (_, _) => null,
+    overrides: backendOverrides(backend, engine: engine, local: local),
+  );
   addTearDown(c.dispose);
   return c;
+}
+
+/// Desmonta la app y deja terminar sus últimos guardados (el lector guarda al salir).
+Future<void> closeApp(WidgetTester tester) async {
+  await tester.pumpWidget(const SizedBox());
+  await tester.pump(const Duration(seconds: 30));
 }

@@ -827,4 +827,85 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get librarySearch => 'Buscar en mis lecturas';
+
+  @override
+  String get audioLabel => 'Audio de la lectura';
+
+  @override
+  String get audioPlay => 'Escuchar';
+
+  @override
+  String get audioPause => 'Pausar';
+
+  @override
+  String get audioBack => 'Retroceder 5 segundos';
+
+  @override
+  String get audioForward => 'Avanzar 5 segundos';
+
+  @override
+  String get audioPreviousSentence => 'Oración anterior';
+
+  @override
+  String get audioNextSentence => 'Oración siguiente';
+
+  @override
+  String get audioPreviousParagraph => 'Párrafo anterior';
+
+  @override
+  String get audioNextParagraph => 'Párrafo siguiente';
+
+  @override
+  String get audioPosition => 'Posición del audio';
+
+  @override
+  String audioPositionValue(String current, String total) {
+    return '$current de $total';
+  }
+
+  @override
+  String get audioRate => 'Velocidad';
+
+  @override
+  String audioRateValue(String rate) {
+    return 'Velocidad $rate×';
+  }
+
+  @override
+  String get audioFollow => 'Seguir la lectura';
+
+  @override
+  String get audioFollowBack => 'Volver a lo que suena';
+
+  @override
+  String get audioLoading => 'Cargando el audio…';
+
+  @override
+  String audioVoice(String voice) {
+    return 'Voz: $voice';
+  }
+
+  @override
+  String get audioError => 'No pudimos cargar el audio. Puedes seguir leyendo igual.';
+
+  @override
+  String get audioFromHere => 'Escuchar desde aquí';
+
+  @override
+  String get audioParagraph => 'Escuchar este párrafo';
+
+  @override
+  String get audioOpenReading => 'Abrir la lectura';
+
+  @override
+  String get audioClose => 'Cerrar el reproductor';
+
+  @override
+  String get audioExpand => 'Abrir el reproductor';
+
+  @override
+  String get audioNowPlaying => 'Ahora suena';
+
+  @override
+  String get audioTapToPlayHint => 'Mientras suena, toca una palabra para escuchar desde ella.';
 }

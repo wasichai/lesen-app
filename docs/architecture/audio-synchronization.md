@@ -41,20 +41,36 @@ posición `t`, una búsqueda binaria da el último `start ≤ t`; si `t ≤ end 
 ## 5. Desplazamiento
 
 Se desplaza solo cuando la oración activa sale de la zona visible (con márgenes), con una animación corta (o salto si el
-movimiento está reducido). Si la persona desplaza con el dedo, el seguimiento se suspende 4 s; un botón «Volver a lo
-que suena» lo recupera.
+movimiento está reducido). Si la persona desplaza con el dedo, el seguimiento se suspende 4 s; al activar «Seguir la
+lectura» se vuelve a lo que suena.
 
 ## 6. Interacción
 
-- Tocar una palabra con el reproductor activo y «tocar para reproducir» activado → salta a su `startMs`; si no, abre el
-  diccionario.
-- Pulsación larga sobre una oración → «Reproducir desde aquí».
+- Tocar una palabra **mientras suena** lleva la narración a su `startMs` (o al de su oración si esa palabra no tiene
+  tiempo); en pausa, abre el diccionario, que ofrece «Escuchar desde aquí». Así tocar nunca hace dos cosas a la vez.
 - Controles: reproducir/pausa, ±5 s, oración anterior/siguiente, párrafo anterior/siguiente, velocidad 0,75–1,5,
   posición, duración y buffering.
 - Mini reproductor encima de la barra de navegación mientras hay una lectura cargada; el reproductor completo, fuera del
   armazón.
 
-## 7. Accesibilidad
+## 7. Implementación
+
+| Pieza                                      | Dónde                                                         |
+| ------------------------------------------ | ------------------------------------------------------------- |
+| Motor (interfaz y versión simulada)        | `lib/core/audio/narration_engine.dart`                        |
+| just_audio + audio_service + audio_session | `lib/core/audio/just_audio_engine.dart` (`LesenAudioHandler`) |
+| Tiempos y búsqueda binaria                 | `lib/features/audio/domain/timing_index.dart`                 |
+| Estado, posición y lo activo               | `lib/features/audio/application/playback_controller.dart`     |
+| Resaltado por párrafo                      | `ParagraphView` escucha `PlaybackController.active`           |
+| Barra, mini reproductor, pantalla completa | `lib/features/audio/presentation/`                            |
+
+Los botones «siguiente» y «anterior» del sistema y de los auriculares van por párrafo; ±5 s por avanzar y retroceder.
+
+## 8. Verificación en dispositivos
+
+Lo que solo se comprueba con un teléfono real se lista en [`../platform/device-verification.md`](../platform/device-verification.md).
+
+## 9. Accesibilidad
 
 Los controles tienen etiquetas semánticas y valores («Velocidad 1,25×»); el lector anuncia la oración en curso solo si
 quien escucha lo pide (anunciarla siempre se pisaría con la narración).

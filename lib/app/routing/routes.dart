@@ -9,6 +9,7 @@ abstract final class Routes {
   static const vocabulary = '/vocabulary';
   static const progress = '/progress';
   static const profile = '/profile';
+  static const player = '/player';
 
   static final slugPattern = RegExp(r'^[a-z0-9][a-z0-9-]{0,119}$');
 

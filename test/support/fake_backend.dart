@@ -99,6 +99,7 @@ class FakeBackend implements HttpClientAdapter {
         'completedAt': null,
       },
       'GET $base/notes': (_) => <Object>[],
+      'GET $base/versions/$version/audio': (_) => r['audio'] ?? const Reply(404, {'status': 404}),
       'GET /lesen/vocabulary/known': (_) => {'saved': <Object>[], 'encountered': <Object>[]},
       'POST /lesen/vocabulary': (req) => const Reply(201, {'id': 'v1'}),
       'GET /lesen/dictionary/lookup': (req) {

@@ -457,5 +457,54 @@
   "libraryCompleted": "Terminadas",
   "libraryEmptyTitle": "Tu biblioteca está esperando",
   "libraryEmptyBody": "Lo que empieces, guardes o termines aparecerá aquí.",
-  "librarySearch": "Buscar en mis lecturas"
+  "librarySearch": "Buscar en mis lecturas",
+  "audioLabel": "Audio de la lectura",
+  "audioPlay": "Escuchar",
+  "audioPause": "Pausar",
+  "audioBack": "Retroceder 5 segundos",
+  "audioForward": "Avanzar 5 segundos",
+  "audioPreviousSentence": "Oración anterior",
+  "audioNextSentence": "Oración siguiente",
+  "audioPreviousParagraph": "Párrafo anterior",
+  "audioNextParagraph": "Párrafo siguiente",
+  "audioPosition": "Posición del audio",
+  "audioPositionValue": "{current} de {total}",
+  "@audioPositionValue": {
+    "placeholders": {
+      "current": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "audioRate": "Velocidad",
+  "audioRateValue": "Velocidad {rate}×",
+  "@audioRateValue": {
+    "placeholders": {
+      "rate": {
+        "type": "String"
+      }
+    }
+  },
+  "audioFollow": "Seguir la lectura",
+  "audioFollowBack": "Volver a lo que suena",
+  "audioLoading": "Cargando el audio…",
+  "audioVoice": "Voz: {voice}",
+  "@audioVoice": {
+    "placeholders": {
+      "voice": {
+        "type": "String"
+      }
+    }
+  },
+  "audioError": "No pudimos cargar el audio. Puedes seguir leyendo igual.",
+  "audioFromHere": "Escuchar desde aquí",
+  "audioParagraph": "Escuchar este párrafo",
+  "audioOpenReading": "Abrir la lectura",
+  "audioClose": "Cerrar el reproductor",
+  "audioExpand": "Abrir el reproductor",
+  "audioNowPlaying": "Ahora suena",
+  "audioTapToPlayHint": "Mientras suena, toca una palabra para escuchar desde ella."
 }
