@@ -486,12 +486,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get progressComingSoon => 'Your progress will show here: what\'s measured and what\'s estimated, no penalties.';
-
-  @override
-  String get comingSoonTitle => 'Coming soon';
-
-  @override
   String get profileTitle => 'Your profile';
 
   @override
@@ -1418,4 +1412,334 @@ class AppLocalizationsEn extends AppLocalizations {
   String offlinePending(int count) {
     return 'Offline · $count changes waiting to sync';
   }
+
+  @override
+  String get progressTitle => 'Progress';
+
+  @override
+  String get progressToday => 'Today';
+
+  @override
+  String progressTodayMinutes(int minutes, int goal) {
+    return '$minutes of $goal min';
+  }
+
+  @override
+  String get progressGoalMet => 'Today\'s goal done. Nicely read!';
+
+  @override
+  String get progressGoalOpen => 'A few minutes is enough. Whatever you read today counts.';
+
+  @override
+  String get progressWeek => 'This week';
+
+  @override
+  String progressWeekDays(int active, int target) {
+    return '$active of $target days with reading';
+  }
+
+  @override
+  String get progressWeekMet => 'Week done';
+
+  @override
+  String progressStreak(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count weeks in a row',
+      one: '1 week in a row',
+      zero: 'Your first completed week is close',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String progressBest(int count) {
+    return 'Your best run: $count';
+  }
+
+  @override
+  String get progressLast28 => 'The last 28 days';
+
+  @override
+  String progressDayLabel(String date, int minutes) {
+    return '$date: $minutes min';
+  }
+
+  @override
+  String progressDayGoal(String date, int minutes) {
+    return '$date: $minutes min, goal met';
+  }
+
+  @override
+  String get progressReading => 'Reading';
+
+  @override
+  String get progressVocabulary => 'Vocabulary';
+
+  @override
+  String get progressComprehension => 'Comprehension';
+
+  @override
+  String get metricStarted => 'Started';
+
+  @override
+  String get metricCompleted => 'Finished';
+
+  @override
+  String get metricMinutes => 'Minutes read';
+
+  @override
+  String get metricWordsRead => 'Words read';
+
+  @override
+  String get metricMinutesWeek => 'Minutes this week';
+
+  @override
+  String get metricCompletedWeek => 'Finished this week';
+
+  @override
+  String get metricEncountered => 'Encountered';
+
+  @override
+  String get metricSaved => 'Saved';
+
+  @override
+  String get metricLearning => 'Learning';
+
+  @override
+  String get metricMastered => 'Mastered';
+
+  @override
+  String get metricDue => 'Due for review';
+
+  @override
+  String get metricAnswered => 'Questions answered';
+
+  @override
+  String get metricAverage => 'Average score';
+
+  @override
+  String get metricEstimated => 'estimated';
+
+  @override
+  String get metricEstimatedHint => '≈ estimated: inferred from what you read and review; everything else is counted.';
+
+  @override
+  String get progressGrowth => 'Words saved per week';
+
+  @override
+  String get progressByType => 'By question type';
+
+  @override
+  String get progressNoAnswers => 'Once you answer comprehension questions, you\'ll see how you understand here.';
+
+  @override
+  String get progressLevel => 'Your level';
+
+  @override
+  String progressLevelEstimate(String level) {
+    return '$level · estimated';
+  }
+
+  @override
+  String get levelSignalUP => 'Your answers suggest you could try slightly harder readings.';
+
+  @override
+  String get levelSignalSTEADY => 'Your readings match your level.';
+
+  @override
+  String get levelSignalDOWN => 'Slightly easier readings might suit you better for now.';
+
+  @override
+  String get levelSignalunknown => 'There aren\'t enough answers yet to say more.';
+
+  @override
+  String get progressAchievements => 'Achievements';
+
+  @override
+  String get progressSeeAll => 'See all';
+
+  @override
+  String get progressWeeklySummary => 'Weekly summary';
+
+  @override
+  String get progressGoals => 'Goals';
+
+  @override
+  String get progressEmpty => 'Your progress starts with your first reading';
+
+  @override
+  String get progressEmptyBody =>
+      'Read for a few minutes and you\'ll see your week, your words and what you understand here. No penalties for days without reading.';
+
+  @override
+  String get goalsDaily => 'Minutes a day';
+
+  @override
+  String get goalsWeekly => 'Days a week';
+
+  @override
+  String get goalsWeeklyHint => 'The streak counts completed weeks, not days: a day off breaks nothing.';
+
+  @override
+  String get goalsWeeklySummary => 'Show a weekly summary';
+
+  @override
+  String get goalsReminder => 'Daily reminder';
+
+  @override
+  String get goalsReminderHint => 'One reminder a day, at the time you choose. That\'s all.';
+
+  @override
+  String goalsReminderAt(String time) {
+    return 'At $time';
+  }
+
+  @override
+  String get goalsReminderDenied => 'No notification permission: enable it in system settings if you want the reminder.';
+
+  @override
+  String get goalsReviewReminder => 'Remind me to review vocabulary';
+
+  @override
+  String get goalsSaved => 'Goals saved';
+
+  @override
+  String get reminderReadTitle => 'A little reading time';
+
+  @override
+  String get reminderReadBody => 'Your next story is waiting in Lesen.';
+
+  @override
+  String get reminderReviewTitle => 'Words to review';
+
+  @override
+  String get reminderReviewBody => 'A few minutes of review and they come back when due.';
+
+  @override
+  String weeklyRange(String start, String end) {
+    return '$start to $end';
+  }
+
+  @override
+  String get weeklyPrevious => 'Previous week';
+
+  @override
+  String get weeklyNext => 'Next week';
+
+  @override
+  String weeklyMet(int active, int target) {
+    return 'Week done: $active of $target days.';
+  }
+
+  @override
+  String weeklyProgress(int active, int target) {
+    return '$active of $target days so far.';
+  }
+
+  @override
+  String get weeklyQuiet => 'A quiet week. The next one is a fresh start.';
+
+  @override
+  String get metricReadingsCompleted => 'Readings finished';
+
+  @override
+  String get metricWordsSaved => 'Words saved';
+
+  @override
+  String get metricWordsReviewed => 'Words reviewed';
+
+  @override
+  String get metricAssessments => 'Assessments';
+
+  @override
+  String achievementProgress(int value, int threshold) {
+    return '$value of $threshold';
+  }
+
+  @override
+  String achievementEarned(String date) {
+    return 'Earned on $date';
+  }
+
+  @override
+  String get achFIRST_READING => 'First reading finished';
+
+  @override
+  String get achREADINGS_5 => '5 readings finished';
+
+  @override
+  String get achREADINGS_20 => '20 readings finished';
+
+  @override
+  String get achFIRST_HOUR => 'Your first hour of reading';
+
+  @override
+  String get achTEN_HOURS => '10 hours of reading';
+
+  @override
+  String get achFIRST_WORD => 'First word saved';
+
+  @override
+  String get achWORDS_50 => '50 words saved';
+
+  @override
+  String get achFIRST_REVIEW => 'First review';
+
+  @override
+  String get achREVIEWS_100 => '100 reviews';
+
+  @override
+  String get achFIRST_ASSESSMENT => 'First questions answered';
+
+  @override
+  String get achDAYS_10 => '10 days of reading';
+
+  @override
+  String get achFIRST_WEEK => 'First week done';
+
+  @override
+  String get achSTREAK_4 => '4 weeks in a row';
+
+  @override
+  String get achUnknown => 'Achievement';
+
+  @override
+  String get listsTitle => 'My lists';
+
+  @override
+  String get listsNew => 'New list';
+
+  @override
+  String get listsName => 'List name';
+
+  @override
+  String get listsCreate => 'Create';
+
+  @override
+  String get listsAddTo => 'Add to a list';
+
+  @override
+  String get listsEmpty => 'You don\'t have any lists yet. Create one to group readings your way.';
+
+  @override
+  String listsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count readings', one: '1 reading', zero: 'Empty');
+    return '$_temp0';
+  }
+
+  @override
+  String get listsDuplicate => 'You already have a list with that name.';
+
+  @override
+  String get listsDelete => 'Delete list';
+
+  @override
+  String listsDeleteConfirm(String name) {
+    return 'Delete the list “$name”? The readings aren\'t deleted.';
+  }
+
+  @override
+  String get listsEmptyList => 'This list is empty. Add readings from their page.';
 }

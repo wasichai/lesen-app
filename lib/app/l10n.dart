@@ -5,6 +5,7 @@ import '../features/catalog/domain/catalog_query.dart';
 import '../features/catalog/domain/reading.dart';
 import '../features/comprehension/domain/assessment.dart';
 import '../features/profile/domain/learner_profile.dart';
+import '../features/progress/domain/progress.dart';
 import '../features/vocabulary/domain/known_words.dart';
 import '../features/vocabulary/domain/vocabulary.dart';
 import '../l10n/app_localizations.dart';
@@ -137,4 +138,48 @@ extension L10nLabels on AppLocalizations {
     if (d.inHours < 24) return durHours(d.inHours);
     return durDays((d.inHours / 24).round());
   }
+
+  String achievement(String code) => switch (code) {
+    'FIRST_READING' => achFIRST_READING,
+    'READINGS_5' => achREADINGS_5,
+    'READINGS_20' => achREADINGS_20,
+    'FIRST_HOUR' => achFIRST_HOUR,
+    'TEN_HOURS' => achTEN_HOURS,
+    'FIRST_WORD' => achFIRST_WORD,
+    'WORDS_50' => achWORDS_50,
+    'FIRST_REVIEW' => achFIRST_REVIEW,
+    'REVIEWS_100' => achREVIEWS_100,
+    'FIRST_ASSESSMENT' => achFIRST_ASSESSMENT,
+    'DAYS_10' => achDAYS_10,
+    'FIRST_WEEK' => achFIRST_WEEK,
+    'STREAK_4' => achSTREAK_4,
+    _ => achUnknown,
+  };
+
+  String levelSignal(LevelSignal s) => switch (s) {
+    LevelSignal.UP => levelSignalUP,
+    LevelSignal.STEADY => levelSignalSTEADY,
+    LevelSignal.DOWN => levelSignalDOWN,
+    LevelSignal.unknown => levelSignalunknown,
+  };
+
+  /// Nombre de una métrica del backend; `null` si es una que la app no muestra.
+  String? metric(String key) => switch (key) {
+    'started' => metricStarted,
+    'completed' => metricCompleted,
+    'minutes' => metricMinutes,
+    'wordsRead' => metricWordsRead,
+    'minutesThisWeek' => metricMinutesWeek,
+    'completedThisWeek' => metricCompletedWeek,
+    'encountered' => metricEncountered,
+    'saved' => metricSaved,
+    'learning' => metricLearning,
+    'mastered' => metricMastered,
+    'due' => metricDue,
+    'readingsCompleted' => metricReadingsCompleted,
+    'wordsSaved' => metricWordsSaved,
+    'wordsReviewed' => metricWordsReviewed,
+    'assessments' => metricAssessments,
+    _ => null,
+  };
 }

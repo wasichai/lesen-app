@@ -11,6 +11,7 @@ import 'package:lesen/app/theme/theme.dart';
 import 'package:lesen/core/audio/narration_engine.dart';
 import 'package:lesen/features/audio/application/playback_controller.dart';
 import 'package:lesen/core/networking/api_client.dart';
+import 'package:lesen/core/notifications/reminders.dart';
 import 'package:lesen/core/session/session.dart';
 import 'package:lesen/core/session/session_controller.dart';
 import 'package:lesen/core/session/session_store.dart';
@@ -39,7 +40,15 @@ Session testSession() => Session.fromJson({
   },
 });
 
-List<Override> backendOverrides(FakeBackend backend, {SessionStore? store, LocalStore? local, NarrationEngine? engine, Directory? files, bool wifi = true}) => [
+List<Override> backendOverrides(
+  FakeBackend backend, {
+  SessionStore? store,
+  LocalStore? local,
+  NarrationEngine? engine,
+  Directory? files,
+  bool wifi = true,
+  ReminderScheduler? reminders,
+}) => [
   appConfigProvider.overrideWithValue(testConfig),
   httpAdapterProvider.overrideWithValue(backend),
   sessionStoreProvider.overrideWithValue(store ?? MemorySessionStore()),
@@ -48,6 +57,7 @@ List<Override> backendOverrides(FakeBackend backend, {SessionStore? store, Local
   syncIntervalProvider.overrideWithValue(null),
   filesDirProvider.overrideWith((_) async => files),
   wifiCheckProvider.overrideWithValue(() async => wifi),
+  reminderSchedulerProvider.overrideWithValue(reminders ?? FakeReminderScheduler()),
 ];
 
 /// La app entera contra un [FakeBackend].
@@ -58,6 +68,7 @@ Future<ProviderContainer> pumpLesenApp(
   LocalStore? local,
   NarrationEngine? engine,
   Directory? files,
+  ReminderScheduler? reminders,
   Size size = const Size(390, 844),
 }) async {
   tester.view.devicePixelRatio = 1;
@@ -68,7 +79,7 @@ Future<ProviderContainer> pumpLesenApp(
   addTearDown(tester.platformDispatcher.clearAllTestValues);
   final container = ProviderContainer(
     retry: (_, _) => null,
-    overrides: backendOverrides(backend, store: store, local: local, engine: engine, files: files),
+    overrides: backendOverrides(backend, store: store, local: local, engine: engine, files: files, reminders: reminders),
   );
   addTearDown(container.dispose);
   await tester.pumpWidget(UncontrolledProviderScope(container: container, child: const LesenApp()));

@@ -956,18 +956,6 @@ abstract class AppLocalizations {
   /// **'{count, plural, =0{Aún nadie la abrió} =1{1 persona la abrió} other{{count} personas la abrieron}}'**
   String detailReaders(int count);
 
-  /// No description provided for @progressComingSoon.
-  ///
-  /// In es, this message translates to:
-  /// **'Aquí verás tu progreso: lo medido y lo estimado, sin castigos.'**
-  String get progressComingSoon;
-
-  /// No description provided for @comingSoonTitle.
-  ///
-  /// In es, this message translates to:
-  /// **'Muy pronto'**
-  String get comingSoonTitle;
-
   /// No description provided for @profileTitle.
   ///
   /// In es, this message translates to:
@@ -2569,6 +2557,588 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Sin conexión · {count} cambios esperan para enviarse'**
   String offlinePending(int count);
+
+  /// No description provided for @progressTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Progreso'**
+  String get progressTitle;
+
+  /// No description provided for @progressToday.
+  ///
+  /// In es, this message translates to:
+  /// **'Hoy'**
+  String get progressToday;
+
+  /// No description provided for @progressTodayMinutes.
+  ///
+  /// In es, this message translates to:
+  /// **'{minutes} de {goal} min'**
+  String progressTodayMinutes(int minutes, int goal);
+
+  /// No description provided for @progressGoalMet.
+  ///
+  /// In es, this message translates to:
+  /// **'Meta de hoy cumplida. ¡Bien leído!'**
+  String get progressGoalMet;
+
+  /// No description provided for @progressGoalOpen.
+  ///
+  /// In es, this message translates to:
+  /// **'Unos minutos bastan. Lo que leas hoy suma.'**
+  String get progressGoalOpen;
+
+  /// No description provided for @progressWeek.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta semana'**
+  String get progressWeek;
+
+  /// No description provided for @progressWeekDays.
+  ///
+  /// In es, this message translates to:
+  /// **'{active} de {target} días con lectura'**
+  String progressWeekDays(int active, int target);
+
+  /// No description provided for @progressWeekMet.
+  ///
+  /// In es, this message translates to:
+  /// **'Semana cumplida'**
+  String get progressWeekMet;
+
+  /// No description provided for @progressStreak.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =0{Tu primera semana cumplida está a la vuelta} =1{1 semana cumplida seguida} other{{count} semanas cumplidas seguidas}}'**
+  String progressStreak(int count);
+
+  /// No description provided for @progressBest.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu mejor racha: {count}'**
+  String progressBest(int count);
+
+  /// No description provided for @progressLast28.
+  ///
+  /// In es, this message translates to:
+  /// **'Los últimos 28 días'**
+  String get progressLast28;
+
+  /// No description provided for @progressDayLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'{date}: {minutes} min'**
+  String progressDayLabel(String date, int minutes);
+
+  /// No description provided for @progressDayGoal.
+  ///
+  /// In es, this message translates to:
+  /// **'{date}: {minutes} min, meta cumplida'**
+  String progressDayGoal(String date, int minutes);
+
+  /// No description provided for @progressReading.
+  ///
+  /// In es, this message translates to:
+  /// **'Lectura'**
+  String get progressReading;
+
+  /// No description provided for @progressVocabulary.
+  ///
+  /// In es, this message translates to:
+  /// **'Vocabulario'**
+  String get progressVocabulary;
+
+  /// No description provided for @progressComprehension.
+  ///
+  /// In es, this message translates to:
+  /// **'Comprensión'**
+  String get progressComprehension;
+
+  /// No description provided for @metricStarted.
+  ///
+  /// In es, this message translates to:
+  /// **'Empezadas'**
+  String get metricStarted;
+
+  /// No description provided for @metricCompleted.
+  ///
+  /// In es, this message translates to:
+  /// **'Terminadas'**
+  String get metricCompleted;
+
+  /// No description provided for @metricMinutes.
+  ///
+  /// In es, this message translates to:
+  /// **'Minutos leídos'**
+  String get metricMinutes;
+
+  /// No description provided for @metricWordsRead.
+  ///
+  /// In es, this message translates to:
+  /// **'Palabras leídas'**
+  String get metricWordsRead;
+
+  /// No description provided for @metricMinutesWeek.
+  ///
+  /// In es, this message translates to:
+  /// **'Minutos esta semana'**
+  String get metricMinutesWeek;
+
+  /// No description provided for @metricCompletedWeek.
+  ///
+  /// In es, this message translates to:
+  /// **'Terminadas esta semana'**
+  String get metricCompletedWeek;
+
+  /// No description provided for @metricEncountered.
+  ///
+  /// In es, this message translates to:
+  /// **'Encontradas'**
+  String get metricEncountered;
+
+  /// No description provided for @metricSaved.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardadas'**
+  String get metricSaved;
+
+  /// No description provided for @metricLearning.
+  ///
+  /// In es, this message translates to:
+  /// **'Aprendiendo'**
+  String get metricLearning;
+
+  /// No description provided for @metricMastered.
+  ///
+  /// In es, this message translates to:
+  /// **'Dominadas'**
+  String get metricMastered;
+
+  /// No description provided for @metricDue.
+  ///
+  /// In es, this message translates to:
+  /// **'Para repasar'**
+  String get metricDue;
+
+  /// No description provided for @metricAnswered.
+  ///
+  /// In es, this message translates to:
+  /// **'Preguntas respondidas'**
+  String get metricAnswered;
+
+  /// No description provided for @metricAverage.
+  ///
+  /// In es, this message translates to:
+  /// **'Acierto medio'**
+  String get metricAverage;
+
+  /// No description provided for @metricEstimated.
+  ///
+  /// In es, this message translates to:
+  /// **'estimado'**
+  String get metricEstimated;
+
+  /// No description provided for @metricEstimatedHint.
+  ///
+  /// In es, this message translates to:
+  /// **'≈ estimado: se infiere de lo que lees y repasas; lo demás está contado.'**
+  String get metricEstimatedHint;
+
+  /// No description provided for @progressGrowth.
+  ///
+  /// In es, this message translates to:
+  /// **'Palabras guardadas por semana'**
+  String get progressGrowth;
+
+  /// No description provided for @progressByType.
+  ///
+  /// In es, this message translates to:
+  /// **'Por tipo de pregunta'**
+  String get progressByType;
+
+  /// No description provided for @progressNoAnswers.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuando respondas preguntas de comprensión, verás aquí cómo entiendes.'**
+  String get progressNoAnswers;
+
+  /// No description provided for @progressLevel.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu nivel'**
+  String get progressLevel;
+
+  /// No description provided for @progressLevelEstimate.
+  ///
+  /// In es, this message translates to:
+  /// **'{level} · estimado'**
+  String progressLevelEstimate(String level);
+
+  /// No description provided for @levelSignalUP.
+  ///
+  /// In es, this message translates to:
+  /// **'Tus respuestas sugieren que podrías probar lecturas un poco más exigentes.'**
+  String get levelSignalUP;
+
+  /// No description provided for @levelSignalSTEADY.
+  ///
+  /// In es, this message translates to:
+  /// **'Tus lecturas encajan con tu nivel.'**
+  String get levelSignalSTEADY;
+
+  /// No description provided for @levelSignalDOWN.
+  ///
+  /// In es, this message translates to:
+  /// **'Quizá te vengan mejor lecturas un poco más sencillas por ahora.'**
+  String get levelSignalDOWN;
+
+  /// No description provided for @levelSignalunknown.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay suficientes respuestas para decir más.'**
+  String get levelSignalunknown;
+
+  /// No description provided for @progressAchievements.
+  ///
+  /// In es, this message translates to:
+  /// **'Logros'**
+  String get progressAchievements;
+
+  /// No description provided for @progressSeeAll.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver todos'**
+  String get progressSeeAll;
+
+  /// No description provided for @progressWeeklySummary.
+  ///
+  /// In es, this message translates to:
+  /// **'Resumen semanal'**
+  String get progressWeeklySummary;
+
+  /// No description provided for @progressGoals.
+  ///
+  /// In es, this message translates to:
+  /// **'Metas'**
+  String get progressGoals;
+
+  /// No description provided for @progressEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu progreso empieza con tu primera lectura'**
+  String get progressEmpty;
+
+  /// No description provided for @progressEmptyBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Lee unos minutos y aquí verás tu semana, tus palabras y lo que entiendes. Sin castigos por los días sin leer.'**
+  String get progressEmptyBody;
+
+  /// No description provided for @goalsDaily.
+  ///
+  /// In es, this message translates to:
+  /// **'Minutos al día'**
+  String get goalsDaily;
+
+  /// No description provided for @goalsWeekly.
+  ///
+  /// In es, this message translates to:
+  /// **'Días por semana'**
+  String get goalsWeekly;
+
+  /// No description provided for @goalsWeeklyHint.
+  ///
+  /// In es, this message translates to:
+  /// **'La racha cuenta semanas cumplidas, no días: un día sin leer no rompe nada.'**
+  String get goalsWeeklyHint;
+
+  /// No description provided for @goalsWeeklySummary.
+  ///
+  /// In es, this message translates to:
+  /// **'Mostrar un resumen de la semana'**
+  String get goalsWeeklySummary;
+
+  /// No description provided for @goalsReminder.
+  ///
+  /// In es, this message translates to:
+  /// **'Recordatorio diario'**
+  String get goalsReminder;
+
+  /// No description provided for @goalsReminderHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Un aviso al día, a la hora que elijas. Nada más.'**
+  String get goalsReminderHint;
+
+  /// No description provided for @goalsReminderAt.
+  ///
+  /// In es, this message translates to:
+  /// **'A las {time}'**
+  String goalsReminderAt(String time);
+
+  /// No description provided for @goalsReminderDenied.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin permiso para notificaciones: actívalo en los ajustes del sistema si quieres el recordatorio.'**
+  String get goalsReminderDenied;
+
+  /// No description provided for @goalsReviewReminder.
+  ///
+  /// In es, this message translates to:
+  /// **'Recordarme repasar vocabulario'**
+  String get goalsReviewReminder;
+
+  /// No description provided for @goalsSaved.
+  ///
+  /// In es, this message translates to:
+  /// **'Metas guardadas'**
+  String get goalsSaved;
+
+  /// No description provided for @reminderReadTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Un ratito de lectura'**
+  String get reminderReadTitle;
+
+  /// No description provided for @reminderReadBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu próxima historia te espera en Lesen.'**
+  String get reminderReadBody;
+
+  /// No description provided for @reminderReviewTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Palabras para repasar'**
+  String get reminderReviewTitle;
+
+  /// No description provided for @reminderReviewBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Unos minutos de repaso y vuelven cuando toca.'**
+  String get reminderReviewBody;
+
+  /// No description provided for @weeklyRange.
+  ///
+  /// In es, this message translates to:
+  /// **'Del {start} al {end}'**
+  String weeklyRange(String start, String end);
+
+  /// No description provided for @weeklyPrevious.
+  ///
+  /// In es, this message translates to:
+  /// **'Semana anterior'**
+  String get weeklyPrevious;
+
+  /// No description provided for @weeklyNext.
+  ///
+  /// In es, this message translates to:
+  /// **'Semana siguiente'**
+  String get weeklyNext;
+
+  /// No description provided for @weeklyMet.
+  ///
+  /// In es, this message translates to:
+  /// **'Semana cumplida: {active} de {target} días.'**
+  String weeklyMet(int active, int target);
+
+  /// No description provided for @weeklyProgress.
+  ///
+  /// In es, this message translates to:
+  /// **'Llevas {active} de {target} días.'**
+  String weeklyProgress(int active, int target);
+
+  /// No description provided for @weeklyQuiet.
+  ///
+  /// In es, this message translates to:
+  /// **'Una semana tranquila. La siguiente es nueva.'**
+  String get weeklyQuiet;
+
+  /// No description provided for @metricReadingsCompleted.
+  ///
+  /// In es, this message translates to:
+  /// **'Lecturas terminadas'**
+  String get metricReadingsCompleted;
+
+  /// No description provided for @metricWordsSaved.
+  ///
+  /// In es, this message translates to:
+  /// **'Palabras guardadas'**
+  String get metricWordsSaved;
+
+  /// No description provided for @metricWordsReviewed.
+  ///
+  /// In es, this message translates to:
+  /// **'Palabras repasadas'**
+  String get metricWordsReviewed;
+
+  /// No description provided for @metricAssessments.
+  ///
+  /// In es, this message translates to:
+  /// **'Evaluaciones'**
+  String get metricAssessments;
+
+  /// No description provided for @achievementProgress.
+  ///
+  /// In es, this message translates to:
+  /// **'{value} de {threshold}'**
+  String achievementProgress(int value, int threshold);
+
+  /// No description provided for @achievementEarned.
+  ///
+  /// In es, this message translates to:
+  /// **'Conseguido el {date}'**
+  String achievementEarned(String date);
+
+  /// No description provided for @achFIRST_READING.
+  ///
+  /// In es, this message translates to:
+  /// **'Primera lectura terminada'**
+  String get achFIRST_READING;
+
+  /// No description provided for @achREADINGS_5.
+  ///
+  /// In es, this message translates to:
+  /// **'5 lecturas terminadas'**
+  String get achREADINGS_5;
+
+  /// No description provided for @achREADINGS_20.
+  ///
+  /// In es, this message translates to:
+  /// **'20 lecturas terminadas'**
+  String get achREADINGS_20;
+
+  /// No description provided for @achFIRST_HOUR.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu primera hora leyendo'**
+  String get achFIRST_HOUR;
+
+  /// No description provided for @achTEN_HOURS.
+  ///
+  /// In es, this message translates to:
+  /// **'10 horas leyendo'**
+  String get achTEN_HOURS;
+
+  /// No description provided for @achFIRST_WORD.
+  ///
+  /// In es, this message translates to:
+  /// **'Primera palabra guardada'**
+  String get achFIRST_WORD;
+
+  /// No description provided for @achWORDS_50.
+  ///
+  /// In es, this message translates to:
+  /// **'50 palabras guardadas'**
+  String get achWORDS_50;
+
+  /// No description provided for @achFIRST_REVIEW.
+  ///
+  /// In es, this message translates to:
+  /// **'Primer repaso'**
+  String get achFIRST_REVIEW;
+
+  /// No description provided for @achREVIEWS_100.
+  ///
+  /// In es, this message translates to:
+  /// **'100 repasos'**
+  String get achREVIEWS_100;
+
+  /// No description provided for @achFIRST_ASSESSMENT.
+  ///
+  /// In es, this message translates to:
+  /// **'Primeras preguntas respondidas'**
+  String get achFIRST_ASSESSMENT;
+
+  /// No description provided for @achDAYS_10.
+  ///
+  /// In es, this message translates to:
+  /// **'10 días con lectura'**
+  String get achDAYS_10;
+
+  /// No description provided for @achFIRST_WEEK.
+  ///
+  /// In es, this message translates to:
+  /// **'Primera semana cumplida'**
+  String get achFIRST_WEEK;
+
+  /// No description provided for @achSTREAK_4.
+  ///
+  /// In es, this message translates to:
+  /// **'4 semanas cumplidas seguidas'**
+  String get achSTREAK_4;
+
+  /// No description provided for @achUnknown.
+  ///
+  /// In es, this message translates to:
+  /// **'Logro'**
+  String get achUnknown;
+
+  /// No description provided for @listsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Mis listas'**
+  String get listsTitle;
+
+  /// No description provided for @listsNew.
+  ///
+  /// In es, this message translates to:
+  /// **'Nueva lista'**
+  String get listsNew;
+
+  /// No description provided for @listsName.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre de la lista'**
+  String get listsName;
+
+  /// No description provided for @listsCreate.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear'**
+  String get listsCreate;
+
+  /// No description provided for @listsAddTo.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir a una lista'**
+  String get listsAddTo;
+
+  /// No description provided for @listsEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no tienes listas. Crea una para agrupar lecturas a tu manera.'**
+  String get listsEmpty;
+
+  /// No description provided for @listsCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =0{Vacía} =1{1 lectura} other{{count} lecturas}}'**
+  String listsCount(int count);
+
+  /// No description provided for @listsDuplicate.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya tienes una lista con ese nombre.'**
+  String get listsDuplicate;
+
+  /// No description provided for @listsDelete.
+  ///
+  /// In es, this message translates to:
+  /// **'Borrar la lista'**
+  String get listsDelete;
+
+  /// No description provided for @listsDeleteConfirm.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Borrar la lista «{name}»? Las lecturas no se borran.'**
+  String listsDeleteConfirm(String name);
+
+  /// No description provided for @listsEmptyList.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta lista está vacía. Añade lecturas desde su ficha.'**
+  String get listsEmptyList;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

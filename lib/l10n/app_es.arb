@@ -274,8 +274,6 @@
       }
     }
   },
-  "progressComingSoon": "Aquí verás tu progreso: lo medido y lo estimado, sin castigos.",
-  "comingSoonTitle": "Muy pronto",
   "profileTitle": "Tu perfil",
   "profileInterface": "Idioma de la app",
   "profileTarget": "Idioma que lees",
@@ -908,5 +906,231 @@
         "type": "int"
       }
     }
-  }
+  },
+  "progressTitle": "Progreso",
+  "progressToday": "Hoy",
+  "progressTodayMinutes": "{minutes} de {goal} min",
+  "@progressTodayMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "progressGoalMet": "Meta de hoy cumplida. ¡Bien leído!",
+  "progressGoalOpen": "Unos minutos bastan. Lo que leas hoy suma.",
+  "progressWeek": "Esta semana",
+  "progressWeekDays": "{active} de {target} días con lectura",
+  "@progressWeekDays": {
+    "placeholders": {
+      "active": {
+        "type": "int"
+      },
+      "target": {
+        "type": "int"
+      }
+    }
+  },
+  "progressWeekMet": "Semana cumplida",
+  "progressStreak": "{count, plural, =0{Tu primera semana cumplida está a la vuelta} =1{1 semana cumplida seguida} other{{count} semanas cumplidas seguidas}}",
+  "@progressStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progressBest": "Tu mejor racha: {count}",
+  "@progressBest": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progressLast28": "Los últimos 28 días",
+  "progressDayLabel": "{date}: {minutes} min",
+  "@progressDayLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "progressDayGoal": "{date}: {minutes} min, meta cumplida",
+  "@progressDayGoal": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "progressReading": "Lectura",
+  "progressVocabulary": "Vocabulario",
+  "progressComprehension": "Comprensión",
+  "metricStarted": "Empezadas",
+  "metricCompleted": "Terminadas",
+  "metricMinutes": "Minutos leídos",
+  "metricWordsRead": "Palabras leídas",
+  "metricMinutesWeek": "Minutos esta semana",
+  "metricCompletedWeek": "Terminadas esta semana",
+  "metricEncountered": "Encontradas",
+  "metricSaved": "Guardadas",
+  "metricLearning": "Aprendiendo",
+  "metricMastered": "Dominadas",
+  "metricDue": "Para repasar",
+  "metricAnswered": "Preguntas respondidas",
+  "metricAverage": "Acierto medio",
+  "metricEstimated": "estimado",
+  "metricEstimatedHint": "≈ estimado: se infiere de lo que lees y repasas; lo demás está contado.",
+  "progressGrowth": "Palabras guardadas por semana",
+  "progressByType": "Por tipo de pregunta",
+  "progressNoAnswers": "Cuando respondas preguntas de comprensión, verás aquí cómo entiendes.",
+  "progressLevel": "Tu nivel",
+  "progressLevelEstimate": "{level} · estimado",
+  "@progressLevelEstimate": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "levelSignalUP": "Tus respuestas sugieren que podrías probar lecturas un poco más exigentes.",
+  "levelSignalSTEADY": "Tus lecturas encajan con tu nivel.",
+  "levelSignalDOWN": "Quizá te vengan mejor lecturas un poco más sencillas por ahora.",
+  "levelSignalunknown": "Aún no hay suficientes respuestas para decir más.",
+  "progressAchievements": "Logros",
+  "progressSeeAll": "Ver todos",
+  "progressWeeklySummary": "Resumen semanal",
+  "progressGoals": "Metas",
+  "progressEmpty": "Tu progreso empieza con tu primera lectura",
+  "progressEmptyBody": "Lee unos minutos y aquí verás tu semana, tus palabras y lo que entiendes. Sin castigos por los días sin leer.",
+  "goalsDaily": "Minutos al día",
+  "goalsWeekly": "Días por semana",
+  "goalsWeeklyHint": "La racha cuenta semanas cumplidas, no días: un día sin leer no rompe nada.",
+  "goalsWeeklySummary": "Mostrar un resumen de la semana",
+  "goalsReminder": "Recordatorio diario",
+  "goalsReminderHint": "Un aviso al día, a la hora que elijas. Nada más.",
+  "goalsReminderAt": "A las {time}",
+  "@goalsReminderAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "goalsReminderDenied": "Sin permiso para notificaciones: actívalo en los ajustes del sistema si quieres el recordatorio.",
+  "goalsReviewReminder": "Recordarme repasar vocabulario",
+  "goalsSaved": "Metas guardadas",
+  "reminderReadTitle": "Un ratito de lectura",
+  "reminderReadBody": "Tu próxima historia te espera en Lesen.",
+  "reminderReviewTitle": "Palabras para repasar",
+  "reminderReviewBody": "Unos minutos de repaso y vuelven cuando toca.",
+  "weeklyRange": "Del {start} al {end}",
+  "@weeklyRange": {
+    "placeholders": {
+      "start": {
+        "type": "String"
+      },
+      "end": {
+        "type": "String"
+      }
+    }
+  },
+  "weeklyPrevious": "Semana anterior",
+  "weeklyNext": "Semana siguiente",
+  "weeklyMet": "Semana cumplida: {active} de {target} días.",
+  "@weeklyMet": {
+    "placeholders": {
+      "active": {
+        "type": "int"
+      },
+      "target": {
+        "type": "int"
+      }
+    }
+  },
+  "weeklyProgress": "Llevas {active} de {target} días.",
+  "@weeklyProgress": {
+    "placeholders": {
+      "active": {
+        "type": "int"
+      },
+      "target": {
+        "type": "int"
+      }
+    }
+  },
+  "weeklyQuiet": "Una semana tranquila. La siguiente es nueva.",
+  "metricReadingsCompleted": "Lecturas terminadas",
+  "metricWordsSaved": "Palabras guardadas",
+  "metricWordsReviewed": "Palabras repasadas",
+  "metricAssessments": "Evaluaciones",
+  "achievementProgress": "{value} de {threshold}",
+  "@achievementProgress": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      },
+      "threshold": {
+        "type": "int"
+      }
+    }
+  },
+  "achievementEarned": "Conseguido el {date}",
+  "@achievementEarned": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "achFIRST_READING": "Primera lectura terminada",
+  "achREADINGS_5": "5 lecturas terminadas",
+  "achREADINGS_20": "20 lecturas terminadas",
+  "achFIRST_HOUR": "Tu primera hora leyendo",
+  "achTEN_HOURS": "10 horas leyendo",
+  "achFIRST_WORD": "Primera palabra guardada",
+  "achWORDS_50": "50 palabras guardadas",
+  "achFIRST_REVIEW": "Primer repaso",
+  "achREVIEWS_100": "100 repasos",
+  "achFIRST_ASSESSMENT": "Primeras preguntas respondidas",
+  "achDAYS_10": "10 días con lectura",
+  "achFIRST_WEEK": "Primera semana cumplida",
+  "achSTREAK_4": "4 semanas cumplidas seguidas",
+  "achUnknown": "Logro",
+  "listsTitle": "Mis listas",
+  "listsNew": "Nueva lista",
+  "listsName": "Nombre de la lista",
+  "listsCreate": "Crear",
+  "listsAddTo": "Añadir a una lista",
+  "listsEmpty": "Aún no tienes listas. Crea una para agrupar lecturas a tu manera.",
+  "listsCount": "{count, plural, =0{Vacía} =1{1 lectura} other{{count} lecturas}}",
+  "@listsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "listsDuplicate": "Ya tienes una lista con ese nombre.",
+  "listsDelete": "Borrar la lista",
+  "listsDeleteConfirm": "¿Borrar la lista «{name}»? Las lecturas no se borran.",
+  "@listsDeleteConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "listsEmptyList": "Esta lista está vacía. Añade lecturas desde su ficha."
 }

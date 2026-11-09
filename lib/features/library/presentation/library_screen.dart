@@ -8,6 +8,7 @@ import '../../../core/widgets/feedback_views.dart';
 import '../../catalog/domain/reading.dart';
 import '../../catalog/presentation/widgets/reading_card_view.dart';
 import '../../shell/presentation/app_shell.dart';
+import '../../lists/presentation/lists_widgets.dart';
 import '../data/library_repository.dart';
 
 /// Mis lecturas: lo que se está leyendo, lo guardado para después y lo terminado.
@@ -26,6 +27,7 @@ class LibraryScreen extends ConsumerWidget {
         child: switch (library) {
           AsyncData(:final value) when value.isEmpty => ListView(
             children: [
+              const ListsSection(),
               EmptyState(
                 title: l10n.libraryEmptyTitle,
                 body: l10n.libraryEmptyBody,
@@ -36,6 +38,7 @@ class LibraryScreen extends ConsumerWidget {
           ),
           AsyncData(:final value) => CustomScrollView(
             slivers: [
+              const SliverToBoxAdapter(child: ListsSection()),
               ..._section(context, l10n.libraryInProgress, value.inProgress, wide, reading: true),
               ..._section(context, l10n.libraryBookmarked, value.bookmarked, wide),
               ..._section(context, l10n.libraryCompleted, value.completed, wide),

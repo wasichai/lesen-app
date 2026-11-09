@@ -10,4 +10,6 @@ Copiadas de `wasichai/lesen-ui/e2e/fixtures/`, que las captura del backend real 
 - `notebook.json`, `assessment.json`, `attempt.json`: capturados del backend local con su demo (`lena` y `tomas`,
   2026-11-09): cuaderno, repaso, estadísticas, búsqueda y entrada del diccionario, preguntas y un intento corregido.
 
+- `progress.json`: panel, resumen semanal, logros, metas y listas capturados del backend local (2026-11-09).
+
 Al cambiar el contrato del backend, se vuelven a capturar allí y se copian aquí.

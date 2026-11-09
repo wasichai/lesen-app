@@ -17,12 +17,15 @@ import '../../features/catalog/presentation/catalog_screen.dart';
 import '../../features/catalog/presentation/reading_detail_screen.dart';
 import '../../features/discover/presentation/discover_screen.dart';
 import '../../features/library/presentation/library_screen.dart';
+import '../../features/lists/presentation/lists_widgets.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/profile/application/profile_providers.dart';
 import '../../features/profile/presentation/profile_screen.dart';
+import '../../features/progress/presentation/achievements_screen.dart';
+import '../../features/progress/presentation/progress_screen.dart';
+import '../../features/progress/presentation/weekly_screen.dart';
 import '../../features/reader/presentation/reader_screen.dart';
 import '../../features/shell/presentation/app_shell.dart';
-import '../../features/shell/presentation/coming_soon_screen.dart';
 import '../../features/vocabulary/presentation/review_screen.dart';
 import '../../features/vocabulary/presentation/vocabulary_screen.dart';
 import 'routes.dart';
@@ -110,6 +113,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: Routes.review, builder: (_, _) => const ReviewScreen()),
       GoRoute(path: Routes.downloads, builder: (_, _) => const DownloadsScreen()),
+      GoRoute(
+        path: '/lists/:id',
+        builder: (_, state) => ListScreen(id: state.pathParameters['id']!),
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => AppShell(shell: shell),
         branches: [
@@ -139,7 +146,16 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [GoRoute(path: Routes.vocabulary, builder: (_, _) => const VocabularyScreen())],
           ),
           StatefulShellBranch(
-            routes: [GoRoute(path: Routes.progress, builder: (_, _) => const ComingSoonScreen.progress())],
+            routes: [
+              GoRoute(
+                path: Routes.progress,
+                builder: (_, _) => const ProgressScreen(),
+                routes: [
+                  GoRoute(path: 'weekly', builder: (_, _) => const WeeklyScreen()),
+                  GoRoute(path: 'achievements', builder: (_, _) => const AchievementsScreen()),
+                ],
+              ),
+            ],
           ),
         ],
       ),
