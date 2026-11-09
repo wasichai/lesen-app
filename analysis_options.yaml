@@ -1,0 +1,25 @@
+include: package:flutter_lints/flutter.yaml
+
+formatter:
+  page_width: 160
+
+analyzer:
+  language:
+    strict-casts: true
+  exclude:
+    - build/**
+    - lib/l10n/app_localizations*.dart
+    - android/**
+    - ios/**
+    - web/**
+
+linter:
+  rules:
+    # las enumeraciones reflejan los valores del contrato del backend (`A1`, `IN_PROGRESS`…) tal cual
+    constant_identifier_names: false
+    prefer_single_quotes: true
+    always_declare_return_types: true
+    avoid_print: true
+    prefer_final_locals: true
+    unawaited_futures: true
+    curly_braces_in_flow_control_structures: true

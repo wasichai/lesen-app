@@ -4,6 +4,10 @@ node_modules/
 .claude/
 ios/Pods/
 android/.gradle/
-test/fixtures/
+test/fixtures/*.json
 lib/l10n/generated/
 pubspec.lock
+android/
+ios/
+web/
+.metadata
