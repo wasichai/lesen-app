@@ -1,0 +1,9 @@
+build/
+.dart_tool/
+node_modules/
+.claude/
+ios/Pods/
+android/.gradle/
+test/fixtures/
+lib/l10n/generated/
+pubspec.lock
