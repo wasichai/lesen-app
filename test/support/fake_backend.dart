@@ -78,6 +78,55 @@ class FakeBackend implements HttpClientAdapter {
     },
   };
 
+  /// Las rutas del lector para una lectura capturada (`der-alte-leuchtturm` tiene todo: audio, traducciones, preguntas).
+  static Map<String, Handler> readingRoutes(String slug) {
+    final r = (fixtures['readings'] as Map)[slug] as Map<String, dynamic>;
+    final content = r['content'] as Map<String, dynamic>;
+    final version = content['version'];
+    final entries = ((r['entries'] as Map)['es'] as Map).cast<String, dynamic>();
+    final base = '/lesen/readings/$slug';
+    return {
+      'GET $base': (_) => r['detail'],
+      'GET $base/versions/$version/content': (_) => content,
+      'GET $base/versions/$version/translations': (req) =>
+          ((r['translations'] as Map)['es'] as List).where((t) => (t as Map)['unit'] == req.queryParameters['unit']).toList(),
+      'GET $base/progress': (_) => const Reply(404, {'status': 404}),
+      'PUT $base/progress': (req) => {
+        ...(req.data as Map).cast<String, dynamic>(),
+        'completed': false,
+        'startedAt': '2026-11-09T10:00:00Z',
+        'updatedAt': DateTime.now().toUtc().toIso8601String(),
+        'completedAt': null,
+      },
+      'GET $base/notes': (_) => <Object>[],
+      'GET /lesen/vocabulary/known': (_) => {'saved': <Object>[], 'encountered': <Object>[]},
+      'POST /lesen/vocabulary': (req) => const Reply(201, {'id': 'v1'}),
+      'GET /lesen/dictionary/lookup': (req) {
+        final tokenId = req.queryParameters['token'];
+        for (final p in content['paragraphs'] as List) {
+          for (final s in (p as Map)['sentences'] as List) {
+            for (final t in (s as Map)['tokens'] as List) {
+              if ((t as Map)['id'] == tokenId) {
+                final text = (s['tokens'] as List).map((x) => (x as Map)['text'].toString() + (x['space'] == true ? ' ' : '')).join().trim();
+                return {
+                  'token': t['text'],
+                  'tokenRef': tokenId,
+                  'sentenceRef': s['id'],
+                  'sentence': text,
+                  'translationLanguage': 'es',
+                  'entry': entries[t['entry']],
+                  'inflected': entries[t['entry']] != null && (entries[t['entry']] as Map)['lemma'] != t['text'],
+                  'alternatives': <Object>[],
+                };
+              }
+            }
+          }
+        }
+        return const Reply(404, {'status': 404});
+      },
+    };
+  }
+
   int count(String key) => requests.where((r) => '${r.method} ${r.path}' == key).length;
 
   @override

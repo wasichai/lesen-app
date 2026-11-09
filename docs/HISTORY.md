@@ -1,5 +1,20 @@
 # Historial
 
+## Fase 2 — Lector inmersivo, diccionario en contexto y biblioteca (2026-11-09)
+
+- Lector a pantalla completa: Newsreader con seis tamaños, tres interlineados, tres anchos y temas claro, sepia y
+  oscuro; modo sin distracciones; avance y minutos restantes; reanuda en la oración donde se quedó.
+- Cada párrafo es un único `RichText` con un tramo por palabra; se reconstruye solo el párrafo que cambia.
+- Diccionario en contexto (hoja inferior en teléfono, panel lateral desde 900 dp): lema, «forma de», categoría, IPA,
+  traducción y definición primero; ejemplos, sinónimos, antónimos, relacionadas, gramática y formas al expandir; sin
+  entrada, lo dice. Guardar en el cuaderno con la oración (`tokenRef`).
+- Oración: traducir a demanda, guardar en notas con comentario, copiar. Párrafo: traducción a demanda o siempre.
+- Resaltar guardadas (fondo), nuevas (punteado) y aprendidas (subrayado), nunca solo por color.
+- Base local drift/SQLite sin generación (ADR-0009): contenido inmutable cacheado, preferencias y progreso, que se
+  guarda primero en el dispositivo y se une con el del servidor sin pisar lo nuevo (`mergeProgress`).
+- Marcador, notas, «Terminé de leer» con su cierre, y «Mis lecturas» (en curso, guardadas, terminadas).
+- 47 pruebas. Verificado contra el backend real (guardar palabra 201, progreso 200, biblioteca al 47 %).
+
 ## Fase 1 — Base Flutter, diseño, onboarding y catálogo (2026-11-09)
 
 - Proyecto Flutter `com.wasichai.lesen` (Android, iOS; web solo para desarrollo), con entornos `config/*.json`.

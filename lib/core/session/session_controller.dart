@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../networking/api_client.dart';
 import '../networking/api_failure.dart';
 import '../networking/json.dart';
+import '../storage/local_store.dart';
 import 'session.dart';
 import 'session_store.dart';
 
@@ -80,8 +81,12 @@ class SessionController extends Notifier<SessionState> {
     state = const SessionState.signedOut(SignOutReason.expired);
   }
 
+  /// Espacios locales con datos de quien lee; el contenido publicado (público e inmutable) se conserva.
+  static const personalNamespaces = ['progress', 'prefs'];
+
   Future<void> signOut() async {
     await ref.read(sessionStoreProvider).clear();
+    await ref.read(localStoreProvider).clearNamespaces(personalNamespaces);
     state = const SessionState.signedOut(SignOutReason.manual);
   }
 }

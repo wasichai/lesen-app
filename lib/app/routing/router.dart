@@ -10,9 +10,11 @@ import '../../features/catalog/domain/reading.dart';
 import '../../features/catalog/presentation/catalog_screen.dart';
 import '../../features/catalog/presentation/reading_detail_screen.dart';
 import '../../features/discover/presentation/discover_screen.dart';
+import '../../features/library/presentation/library_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/profile/application/profile_providers.dart';
 import '../../features/profile/presentation/profile_screen.dart';
+import '../../features/reader/presentation/reader_screen.dart';
 import '../../features/shell/presentation/app_shell.dart';
 import '../../features/shell/presentation/coming_soon_screen.dart';
 import 'routes.dart';
@@ -70,7 +72,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/read/:slug',
         redirect: (_, state) => _validSlug(state) ? null : Routes.discover,
-        builder: (_, state) => ComingSoonScreen.reader(slug: state.pathParameters['slug']!),
+        builder: (_, state) => ReaderScreen(slug: state.pathParameters['slug']!),
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => AppShell(shell: shell),
@@ -95,7 +97,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             ],
           ),
           StatefulShellBranch(
-            routes: [GoRoute(path: Routes.library, builder: (_, _) => const ComingSoonScreen.library())],
+            routes: [GoRoute(path: Routes.library, builder: (_, _) => const LibraryScreen())],
           ),
           StatefulShellBranch(
             routes: [GoRoute(path: Routes.vocabulary, builder: (_, _) => const ComingSoonScreen.vocabulary())],

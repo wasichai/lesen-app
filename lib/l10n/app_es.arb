@@ -274,8 +274,6 @@
       }
     }
   },
-  "readerComingSoon": "El lector inmersivo llega en la próxima versión de la app.",
-  "libraryComingSoon": "Aquí verás lo que estás leyendo, lo que guardaste y lo que terminaste.",
   "vocabularyComingSoon": "Aquí vivirán las palabras que guardes al leer, listas para repasar.",
   "progressComingSoon": "Aquí verás tu progreso: lo medido y lo estimado, sin castigos.",
   "comingSoonTitle": "Muy pronto",
@@ -311,5 +309,153 @@
   "detailBookmarkFailed": "No pudimos guardar el cambio. Inténtalo de nuevo.",
   "profileTopics": "Temas",
   "profileGoals": "Metas",
-  "profileDifficulty": "Dificultad"
+  "profileDifficulty": "Dificultad",
+  "readerBack": "Salir de la lectura",
+  "readerSettings": "Texto y ayudas",
+  "readerNotes": "Notas",
+  "readerFocus": "Modo sin distracciones",
+  "readerFocusExit": "Mostrar los controles",
+  "readerRemaining": "Quedan {count} min",
+  "@readerRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "readerAlmostDone": "Casi terminas",
+  "readerProgress": "Avance de la lectura: {percent} %",
+  "@readerProgress": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "readerHint": "Toca cualquier palabra para ver qué significa.",
+  "readerOldVersion": "Estás leyendo la versión {version}, la que empezaste. Hay una versión más reciente.",
+  "@readerOldVersion": {
+    "placeholders": {
+      "version": {
+        "type": "int"
+      }
+    }
+  },
+  "readerTranslateParagraph": "Traducir el párrafo",
+  "readerHideParagraph": "Ocultar la traducción",
+  "readerNoParagraphTranslation": "Este párrafo aún no tiene traducción.",
+  "readerSavePending": "Guardado en el dispositivo; se enviará al volver la conexión.",
+  "readerFinish": "Terminé de leer",
+  "readerFinishing": "Guardando…",
+  "wordLoading": "Buscando la palabra…",
+  "wordTitle": "La palabra «{word}»",
+  "@wordTitle": {
+    "placeholders": {
+      "word": {
+        "type": "String"
+      }
+    }
+  },
+  "wordNoEntry": "Todavía no tenemos esta palabra en el diccionario.",
+  "wordNoEntryBody": "Preferimos decirlo antes que inventar una traducción.",
+  "wordFormOf": "«{form}» es una forma de «{lemma}».",
+  "@wordFormOf": {
+    "placeholders": {
+      "form": {
+        "type": "String"
+      },
+      "lemma": {
+        "type": "String"
+      }
+    }
+  },
+  "wordDefinition": "Definición",
+  "wordExamples": "Ejemplos",
+  "wordSynonyms": "Sinónimos",
+  "wordAntonyms": "Antónimos",
+  "wordRelated": "Relacionadas",
+  "wordForms": "Formas",
+  "wordGrammar": "Gramática",
+  "wordNote": "Ten en cuenta",
+  "wordAlternatives": "También puede ser",
+  "wordSave": "Guardar en mi vocabulario",
+  "wordSaving": "Guardando…",
+  "wordSaved": "En tu vocabulario",
+  "wordSaveFailed": "No pudimos guardar la palabra. Inténtalo de nuevo.",
+  "wordMore": "Ver todo",
+  "wordLess": "Ver menos",
+  "wordInContext": "En esta oración",
+  "wordTranslateSentence": "Traducir la oración",
+  "wordHideSentence": "Ocultar la traducción",
+  "wordSentenceUnavailable": "Esta oración aún no tiene traducción.",
+  "wordSaveSentence": "Guardar la oración en mis notas",
+  "wordSentenceSaved": "Oración guardada en tus notas",
+  "wordCopySentence": "Copiar la oración",
+  "wordCopied": "Copiada",
+  "wordAddNote": "Añadir una nota (opcional)",
+  "wordPronunciation": "Pronunciación",
+  "settingsSize": "Tamaño de letra",
+  "settingsSmaller": "Letra más pequeña",
+  "settingsLarger": "Letra más grande",
+  "settingsLeading": "Interlineado",
+  "leadingcompact": "Junto",
+  "leadingcomfortable": "Cómodo",
+  "leadingairy": "Amplio",
+  "settingsWidth": "Ancho del texto",
+  "widthnarrow": "Estrecho",
+  "widthmedium": "Medio",
+  "widthwide": "Ancho",
+  "settingsTheme": "Tema de lectura",
+  "themelight": "Claro",
+  "themesepia": "Sepia",
+  "themedark": "Oscuro",
+  "settingsAssistance": "Ayudas",
+  "settingsHighlightSaved": "Resaltar las palabras que guardaste",
+  "settingsHighlightNew": "Marcar las palabras nuevas para ti",
+  "settingsHighlightNewHint": "Las que no aparecieron en ninguna lectura que terminaste ni guardaste.",
+  "settingsHighlightLearned": "Marcar las palabras que ya aprendiste",
+  "settingsParagraphTranslations": "Mostrar la traducción de cada párrafo",
+  "settingsParagraphTranslationsHint": "Mejor apagada: intenta entender primero y traduce solo lo que necesites.",
+  "settingsResume": "Volver a donde lo dejé al abrir",
+  "notesTitle": "Tus notas",
+  "notesEmpty": "Aún no guardaste oraciones de esta lectura. Toca una palabra y elige «Guardar la oración».",
+  "notesRemove": "Borrar la nota",
+  "notesGo": "Ir a la oración",
+  "endTitle": "¡Lectura terminada!",
+  "endBody": "Leíste {words} palabras en {language}.",
+  "@endBody": {
+    "placeholders": {
+      "words": {
+        "type": "int"
+      },
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "endTime": "{count, plural, =1{Le dedicaste 1 minuto.} other{Le dedicaste {count} minutos.}}",
+  "@endTime": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "endSaved": "{count, plural, =0{No guardaste palabras esta vez.} =1{Guardaste 1 palabra.} other{Guardaste {count} palabras.}}",
+  "@endSaved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "endDiscover": "Volver a Descubrir",
+  "endLibrary": "Ver mis lecturas",
+  "endFailed": "No pudimos marcarla como terminada. Inténtalo de nuevo.",
+  "libraryInProgress": "Leyendo",
+  "libraryBookmarked": "Guardadas para después",
+  "libraryCompleted": "Terminadas",
+  "libraryEmptyTitle": "Tu biblioteca está esperando",
+  "libraryEmptyBody": "Lo que empieces, guardes o termines aparecerá aquí.",
+  "librarySearch": "Buscar en mis lecturas"
 }
