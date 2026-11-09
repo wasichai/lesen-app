@@ -27,3 +27,12 @@ reales antes de publicar, y se anota el resultado (fecha, dispositivo, versión 
 | Modo avión: abrir la lectura descargada, escucharla, avanzar | Todo funciona; aviso discreto con los cambios pendientes | ☐       | ☐   |
 | Quitar el modo avión                                         | Se sincroniza solo; el progreso aparece en la web        | ☐       | ☐   |
 | Responder las preguntas sin red                              | «Respuestas guardadas»; al volver la red se corrigen     | ☐       | ☐   |
+
+## Recordatorios (fase 6)
+
+| Caso                             | Esperado                                                         | Android | iOS |
+| -------------------------------- | ---------------------------------------------------------------- | ------- | --- |
+| Activar el recordatorio diario   | Se pide permiso en ese momento; con él, llega a la hora elegida  | ☐       | ☐   |
+| Denegar el permiso               | El interruptor vuelve a apagado y se explica cómo activarlo      | ☐       | ☐   |
+| Reiniciar el teléfono            | El recordatorio sigue programado                                 | ☐       | ☐   |
+| Cambio de hora (verano/invierno) | Se corre una hora hasta volver a guardarlo (limitación conocida) | ☐       | ☐   |

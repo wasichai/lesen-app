@@ -7,6 +7,7 @@ import '../../../app/routing/routes.dart';
 import '../../../app/theme/tokens.dart';
 import '../../../core/widgets/feedback_views.dart';
 import '../../downloads/presentation/download_button.dart';
+import '../../lists/presentation/lists_widgets.dart';
 import '../../profile/application/profile_providers.dart';
 import '../application/catalog_providers.dart';
 import '../../reader/data/reader_repository.dart';
@@ -130,6 +131,7 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
         ),
         const SizedBox(height: 8),
         DownloadButton(slug: r.slug),
+        TextButton.icon(onPressed: () => showAddToList(context, r.slug), icon: const Icon(Icons.playlist_add), label: Text(l10n.listsAddTo)),
       ],
     );
 

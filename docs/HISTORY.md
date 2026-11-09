@@ -1,5 +1,20 @@
 # Historial
 
+## Fase 6 — Progreso, metas amables, logros, listas y recordatorios (2026-11-09)
+
+- Panel de progreso con las cifras del backend (ADR-0011 del backend):
+  - hoy frente a la meta, con un anillo;
+  - la semana y la racha semanal, que nunca dice que se perdió algo;
+  - 28 días sin rojo (un día sin leer es un hueco claro);
+  - lectura, vocabulario con su crecimiento semanal, comprensión por tipo y nivel estimado con su señal;
+  - logros recientes. Lo estimado lleva «≈» y la palabra «estimado».
+- Resumen semanal con navegación, pantalla de logros con su avance, metas (minutos al día, días por semana, resumen).
+- Recordatorio diario local (flutter_local_notifications 22.3, la última del mayor anterior; la 23.0 tenía tres
+  días), con permiso pedido al activarlo y aviso opcional de repaso.
+- Listas propias: crear, añadir desde la ficha, «Mis listas» en la biblioteca, ver y borrar.
+- Rejillas con altura proporcional al tamaño de letra; un fallo de ciclo de vida del diálogo corregido.
+- 90 pruebas. Verificado contra el backend real (panel, logros y resumen semanal).
+
 ## Fase 5 — Sin conexión primero (2026-11-09)
 
 - Cola de operaciones persistente (`Outbox`): progreso, terminar, marcador, guardar palabra, repaso, nota e intento;

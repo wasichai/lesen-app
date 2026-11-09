@@ -1,0 +1,804 @@
+{
+ "dashboard": {
+  "language": "de",
+  "timeZone": "UTC",
+  "today": "2026-11-09",
+  "goal": {
+   "dailyMinutes": 10,
+   "todayMinutes": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "met": false
+  },
+  "streak": {
+   "current": 0,
+   "best": 0,
+   "weeksMet": 0,
+   "target": 3,
+   "activeThisWeek": 1,
+   "metThisWeek": false
+  },
+  "days": [
+   {
+    "date": "2026-10-13",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-14",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-15",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-16",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-17",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-18",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-19",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-20",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-21",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-22",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-23",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-24",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-25",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-26",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-27",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-28",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-29",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-30",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-31",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-01",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-02",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-03",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-04",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-05",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-06",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-07",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-08",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-09",
+    "minutes": 0,
+    "active": true,
+    "goalMet": false
+   }
+  ],
+  "reading": {
+   "started": {
+    "value": 1,
+    "kind": "MEASURED"
+   },
+   "completed": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "minutes": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "wordsRead": {
+    "value": 0,
+    "kind": "ESTIMATED"
+   },
+   "minutesThisWeek": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "completedThisWeek": {
+    "value": 0,
+    "kind": "MEASURED"
+   }
+  },
+  "vocabulary": {
+   "encountered": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "saved": {
+    "value": 1,
+    "kind": "MEASURED"
+   },
+   "learning": {
+    "value": 1,
+    "kind": "ESTIMATED"
+   },
+   "mastered": {
+    "value": 0,
+    "kind": "ESTIMATED"
+   },
+   "due": {
+    "value": 1,
+    "kind": "MEASURED"
+   },
+   "growth": [
+    {
+     "weekStart": "2026-09-21",
+     "value": 0
+    },
+    {
+     "weekStart": "2026-09-28",
+     "value": 0
+    },
+    {
+     "weekStart": "2026-10-05",
+     "value": 0
+    },
+    {
+     "weekStart": "2026-10-12",
+     "value": 0
+    },
+    {
+     "weekStart": "2026-10-19",
+     "value": 0
+    },
+    {
+     "weekStart": "2026-10-26",
+     "value": 0
+    },
+    {
+     "weekStart": "2026-11-02",
+     "value": 0
+    },
+    {
+     "weekStart": "2026-11-09",
+     "value": 1
+    }
+   ]
+  },
+  "comprehension": {
+   "answered": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "average": null,
+   "byType": [],
+   "byLevel": []
+  },
+  "level": {
+   "level": "A2",
+   "kind": "ESTIMATED",
+   "signal": "STEADY",
+   "answeredAtLevel": 0
+  },
+  "recentAchievements": [
+   {
+    "code": "FIRST_REVIEW",
+    "kind": "WORDS_REVIEWED",
+    "threshold": 1,
+    "value": 1,
+    "earnedAt": "2026-11-09T22:33:42.847689Z"
+   },
+   {
+    "code": "FIRST_WORD",
+    "kind": "WORDS_SAVED",
+    "threshold": 1,
+    "value": 1,
+    "earnedAt": "2026-11-09T22:03:19.930339Z"
+   }
+  ]
+ },
+ "weekly": {
+  "weekStart": "2026-11-09",
+  "weekEnd": "2026-11-15",
+  "current": true,
+  "days": [
+   {
+    "date": "2026-11-09",
+    "minutes": 0,
+    "active": true,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-10",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-11",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-12",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-13",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-14",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-15",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   }
+  ],
+  "minutes": {
+   "value": 0,
+   "kind": "MEASURED"
+  },
+  "readingsCompleted": {
+   "value": 0,
+   "kind": "MEASURED"
+  },
+  "wordsRead": {
+   "value": 0,
+   "kind": "ESTIMATED"
+  },
+  "wordsSaved": {
+   "value": 1,
+   "kind": "MEASURED"
+  },
+  "wordsReviewed": {
+   "value": 1,
+   "kind": "MEASURED"
+  },
+  "assessments": {
+   "value": 0,
+   "kind": "MEASURED"
+  },
+  "activeDays": 1,
+  "target": 3,
+  "met": false,
+  "streak": {
+   "current": 0,
+   "best": 0,
+   "weeksMet": 0,
+   "target": 3,
+   "activeThisWeek": 1,
+   "metThisWeek": false
+  },
+  "achievements": [
+   {
+    "code": "FIRST_WORD",
+    "kind": "WORDS_SAVED",
+    "threshold": 1,
+    "value": 1,
+    "earnedAt": "2026-11-09T22:03:19.930339Z"
+   },
+   {
+    "code": "FIRST_REVIEW",
+    "kind": "WORDS_REVIEWED",
+    "threshold": 1,
+    "value": 1,
+    "earnedAt": "2026-11-09T22:33:42.847689Z"
+   }
+  ]
+ },
+ "achievements": [
+  {
+   "code": "FIRST_READING",
+   "kind": "READINGS_COMPLETED",
+   "threshold": 1,
+   "value": 0,
+   "earnedAt": null
+  },
+  {
+   "code": "READINGS_5",
+   "kind": "READINGS_COMPLETED",
+   "threshold": 5,
+   "value": 0,
+   "earnedAt": null
+  },
+  {
+   "code": "READINGS_20",
+   "kind": "READINGS_COMPLETED",
+   "threshold": 20,
+   "value": 0,
+   "earnedAt": null
+  },
+  {
+   "code": "FIRST_HOUR",
+   "kind": "MINUTES",
+   "threshold": 60,
+   "value": 0,
+   "earnedAt": null
+  },
+  {
+   "code": "TEN_HOURS",
+   "kind": "MINUTES",
+   "threshold": 600,
+   "value": 0,
+   "earnedAt": null
+  },
+  {
+   "code": "FIRST_WORD",
+   "kind": "WORDS_SAVED",
+   "threshold": 1,
+   "value": 1,
+   "earnedAt": "2026-11-09T22:03:19.930339Z"
+  },
+  {
+   "code": "WORDS_50",
+   "kind": "WORDS_SAVED",
+   "threshold": 50,
+   "value": 1,
+   "earnedAt": null
+  },
+  {
+   "code": "FIRST_REVIEW",
+   "kind": "WORDS_REVIEWED",
+   "threshold": 1,
+   "value": 1,
+   "earnedAt": "2026-11-09T22:33:42.847689Z"
+  },
+  {
+   "code": "REVIEWS_100",
+   "kind": "WORDS_REVIEWED",
+   "threshold": 100,
+   "value": 1,
+   "earnedAt": null
+  },
+  {
+   "code": "FIRST_ASSESSMENT",
+   "kind": "ASSESSMENTS",
+   "threshold": 1,
+   "value": 0,
+   "earnedAt": null
+  },
+  {
+   "code": "DAYS_10",
+   "kind": "ACTIVE_DAYS",
+   "threshold": 10,
+   "value": 1,
+   "earnedAt": null
+  },
+  {
+   "code": "FIRST_WEEK",
+   "kind": "WEEKS_MET",
+   "threshold": 1,
+   "value": 0,
+   "earnedAt": null
+  },
+  {
+   "code": "STREAK_4",
+   "kind": "BEST_STREAK",
+   "threshold": 4,
+   "value": 0,
+   "earnedAt": null
+  }
+ ],
+ "goals": {
+  "dailyMinutes": 10,
+  "weeklyDays": 3,
+  "timeZone": "UTC",
+  "weeklySummary": false,
+  "configured": false
+ },
+ "lists": [],
+ "dashboardWithComprehension": {
+  "language": "en",
+  "timeZone": "UTC",
+  "today": "2026-11-09",
+  "goal": {
+   "dailyMinutes": 10,
+   "todayMinutes": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "met": false
+  },
+  "streak": {
+   "current": 0,
+   "best": 0,
+   "weeksMet": 0,
+   "target": 3,
+   "activeThisWeek": 1,
+   "metThisWeek": false
+  },
+  "days": [
+   {
+    "date": "2026-10-13",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-14",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-15",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-16",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-17",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-18",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-19",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-20",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-21",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-22",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-23",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-24",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-25",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-26",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-27",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-28",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-29",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-30",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-10-31",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-01",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-02",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-03",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-04",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-05",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-06",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-07",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-08",
+    "minutes": 0,
+    "active": false,
+    "goalMet": false
+   },
+   {
+    "date": "2026-11-09",
+    "minutes": 0,
+    "active": true,
+    "goalMet": false
+   }
+  ],
+  "reading": {
+   "started": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "completed": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "minutes": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "wordsRead": {
+    "value": 0,
+    "kind": "ESTIMATED"
+   },
+   "minutesThisWeek": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "completedThisWeek": {
+    "value": 0,
+    "kind": "MEASURED"
+   }
+  },
+  "vocabulary": {
+   "encountered": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "saved": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "learning": {
+    "value": 0,
+    "kind": "ESTIMATED"
+   },
+   "mastered": {
+    "value": 0,
+    "kind": "ESTIMATED"
+   },
+   "due": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "growth": [
+    {
+     "weekStart": "2026-09-21",
+     "value": 0
+    },
+    {
+     "weekStart": "2026-09-28",
+     "value": 0
+    },
+    {
+     "weekStart": "2026-10-05",
+     "value": 0
+    },
+    {
+     "weekStart": "2026-10-12",
+     "value": 0
+    },
+    {
+     "weekStart": "2026-10-19",
+     "value": 0
+    },
+    {
+     "weekStart": "2026-10-26",
+     "value": 0
+    },
+    {
+     "weekStart": "2026-11-02",
+     "value": 0
+    },
+    {
+     "weekStart": "2026-11-09",
+     "value": 0
+    }
+   ]
+  },
+  "comprehension": {
+   "answered": {
+    "value": 0,
+    "kind": "MEASURED"
+   },
+   "average": null,
+   "byType": [],
+   "byLevel": []
+  },
+  "level": {
+   "level": "A2",
+   "kind": "ESTIMATED",
+   "signal": "STEADY",
+   "answeredAtLevel": 0
+  },
+  "recentAchievements": [
+   {
+    "code": "FIRST_ASSESSMENT",
+    "kind": "ASSESSMENTS",
+    "threshold": 1,
+    "value": 1,
+    "earnedAt": "2026-11-09T22:22:04.761607Z"
+   }
+  ]
+ }
+}

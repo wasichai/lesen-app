@@ -9,7 +9,4 @@ Se piden solo los que usa una función ya entregada, y cada uno con su motivo. A
 | Android    | `usesCleartextTraffic` (solo depuración) | Fase 1 | El backend local de desarrollo es `http://10.0.2.2:8095`; release exige TLS |
 | iOS        | `NSAllowsLocalNetworking`                | Fase 1 | Igual que el anterior para el simulador; no relaja TLS hacia internet       |
 
-Pendientes, con la fase que los introduce:
-
-- Fase 6, recordatorios locales: `POST_NOTIFICATIONS` (Android 13+) y la autorización de notificaciones de iOS, pedidas
-  solo cuando la persona activa un recordatorio.
+Sin alarmas exactas (`SCHEDULE_EXACT_ALARM`): el recordatorio no necesita precisión al minuto.
