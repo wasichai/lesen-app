@@ -1,0 +1,315 @@
+{
+  "@@locale": "es",
+  "appName": "Lesen",
+  "commonRetry": "Reintentar",
+  "commonBack": "Atrás",
+  "commonContinue": "Continuar",
+  "commonCancel": "Cancelar",
+  "commonSave": "Guardar",
+  "commonClose": "Cerrar",
+  "commonSeeAll": "Ver todo",
+  "errorOffline": "Sin conexión. Lo que ya está en el dispositivo sigue disponible.",
+  "errorTimeout": "El servidor tarda en responder.",
+  "errorForbidden": "Tu cuenta no tiene acceso a esto.",
+  "errorNotFound": "No encontramos lo que buscas.",
+  "errorServer": "Algo falló en el servidor. Inténtalo de nuevo en un momento.",
+  "errorContract": "La respuesta del servidor no es la esperada. Puede que haga falta actualizar la app.",
+  "errorGeneric": "Algo no salió bien.",
+  "offlineBanner": "Sin conexión: puedes seguir con lo que ya está en el dispositivo.",
+  "loginTitle": "Aprende un idioma leyendo",
+  "loginLead": "Historias a tu nivel, con cada palabra a un toque.",
+  "loginEmail": "Correo electrónico",
+  "loginPassword": "Contraseña",
+  "loginShowPassword": "Mostrar contraseña",
+  "loginHidePassword": "Ocultar contraseña",
+  "loginSubmit": "Entrar",
+  "loginInvalid": "El correo o la contraseña no son correctos.",
+  "loginTooMany": "Demasiados intentos. Espera un momento antes de volver a probar.",
+  "loginEmailRequired": "Escribe tu correo.",
+  "loginPasswordRequired": "Escribe tu contraseña.",
+  "loginNoAccount": "Tu cuenta la crea quien administra Lesen en tu organización.",
+  "sessionExpired": "Tu sesión terminó. Vuelve a entrar; lo que tenías pendiente se conserva.",
+  "navDiscover": "Descubrir",
+  "navLibrary": "Mis lecturas",
+  "navVocabulary": "Vocabulario",
+  "navProgress": "Progreso",
+  "navProfile": "Perfil",
+  "navSearch": "Buscar",
+  "onboardingStep": "Paso {current} de {total}",
+  "@onboardingStep": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "onboardingFinish": "Empezar a leer",
+  "onboardingSaving": "Guardando…",
+  "onboardingError": "No pudimos guardar tu perfil. Inténtalo de nuevo.",
+  "onboardingWelcomeEyebrow": "Hola",
+  "onboardingWelcomeHeading": "Aprende un idioma leyendo historias que te gustan",
+  "onboardingWelcomeBody": "Lee, toca cualquier palabra que no conozcas y guárdala para después. Primero, ¿en qué idioma quieres usar la app?",
+  "onboardingTargetHeading": "¿Qué idioma quieres leer?",
+  "onboardingTargetBody": "Podrás cambiarlo más adelante en tu perfil.",
+  "onboardingLevelHeading": "¿Cómo lees en {language} hoy?",
+  "@onboardingLevelHeading": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingLevelBody": "Elige lo que mejor te describa. Puedes cambiarlo cuando quieras.",
+  "onboardingLevelUnsure": "No estoy segura o seguro",
+  "onboardingLevelUnsureBody": "Empezamos por A2 y ajustas sobre la marcha. Es una estimación, no una nota.",
+  "onboardingInterestsHeading": "¿Qué te gustaría leer?",
+  "onboardingInterestsBody": "Elige lo que te llame. Así recomendamos mejor.",
+  "onboardingGoals": "Para qué aprendes",
+  "onboardingTopics": "Temas",
+  "onboardingHabitHeading": "Un ritmo que te siente bien",
+  "onboardingHabitBody": "Unos minutos al día bastan. Sin rachas que castiguen: si un día no lees, no pasa nada.",
+  "onboardingDaily": "Minutos al día",
+  "onboardingDifficulty": "Dificultad de las lecturas",
+  "minutesShort": "{count} min",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesRead": "{count, plural, =1{1 minuto de lectura} other{{count} minutos de lectura}}",
+  "@minutesRead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "wordsCount": "{count} palabras",
+  "@wordsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "paragraphsCount": "{count, plural, =1{1 párrafo} other{{count} párrafos}}",
+  "@paragraphsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "readingsCount": "{count, plural, =1{1 lectura} other{{count} lecturas}}",
+  "@readingsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "readersThisWeek": "{count, plural, =1{1 persona la terminó} other{{count} personas la terminaron}}",
+  "@readersThisWeek": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "levelA1": "Entiendo palabras sueltas y frases muy básicas.",
+  "levelA2": "Sigo textos cortos y sencillos sobre temas cotidianos.",
+  "levelB1": "Entiendo lo esencial de textos claros sobre temas conocidos.",
+  "levelB2": "Leo artículos y relatos con bastante soltura.",
+  "levelC1": "Leo textos largos y exigentes y capto lo implícito.",
+  "levelC2": "Leo casi cualquier cosa con facilidad.",
+  "goalTRAVEL": "Viajar",
+  "goalWORK": "Trabajo",
+  "goalSTUDY": "Estudios",
+  "goalCULTURE": "Cultura",
+  "goalFAMILY": "Familia y amistades",
+  "goalFUN": "Por gusto",
+  "goalEXAM": "Un examen",
+  "difficultyCOMFORTABLE": "Cómoda",
+  "difficultyBALANCED": "Equilibrada",
+  "difficultyCHALLENGING": "Un reto",
+  "difficultyCOMFORTABLEBody": "Lecturas que entiendes casi enteras.",
+  "difficultyBALANCEDBody": "Algunas palabras nuevas en cada párrafo.",
+  "difficultyCHALLENGINGBody": "Un poco por encima de tu nivel.",
+  "greetingMorning": "Buenos días",
+  "greetingAfternoon": "Buenas tardes",
+  "greetingEvening": "Buenas noches",
+  "greetingNamed": "{greeting}, {name}",
+  "@greetingNamed": {
+    "placeholders": {
+      "greeting": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "discoverLead": "Hoy toca leer en {language}. Tu meta: {minutes} minutos, a tu ritmo.",
+  "@discoverLead": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "discoverFeatured": "Destacada",
+  "discoverContinue": "Sigue donde lo dejaste",
+  "discoverRecommended": "Para ti",
+  "discoverRecommendedLead": "Elegidas por tu nivel y lo que te interesa.",
+  "discoverThisWeek": "Lo que se lee esta semana",
+  "discoverFresh": "Recién publicadas",
+  "discoverCollections": "Colecciones",
+  "discoverTopics": "Explora por temas",
+  "discoverLevels": "Explora por nivel",
+  "discoverCatalog": "Ver todo el catálogo",
+  "discoverEmpty": "Aún no hay lecturas en {language}",
+  "@discoverEmpty": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "discoverEmptyBody": "Pronto llegarán. Mientras, mira el catálogo en otros idiomas.",
+  "reasonLEVEL": "A tu nivel",
+  "reasonCOMPREHENSION": "Por cómo entiendes",
+  "reasonTOPIC": "De tus temas",
+  "reasonHISTORY": "Como lo que leíste",
+  "reasonNEW": "Nueva",
+  "reasonTRENDING": "Se lee esta semana",
+  "catalogTitle": "Catálogo",
+  "catalogSearch": "Buscar lecturas",
+  "catalogSearchHint": "Título, tema o idea…",
+  "catalogLanguage": "Idioma",
+  "catalogAllLanguages": "Todos",
+  "catalogLevel": "Nivel",
+  "catalogTopic": "Tema",
+  "catalogAllTopics": "Todos los temas",
+  "catalogDuration": "Duración",
+  "catalogDurationShort": "Hasta 3 min",
+  "catalogDurationMedium": "4–6 min",
+  "catalogDurationLong": "7 min o más",
+  "catalogSort": "Ordenar",
+  "sortRECENT": "Más recientes",
+  "sortPOPULAR": "Más leídas",
+  "sortLEVEL": "Por nivel",
+  "sortDURATION": "Más cortas primero",
+  "sortTITLE": "Por título",
+  "catalogFilters": "Filtros",
+  "catalogFiltersCount": "Filtros ({count})",
+  "@catalogFiltersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "catalogClear": "Quitar filtros",
+  "catalogApply": "Ver resultados",
+  "catalogResults": "{count, plural, =0{Ninguna lectura} =1{1 lectura} other{{count} lecturas}}",
+  "@catalogResults": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "catalogEmpty": "Nada coincide con estos filtros",
+  "catalogEmptyBody": "Prueba con otro nivel o quita algún filtro.",
+  "statusNOT_STARTED": "Sin empezar",
+  "statusIN_PROGRESS": "En curso",
+  "statusCOMPLETED": "Terminada",
+  "statusBOOKMARKED": "Guardada",
+  "cardProgress": "{percent} % leído",
+  "@cardProgress": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "cardCompleted": "Terminada",
+  "cardSemantics": "{title}. {language}, nivel {level}, {minutes} minutos.",
+  "@cardSemantics": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "language": {
+        "type": "String"
+      },
+      "level": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "detailStart": "Empezar a leer",
+  "detailContinue": "Seguir leyendo",
+  "detailReadAgain": "Leer otra vez",
+  "detailBookmark": "Guardar para después",
+  "detailBookmarked": "Guardada",
+  "detailRelated": "Si te gusta esta, prueba",
+  "detailInCollections": "En las colecciones",
+  "detailReaders": "{count, plural, =0{Aún nadie la abrió} =1{1 persona la abrió} other{{count} personas la abrieron}}",
+  "@detailReaders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "readerComingSoon": "El lector inmersivo llega en la próxima versión de la app.",
+  "libraryComingSoon": "Aquí verás lo que estás leyendo, lo que guardaste y lo que terminaste.",
+  "vocabularyComingSoon": "Aquí vivirán las palabras que guardes al leer, listas para repasar.",
+  "progressComingSoon": "Aquí verás tu progreso: lo medido y lo estimado, sin castigos.",
+  "comingSoonTitle": "Muy pronto",
+  "profileTitle": "Tu perfil",
+  "profileInterface": "Idioma de la app",
+  "profileTarget": "Idioma que lees",
+  "profileLevel": "Nivel",
+  "profileLevelEstimated": "estimado",
+  "profileDaily": "Meta diaria",
+  "profileEdit": "Editar preferencias",
+  "profileSignOut": "Cerrar sesión",
+  "profileSignedInAs": "Has entrado como {email}",
+  "@profileSignedInAs": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "profileAbout": "Acerca de Lesen",
+  "profileVersion": "Versión {version} · {env}",
+  "@profileVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "env": {
+        "type": "String"
+      }
+    }
+  },
+  "catalogStatus": "Estado",
+  "detailBookmarkFailed": "No pudimos guardar el cambio. Inténtalo de nuevo.",
+  "profileTopics": "Temas",
+  "profileGoals": "Metas",
+  "profileDifficulty": "Dificultad"
+}

@@ -1,0 +1,1116 @@
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart' as intl;
+
+import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
+
+// ignore_for_file: type=lint
+
+/// Callers can lookup localized strings with an instance of AppLocalizations
+/// returned by `AppLocalizations.of(context)`.
+///
+/// Applications need to include `AppLocalizations.delegate()` in their app's
+/// `localizationDelegates` list, and the locales they support in the app's
+/// `supportedLocales` list. For example:
+///
+/// ```dart
+/// import 'l10n/app_localizations.dart';
+///
+/// return MaterialApp(
+///   localizationsDelegates: AppLocalizations.localizationsDelegates,
+///   supportedLocales: AppLocalizations.supportedLocales,
+///   home: MyApplicationHome(),
+/// );
+/// ```
+///
+/// ## Update pubspec.yaml
+///
+/// Please make sure to update your pubspec.yaml to include the following
+/// packages:
+///
+/// ```yaml
+/// dependencies:
+///   # Internationalization support.
+///   flutter_localizations:
+///     sdk: flutter
+///   intl: any # Use the pinned version from flutter_localizations
+///
+///   # Rest of dependencies
+/// ```
+///
+/// ## iOS Applications
+///
+/// iOS applications define key application metadata, including supported
+/// locales, in an Info.plist file that is built into the application bundle.
+/// To configure the locales supported by your app, you’ll need to edit this
+/// file.
+///
+/// First, open your project’s ios/Runner.xcworkspace Xcode workspace file.
+/// Then, in the Project Navigator, open the Info.plist file under the Runner
+/// project’s Runner folder.
+///
+/// Next, select the Information Property List item, select Add Item from the
+/// Editor menu, then select Localizations from the pop-up menu.
+///
+/// Select and expand the newly-created Localizations item then, for each
+/// locale your application supports, add a new item and select the locale
+/// you wish to add from the pop-up menu in the Value field. This list should
+/// be consistent with the languages listed in the AppLocalizations.supportedLocales
+/// property.
+abstract class AppLocalizations {
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+
+  final String localeName;
+
+  static AppLocalizations of(BuildContext context) {
+    return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
+  }
+
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+
+  /// A list of this localizations delegate along with the default localizations
+  /// delegates.
+  ///
+  /// Returns a list of localizations delegates containing this delegate along with
+  /// GlobalMaterialLocalizations.delegate, GlobalCupertinoLocalizations.delegate,
+  /// and GlobalWidgetsLocalizations.delegate.
+  ///
+  /// Additional delegates can be added by appending to this list in
+  /// MaterialApp. This list does not have to be used at all if a custom list
+  /// of delegates is preferred or required.
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
+
+  /// A list of this localizations delegate's supported locales.
+  static const List<Locale> supportedLocales = <Locale>[Locale('en'), Locale('es')];
+
+  /// No description provided for @appName.
+  ///
+  /// In es, this message translates to:
+  /// **'Lesen'**
+  String get appName;
+
+  /// No description provided for @commonRetry.
+  ///
+  /// In es, this message translates to:
+  /// **'Reintentar'**
+  String get commonRetry;
+
+  /// No description provided for @commonBack.
+  ///
+  /// In es, this message translates to:
+  /// **'Atrás'**
+  String get commonBack;
+
+  /// No description provided for @commonContinue.
+  ///
+  /// In es, this message translates to:
+  /// **'Continuar'**
+  String get commonContinue;
+
+  /// No description provided for @commonCancel.
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelar'**
+  String get commonCancel;
+
+  /// No description provided for @commonSave.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar'**
+  String get commonSave;
+
+  /// No description provided for @commonClose.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrar'**
+  String get commonClose;
+
+  /// No description provided for @commonSeeAll.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver todo'**
+  String get commonSeeAll;
+
+  /// No description provided for @errorOffline.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin conexión. Lo que ya está en el dispositivo sigue disponible.'**
+  String get errorOffline;
+
+  /// No description provided for @errorTimeout.
+  ///
+  /// In es, this message translates to:
+  /// **'El servidor tarda en responder.'**
+  String get errorTimeout;
+
+  /// No description provided for @errorForbidden.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu cuenta no tiene acceso a esto.'**
+  String get errorForbidden;
+
+  /// No description provided for @errorNotFound.
+  ///
+  /// In es, this message translates to:
+  /// **'No encontramos lo que buscas.'**
+  String get errorNotFound;
+
+  /// No description provided for @errorServer.
+  ///
+  /// In es, this message translates to:
+  /// **'Algo falló en el servidor. Inténtalo de nuevo en un momento.'**
+  String get errorServer;
+
+  /// No description provided for @errorContract.
+  ///
+  /// In es, this message translates to:
+  /// **'La respuesta del servidor no es la esperada. Puede que haga falta actualizar la app.'**
+  String get errorContract;
+
+  /// No description provided for @errorGeneric.
+  ///
+  /// In es, this message translates to:
+  /// **'Algo no salió bien.'**
+  String get errorGeneric;
+
+  /// No description provided for @offlineBanner.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin conexión: puedes seguir con lo que ya está en el dispositivo.'**
+  String get offlineBanner;
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Aprende un idioma leyendo'**
+  String get loginTitle;
+
+  /// No description provided for @loginLead.
+  ///
+  /// In es, this message translates to:
+  /// **'Historias a tu nivel, con cada palabra a un toque.'**
+  String get loginLead;
+
+  /// No description provided for @loginEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'Correo electrónico'**
+  String get loginEmail;
+
+  /// No description provided for @loginPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'Contraseña'**
+  String get loginPassword;
+
+  /// No description provided for @loginShowPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'Mostrar contraseña'**
+  String get loginShowPassword;
+
+  /// No description provided for @loginHidePassword.
+  ///
+  /// In es, this message translates to:
+  /// **'Ocultar contraseña'**
+  String get loginHidePassword;
+
+  /// No description provided for @loginSubmit.
+  ///
+  /// In es, this message translates to:
+  /// **'Entrar'**
+  String get loginSubmit;
+
+  /// No description provided for @loginInvalid.
+  ///
+  /// In es, this message translates to:
+  /// **'El correo o la contraseña no son correctos.'**
+  String get loginInvalid;
+
+  /// No description provided for @loginTooMany.
+  ///
+  /// In es, this message translates to:
+  /// **'Demasiados intentos. Espera un momento antes de volver a probar.'**
+  String get loginTooMany;
+
+  /// No description provided for @loginEmailRequired.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe tu correo.'**
+  String get loginEmailRequired;
+
+  /// No description provided for @loginPasswordRequired.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe tu contraseña.'**
+  String get loginPasswordRequired;
+
+  /// No description provided for @loginNoAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu cuenta la crea quien administra Lesen en tu organización.'**
+  String get loginNoAccount;
+
+  /// No description provided for @sessionExpired.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu sesión terminó. Vuelve a entrar; lo que tenías pendiente se conserva.'**
+  String get sessionExpired;
+
+  /// No description provided for @navDiscover.
+  ///
+  /// In es, this message translates to:
+  /// **'Descubrir'**
+  String get navDiscover;
+
+  /// No description provided for @navLibrary.
+  ///
+  /// In es, this message translates to:
+  /// **'Mis lecturas'**
+  String get navLibrary;
+
+  /// No description provided for @navVocabulary.
+  ///
+  /// In es, this message translates to:
+  /// **'Vocabulario'**
+  String get navVocabulary;
+
+  /// No description provided for @navProgress.
+  ///
+  /// In es, this message translates to:
+  /// **'Progreso'**
+  String get navProgress;
+
+  /// No description provided for @navProfile.
+  ///
+  /// In es, this message translates to:
+  /// **'Perfil'**
+  String get navProfile;
+
+  /// No description provided for @navSearch.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar'**
+  String get navSearch;
+
+  /// No description provided for @onboardingStep.
+  ///
+  /// In es, this message translates to:
+  /// **'Paso {current} de {total}'**
+  String onboardingStep(int current, int total);
+
+  /// No description provided for @onboardingFinish.
+  ///
+  /// In es, this message translates to:
+  /// **'Empezar a leer'**
+  String get onboardingFinish;
+
+  /// No description provided for @onboardingSaving.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardando…'**
+  String get onboardingSaving;
+
+  /// No description provided for @onboardingError.
+  ///
+  /// In es, this message translates to:
+  /// **'No pudimos guardar tu perfil. Inténtalo de nuevo.'**
+  String get onboardingError;
+
+  /// No description provided for @onboardingWelcomeEyebrow.
+  ///
+  /// In es, this message translates to:
+  /// **'Hola'**
+  String get onboardingWelcomeEyebrow;
+
+  /// No description provided for @onboardingWelcomeHeading.
+  ///
+  /// In es, this message translates to:
+  /// **'Aprende un idioma leyendo historias que te gustan'**
+  String get onboardingWelcomeHeading;
+
+  /// No description provided for @onboardingWelcomeBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Lee, toca cualquier palabra que no conozcas y guárdala para después. Primero, ¿en qué idioma quieres usar la app?'**
+  String get onboardingWelcomeBody;
+
+  /// No description provided for @onboardingTargetHeading.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Qué idioma quieres leer?'**
+  String get onboardingTargetHeading;
+
+  /// No description provided for @onboardingTargetBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Podrás cambiarlo más adelante en tu perfil.'**
+  String get onboardingTargetBody;
+
+  /// No description provided for @onboardingLevelHeading.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cómo lees en {language} hoy?'**
+  String onboardingLevelHeading(String language);
+
+  /// No description provided for @onboardingLevelBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige lo que mejor te describa. Puedes cambiarlo cuando quieras.'**
+  String get onboardingLevelBody;
+
+  /// No description provided for @onboardingLevelUnsure.
+  ///
+  /// In es, this message translates to:
+  /// **'No estoy segura o seguro'**
+  String get onboardingLevelUnsure;
+
+  /// No description provided for @onboardingLevelUnsureBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Empezamos por A2 y ajustas sobre la marcha. Es una estimación, no una nota.'**
+  String get onboardingLevelUnsureBody;
+
+  /// No description provided for @onboardingInterestsHeading.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Qué te gustaría leer?'**
+  String get onboardingInterestsHeading;
+
+  /// No description provided for @onboardingInterestsBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige lo que te llame. Así recomendamos mejor.'**
+  String get onboardingInterestsBody;
+
+  /// No description provided for @onboardingGoals.
+  ///
+  /// In es, this message translates to:
+  /// **'Para qué aprendes'**
+  String get onboardingGoals;
+
+  /// No description provided for @onboardingTopics.
+  ///
+  /// In es, this message translates to:
+  /// **'Temas'**
+  String get onboardingTopics;
+
+  /// No description provided for @onboardingHabitHeading.
+  ///
+  /// In es, this message translates to:
+  /// **'Un ritmo que te siente bien'**
+  String get onboardingHabitHeading;
+
+  /// No description provided for @onboardingHabitBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Unos minutos al día bastan. Sin rachas que castiguen: si un día no lees, no pasa nada.'**
+  String get onboardingHabitBody;
+
+  /// No description provided for @onboardingDaily.
+  ///
+  /// In es, this message translates to:
+  /// **'Minutos al día'**
+  String get onboardingDaily;
+
+  /// No description provided for @onboardingDifficulty.
+  ///
+  /// In es, this message translates to:
+  /// **'Dificultad de las lecturas'**
+  String get onboardingDifficulty;
+
+  /// No description provided for @minutesShort.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} min'**
+  String minutesShort(int count);
+
+  /// No description provided for @minutesRead.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 minuto de lectura} other{{count} minutos de lectura}}'**
+  String minutesRead(int count);
+
+  /// No description provided for @wordsCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count} palabras'**
+  String wordsCount(int count);
+
+  /// No description provided for @paragraphsCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 párrafo} other{{count} párrafos}}'**
+  String paragraphsCount(int count);
+
+  /// No description provided for @readingsCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 lectura} other{{count} lecturas}}'**
+  String readingsCount(int count);
+
+  /// No description provided for @readersThisWeek.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 persona la terminó} other{{count} personas la terminaron}}'**
+  String readersThisWeek(int count);
+
+  /// No description provided for @levelA1.
+  ///
+  /// In es, this message translates to:
+  /// **'Entiendo palabras sueltas y frases muy básicas.'**
+  String get levelA1;
+
+  /// No description provided for @levelA2.
+  ///
+  /// In es, this message translates to:
+  /// **'Sigo textos cortos y sencillos sobre temas cotidianos.'**
+  String get levelA2;
+
+  /// No description provided for @levelB1.
+  ///
+  /// In es, this message translates to:
+  /// **'Entiendo lo esencial de textos claros sobre temas conocidos.'**
+  String get levelB1;
+
+  /// No description provided for @levelB2.
+  ///
+  /// In es, this message translates to:
+  /// **'Leo artículos y relatos con bastante soltura.'**
+  String get levelB2;
+
+  /// No description provided for @levelC1.
+  ///
+  /// In es, this message translates to:
+  /// **'Leo textos largos y exigentes y capto lo implícito.'**
+  String get levelC1;
+
+  /// No description provided for @levelC2.
+  ///
+  /// In es, this message translates to:
+  /// **'Leo casi cualquier cosa con facilidad.'**
+  String get levelC2;
+
+  /// No description provided for @goalTRAVEL.
+  ///
+  /// In es, this message translates to:
+  /// **'Viajar'**
+  String get goalTRAVEL;
+
+  /// No description provided for @goalWORK.
+  ///
+  /// In es, this message translates to:
+  /// **'Trabajo'**
+  String get goalWORK;
+
+  /// No description provided for @goalSTUDY.
+  ///
+  /// In es, this message translates to:
+  /// **'Estudios'**
+  String get goalSTUDY;
+
+  /// No description provided for @goalCULTURE.
+  ///
+  /// In es, this message translates to:
+  /// **'Cultura'**
+  String get goalCULTURE;
+
+  /// No description provided for @goalFAMILY.
+  ///
+  /// In es, this message translates to:
+  /// **'Familia y amistades'**
+  String get goalFAMILY;
+
+  /// No description provided for @goalFUN.
+  ///
+  /// In es, this message translates to:
+  /// **'Por gusto'**
+  String get goalFUN;
+
+  /// No description provided for @goalEXAM.
+  ///
+  /// In es, this message translates to:
+  /// **'Un examen'**
+  String get goalEXAM;
+
+  /// No description provided for @difficultyCOMFORTABLE.
+  ///
+  /// In es, this message translates to:
+  /// **'Cómoda'**
+  String get difficultyCOMFORTABLE;
+
+  /// No description provided for @difficultyBALANCED.
+  ///
+  /// In es, this message translates to:
+  /// **'Equilibrada'**
+  String get difficultyBALANCED;
+
+  /// No description provided for @difficultyCHALLENGING.
+  ///
+  /// In es, this message translates to:
+  /// **'Un reto'**
+  String get difficultyCHALLENGING;
+
+  /// No description provided for @difficultyCOMFORTABLEBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Lecturas que entiendes casi enteras.'**
+  String get difficultyCOMFORTABLEBody;
+
+  /// No description provided for @difficultyBALANCEDBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Algunas palabras nuevas en cada párrafo.'**
+  String get difficultyBALANCEDBody;
+
+  /// No description provided for @difficultyCHALLENGINGBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Un poco por encima de tu nivel.'**
+  String get difficultyCHALLENGINGBody;
+
+  /// No description provided for @greetingMorning.
+  ///
+  /// In es, this message translates to:
+  /// **'Buenos días'**
+  String get greetingMorning;
+
+  /// No description provided for @greetingAfternoon.
+  ///
+  /// In es, this message translates to:
+  /// **'Buenas tardes'**
+  String get greetingAfternoon;
+
+  /// No description provided for @greetingEvening.
+  ///
+  /// In es, this message translates to:
+  /// **'Buenas noches'**
+  String get greetingEvening;
+
+  /// No description provided for @greetingNamed.
+  ///
+  /// In es, this message translates to:
+  /// **'{greeting}, {name}'**
+  String greetingNamed(String greeting, String name);
+
+  /// No description provided for @discoverLead.
+  ///
+  /// In es, this message translates to:
+  /// **'Hoy toca leer en {language}. Tu meta: {minutes} minutos, a tu ritmo.'**
+  String discoverLead(String language, int minutes);
+
+  /// No description provided for @discoverFeatured.
+  ///
+  /// In es, this message translates to:
+  /// **'Destacada'**
+  String get discoverFeatured;
+
+  /// No description provided for @discoverContinue.
+  ///
+  /// In es, this message translates to:
+  /// **'Sigue donde lo dejaste'**
+  String get discoverContinue;
+
+  /// No description provided for @discoverRecommended.
+  ///
+  /// In es, this message translates to:
+  /// **'Para ti'**
+  String get discoverRecommended;
+
+  /// No description provided for @discoverRecommendedLead.
+  ///
+  /// In es, this message translates to:
+  /// **'Elegidas por tu nivel y lo que te interesa.'**
+  String get discoverRecommendedLead;
+
+  /// No description provided for @discoverThisWeek.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo que se lee esta semana'**
+  String get discoverThisWeek;
+
+  /// No description provided for @discoverFresh.
+  ///
+  /// In es, this message translates to:
+  /// **'Recién publicadas'**
+  String get discoverFresh;
+
+  /// No description provided for @discoverCollections.
+  ///
+  /// In es, this message translates to:
+  /// **'Colecciones'**
+  String get discoverCollections;
+
+  /// No description provided for @discoverTopics.
+  ///
+  /// In es, this message translates to:
+  /// **'Explora por temas'**
+  String get discoverTopics;
+
+  /// No description provided for @discoverLevels.
+  ///
+  /// In es, this message translates to:
+  /// **'Explora por nivel'**
+  String get discoverLevels;
+
+  /// No description provided for @discoverCatalog.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver todo el catálogo'**
+  String get discoverCatalog;
+
+  /// No description provided for @discoverEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay lecturas en {language}'**
+  String discoverEmpty(String language);
+
+  /// No description provided for @discoverEmptyBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Pronto llegarán. Mientras, mira el catálogo en otros idiomas.'**
+  String get discoverEmptyBody;
+
+  /// No description provided for @reasonLEVEL.
+  ///
+  /// In es, this message translates to:
+  /// **'A tu nivel'**
+  String get reasonLEVEL;
+
+  /// No description provided for @reasonCOMPREHENSION.
+  ///
+  /// In es, this message translates to:
+  /// **'Por cómo entiendes'**
+  String get reasonCOMPREHENSION;
+
+  /// No description provided for @reasonTOPIC.
+  ///
+  /// In es, this message translates to:
+  /// **'De tus temas'**
+  String get reasonTOPIC;
+
+  /// No description provided for @reasonHISTORY.
+  ///
+  /// In es, this message translates to:
+  /// **'Como lo que leíste'**
+  String get reasonHISTORY;
+
+  /// No description provided for @reasonNEW.
+  ///
+  /// In es, this message translates to:
+  /// **'Nueva'**
+  String get reasonNEW;
+
+  /// No description provided for @reasonTRENDING.
+  ///
+  /// In es, this message translates to:
+  /// **'Se lee esta semana'**
+  String get reasonTRENDING;
+
+  /// No description provided for @catalogTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Catálogo'**
+  String get catalogTitle;
+
+  /// No description provided for @catalogSearch.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar lecturas'**
+  String get catalogSearch;
+
+  /// No description provided for @catalogSearchHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Título, tema o idea…'**
+  String get catalogSearchHint;
+
+  /// No description provided for @catalogLanguage.
+  ///
+  /// In es, this message translates to:
+  /// **'Idioma'**
+  String get catalogLanguage;
+
+  /// No description provided for @catalogAllLanguages.
+  ///
+  /// In es, this message translates to:
+  /// **'Todos'**
+  String get catalogAllLanguages;
+
+  /// No description provided for @catalogLevel.
+  ///
+  /// In es, this message translates to:
+  /// **'Nivel'**
+  String get catalogLevel;
+
+  /// No description provided for @catalogTopic.
+  ///
+  /// In es, this message translates to:
+  /// **'Tema'**
+  String get catalogTopic;
+
+  /// No description provided for @catalogAllTopics.
+  ///
+  /// In es, this message translates to:
+  /// **'Todos los temas'**
+  String get catalogAllTopics;
+
+  /// No description provided for @catalogDuration.
+  ///
+  /// In es, this message translates to:
+  /// **'Duración'**
+  String get catalogDuration;
+
+  /// No description provided for @catalogDurationShort.
+  ///
+  /// In es, this message translates to:
+  /// **'Hasta 3 min'**
+  String get catalogDurationShort;
+
+  /// No description provided for @catalogDurationMedium.
+  ///
+  /// In es, this message translates to:
+  /// **'4–6 min'**
+  String get catalogDurationMedium;
+
+  /// No description provided for @catalogDurationLong.
+  ///
+  /// In es, this message translates to:
+  /// **'7 min o más'**
+  String get catalogDurationLong;
+
+  /// No description provided for @catalogSort.
+  ///
+  /// In es, this message translates to:
+  /// **'Ordenar'**
+  String get catalogSort;
+
+  /// No description provided for @sortRECENT.
+  ///
+  /// In es, this message translates to:
+  /// **'Más recientes'**
+  String get sortRECENT;
+
+  /// No description provided for @sortPOPULAR.
+  ///
+  /// In es, this message translates to:
+  /// **'Más leídas'**
+  String get sortPOPULAR;
+
+  /// No description provided for @sortLEVEL.
+  ///
+  /// In es, this message translates to:
+  /// **'Por nivel'**
+  String get sortLEVEL;
+
+  /// No description provided for @sortDURATION.
+  ///
+  /// In es, this message translates to:
+  /// **'Más cortas primero'**
+  String get sortDURATION;
+
+  /// No description provided for @sortTITLE.
+  ///
+  /// In es, this message translates to:
+  /// **'Por título'**
+  String get sortTITLE;
+
+  /// No description provided for @catalogFilters.
+  ///
+  /// In es, this message translates to:
+  /// **'Filtros'**
+  String get catalogFilters;
+
+  /// No description provided for @catalogFiltersCount.
+  ///
+  /// In es, this message translates to:
+  /// **'Filtros ({count})'**
+  String catalogFiltersCount(int count);
+
+  /// No description provided for @catalogClear.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar filtros'**
+  String get catalogClear;
+
+  /// No description provided for @catalogApply.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver resultados'**
+  String get catalogApply;
+
+  /// No description provided for @catalogResults.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =0{Ninguna lectura} =1{1 lectura} other{{count} lecturas}}'**
+  String catalogResults(int count);
+
+  /// No description provided for @catalogEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Nada coincide con estos filtros'**
+  String get catalogEmpty;
+
+  /// No description provided for @catalogEmptyBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Prueba con otro nivel o quita algún filtro.'**
+  String get catalogEmptyBody;
+
+  /// No description provided for @statusNOT_STARTED.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin empezar'**
+  String get statusNOT_STARTED;
+
+  /// No description provided for @statusIN_PROGRESS.
+  ///
+  /// In es, this message translates to:
+  /// **'En curso'**
+  String get statusIN_PROGRESS;
+
+  /// No description provided for @statusCOMPLETED.
+  ///
+  /// In es, this message translates to:
+  /// **'Terminada'**
+  String get statusCOMPLETED;
+
+  /// No description provided for @statusBOOKMARKED.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardada'**
+  String get statusBOOKMARKED;
+
+  /// No description provided for @cardProgress.
+  ///
+  /// In es, this message translates to:
+  /// **'{percent} % leído'**
+  String cardProgress(int percent);
+
+  /// No description provided for @cardCompleted.
+  ///
+  /// In es, this message translates to:
+  /// **'Terminada'**
+  String get cardCompleted;
+
+  /// No description provided for @cardSemantics.
+  ///
+  /// In es, this message translates to:
+  /// **'{title}. {language}, nivel {level}, {minutes} minutos.'**
+  String cardSemantics(String title, String language, String level, int minutes);
+
+  /// No description provided for @detailStart.
+  ///
+  /// In es, this message translates to:
+  /// **'Empezar a leer'**
+  String get detailStart;
+
+  /// No description provided for @detailContinue.
+  ///
+  /// In es, this message translates to:
+  /// **'Seguir leyendo'**
+  String get detailContinue;
+
+  /// No description provided for @detailReadAgain.
+  ///
+  /// In es, this message translates to:
+  /// **'Leer otra vez'**
+  String get detailReadAgain;
+
+  /// No description provided for @detailBookmark.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar para después'**
+  String get detailBookmark;
+
+  /// No description provided for @detailBookmarked.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardada'**
+  String get detailBookmarked;
+
+  /// No description provided for @detailRelated.
+  ///
+  /// In es, this message translates to:
+  /// **'Si te gusta esta, prueba'**
+  String get detailRelated;
+
+  /// No description provided for @detailInCollections.
+  ///
+  /// In es, this message translates to:
+  /// **'En las colecciones'**
+  String get detailInCollections;
+
+  /// No description provided for @detailReaders.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =0{Aún nadie la abrió} =1{1 persona la abrió} other{{count} personas la abrieron}}'**
+  String detailReaders(int count);
+
+  /// No description provided for @readerComingSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'El lector inmersivo llega en la próxima versión de la app.'**
+  String get readerComingSoon;
+
+  /// No description provided for @libraryComingSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'Aquí verás lo que estás leyendo, lo que guardaste y lo que terminaste.'**
+  String get libraryComingSoon;
+
+  /// No description provided for @vocabularyComingSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'Aquí vivirán las palabras que guardes al leer, listas para repasar.'**
+  String get vocabularyComingSoon;
+
+  /// No description provided for @progressComingSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'Aquí verás tu progreso: lo medido y lo estimado, sin castigos.'**
+  String get progressComingSoon;
+
+  /// No description provided for @comingSoonTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Muy pronto'**
+  String get comingSoonTitle;
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu perfil'**
+  String get profileTitle;
+
+  /// No description provided for @profileInterface.
+  ///
+  /// In es, this message translates to:
+  /// **'Idioma de la app'**
+  String get profileInterface;
+
+  /// No description provided for @profileTarget.
+  ///
+  /// In es, this message translates to:
+  /// **'Idioma que lees'**
+  String get profileTarget;
+
+  /// No description provided for @profileLevel.
+  ///
+  /// In es, this message translates to:
+  /// **'Nivel'**
+  String get profileLevel;
+
+  /// No description provided for @profileLevelEstimated.
+  ///
+  /// In es, this message translates to:
+  /// **'estimado'**
+  String get profileLevelEstimated;
+
+  /// No description provided for @profileDaily.
+  ///
+  /// In es, this message translates to:
+  /// **'Meta diaria'**
+  String get profileDaily;
+
+  /// No description provided for @profileEdit.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar preferencias'**
+  String get profileEdit;
+
+  /// No description provided for @profileSignOut.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrar sesión'**
+  String get profileSignOut;
+
+  /// No description provided for @profileSignedInAs.
+  ///
+  /// In es, this message translates to:
+  /// **'Has entrado como {email}'**
+  String profileSignedInAs(String email);
+
+  /// No description provided for @profileAbout.
+  ///
+  /// In es, this message translates to:
+  /// **'Acerca de Lesen'**
+  String get profileAbout;
+
+  /// No description provided for @profileVersion.
+  ///
+  /// In es, this message translates to:
+  /// **'Versión {version} · {env}'**
+  String profileVersion(String version, String env);
+
+  /// No description provided for @catalogStatus.
+  ///
+  /// In es, this message translates to:
+  /// **'Estado'**
+  String get catalogStatus;
+
+  /// No description provided for @detailBookmarkFailed.
+  ///
+  /// In es, this message translates to:
+  /// **'No pudimos guardar el cambio. Inténtalo de nuevo.'**
+  String get detailBookmarkFailed;
+
+  /// No description provided for @profileTopics.
+  ///
+  /// In es, this message translates to:
+  /// **'Temas'**
+  String get profileTopics;
+
+  /// No description provided for @profileGoals.
+  ///
+  /// In es, this message translates to:
+  /// **'Metas'**
+  String get profileGoals;
+
+  /// No description provided for @profileDifficulty.
+  ///
+  /// In es, this message translates to:
+  /// **'Dificultad'**
+  String get profileDifficulty;
+}
+
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+  const _AppLocalizationsDelegate();
+
+  @override
+  Future<AppLocalizations> load(Locale locale) {
+    return SynchronousFuture<AppLocalizations>(lookupAppLocalizations(locale));
+  }
+
+  @override
+  bool isSupported(Locale locale) => <String>['en', 'es'].contains(locale.languageCode);
+
+  @override
+  bool shouldReload(_AppLocalizationsDelegate old) => false;
+}
+
+AppLocalizations lookupAppLocalizations(Locale locale) {
+  // Lookup logic when only language code is specified.
+  switch (locale.languageCode) {
+    case 'en':
+      return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
+  }
+
+  throw FlutterError(
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.',
+  );
+}
