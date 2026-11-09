@@ -1,5 +1,17 @@
 # Historial
 
+## Fase 7 — Preparación para producción (2026-11-09)
+
+- Accesibilidad automática (`test/app/accessibility_test.dart`): contraste AA de los tokens y de los tres temas del
+  lector; objetivos táctiles de Android e iOS y etiquetas en seis pantallas; texto al 200 % sin desbordes. Corregidas
+  dos filas de chips que dejaban objetivos de 40–44 dp; el token de objetivo pasa a 48 dp.
+- Seguridad: cerrar sesión avisa si hay cambios sin enviar y borra cola, descargas y copias personales; enlaces
+  profundos `lesen://app/<ruta>` por las mismas guardas; revisión en `docs/quality/security.md`.
+- Android: sabores dev, staging y prod con identificador y nombre propios; firma de release desde `key.properties` o
+  variables de CI; R8 con reglas para audio y notificaciones.
+- CI: cobertura, APK debug y release (R8) y compilación de iOS sin firma en macOS.
+- Documentación de publicación, seguridad, accesibilidad y rendimiento; lo que exige dispositivos, sin marcar.
+
 ## Fase 6 — Progreso, metas amables, logros, listas y recordatorios (2026-11-09)
 
 - Panel de progreso con las cifras del backend (ADR-0011 del backend):

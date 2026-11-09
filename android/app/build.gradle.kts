@@ -1,8 +1,17 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
+
+// la firma de release vive fuera del repositorio: android/key.properties (ignorado por git) o variables de entorno en CI
+val keystoreProperties = Properties().apply {
+    val file = rootProject.file("key.properties")
+    if (file.exists()) file.inputStream().use { load(it) }
+}
+fun signing(name: String, env: String): String? = keystoreProperties.getProperty(name) ?: System.getenv(env)
 
 android {
     namespace = "com.wasichai.lesen"
@@ -25,10 +34,48 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        val storeFile = signing("storeFile", "LESEN_ANDROID_KEYSTORE")
+        if (storeFile != null) {
+            create("release") {
+                this.storeFile = file(storeFile)
+                storePassword = signing("storePassword", "LESEN_ANDROID_KEYSTORE_PASSWORD")
+                keyAlias = signing("keyAlias", "LESEN_ANDROID_KEY_ALIAS")
+                keyPassword = signing("keyPassword", "LESEN_ANDROID_KEY_PASSWORD")
+            }
+        }
+    }
+
+    buildFeatures {
+        resValues = true
+    }
+
+    // un identificador por entorno, para instalar dev, staging y prod a la vez
+    flavorDimensions += "env"
+    productFlavors {
+        create("dev") {
+            dimension = "env"
+            applicationIdSuffix = ".dev"
+            resValue("string", "app_name", "Lesen Dev")
+        }
+        create("staging") {
+            dimension = "env"
+            applicationIdSuffix = ".staging"
+            resValue("string", "app_name", "Lesen Staging")
+        }
+        create("prod") {
+            dimension = "env"
+            resValue("string", "app_name", "Lesen")
+        }
+    }
+
     buildTypes {
         release {
-            // la firma de release llega en la fase 7 (key.properties fuera del repositorio); hasta entonces, la de depuración
-            signingConfig = signingConfigs.getByName("debug")
+            // sin firma configurada, la release se firma con la clave de depuración: sirve para probar, no para publicar
+            signingConfig = signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 }

@@ -64,5 +64,27 @@ jobs:
       - run: flutter pub get
       - run: dart format --set-exit-if-changed lib test
       - run: flutter analyze
-      - run: flutter test
-      - run: flutter build apk --debug --dart-define-from-file=config/dev.json
+      - run: flutter test --coverage
+      - uses: actions/upload-artifact@v5
+        with:
+          name: coverage
+          path: coverage/lcov.info
+      - run: flutter build apk --debug --flavor dev --dart-define-from-file=config/dev.json
+      # la release (con R8) se compila para comprobar que las reglas y los plugins aguantan la reducción; sin firma real
+      - run: flutter build apk --release --flavor prod --dart-define-from-file=config/prod.json
+
+  ios:
+    name: iOS (compilación sin firma)
+    if: github.event_name == 'pull_request'
+    runs-on: macos-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: pubspec.yaml
+          cache: true
+      - run: flutter pub get
+      - run: flutter build ios --no-codesign --debug --dart-define-from-file=config/dev.json

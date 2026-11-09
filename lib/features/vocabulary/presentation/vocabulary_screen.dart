@@ -117,7 +117,7 @@ class _VocabularyScreenState extends ConsumerState<VocabularyScreen> {
             ),
             SliverToBoxAdapter(
               child: SizedBox(
-                height: 52,
+                height: 64,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),

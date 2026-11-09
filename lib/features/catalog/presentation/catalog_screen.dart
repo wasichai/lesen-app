@@ -108,7 +108,7 @@ class _CatalogScreenState extends ConsumerState<CatalogScreen> {
             ),
             SliverToBoxAdapter(
               child: SizedBox(
-                height: 56,
+                height: 64,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),

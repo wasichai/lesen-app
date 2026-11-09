@@ -70,8 +70,8 @@ class LesenTokens extends ThemeExtension<LesenTokens> {
   static const radiusXl = 20.0;
   static const radiusCard = 18.0;
 
-  /// Objetivo táctil mínimo.
-  static const target = 44.0;
+  /// Objetivo táctil mínimo (48 dp, la pauta de Android; iOS pide 44).
+  static const target = 48.0;
 
   /// Ancho máximo de un bloque de texto (38rem en la web).
   static const measure = 608.0;

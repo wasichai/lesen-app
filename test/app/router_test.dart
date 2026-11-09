@@ -38,6 +38,12 @@ void main() {
     expect(go(SessionStatus.signedIn, const AsyncLoading(), Routes.discover), startsWith(Routes.splash));
   });
 
+  test('un enlace profundo lesen://app/… se trata como su ruta y pasa por las mismas guardas', () {
+    final uri = Uri.parse('lesen://app/discover/readings/der-alte-leuchtturm');
+    expect(uri.path, Routes.reading('der-alte-leuchtturm'));
+    expect(go(SessionStatus.signedOut, const AsyncData(null), uri.toString()), startsWith('/login?from='));
+  });
+
   test('filtros desde la URL y slugs válidos', () {
     final q = catalogQueryFrom(Uri.parse(Routes.catalogWith(level: 'B1', language: 'de')));
     expect(q.levels, {CefrLevel.B1});

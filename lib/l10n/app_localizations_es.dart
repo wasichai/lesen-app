@@ -1753,4 +1753,21 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get listsEmptyList => 'Esta lista está vacía. Añade lecturas desde su ficha.';
+
+  @override
+  String get signOutPendingTitle => 'Hay cambios sin enviar';
+
+  @override
+  String signOutPendingBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count cambios no han llegado aún al servidor.',
+      one: '1 cambio no ha llegado aún al servidor.',
+    );
+    return '$_temp0 Si cierras sesión ahora, se perderán. Conéctate para sincronizar antes.';
+  }
+
+  @override
+  String get signOutAnyway => 'Cerrar sesión igualmente';
 }

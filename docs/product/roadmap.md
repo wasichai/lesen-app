@@ -12,7 +12,7 @@ pantalla exista: lo nuevo lleva pruebas y documentación.
 | 4    | Cuaderno, repaso FSRS, diccionario completo, comprensión con los diez tipos de pregunta y su corrección                                                               | Una lectura evaluada y explicada; un repaso que cambia la próxima fecha de una palabra              | Hecha     |
 | 5    | Base local, descargas, lector y audio sin conexión, cola de operaciones, sincronización y conflictos, intentos sin conexión                                           | Leer en modo avión, volver la red y ver el progreso en la web                                       | Pendiente |
 | 6    | Panel de progreso, metas, racha amable, logros, resumen semanal, listas, recomendaciones, recordatorios                                                               | El panel separa lo medido de lo estimado y nada castiga un día sin leer                             | Hecha     |
-| 7    | Accesibilidad, seguridad, rendimiento, sabores de compilación, firma, CI de iOS, documentación de publicación                                                         | Revisión documentada; compilaciones de release reproducibles sin secretos en el repositorio         | Pendiente |
+| 7    | Accesibilidad, seguridad, rendimiento, sabores de compilación, firma, CI de iOS, documentación de publicación                                                         | Revisión documentada; compilaciones de release reproducibles sin secretos en el repositorio         | Hecha     |
 
 ## Lo que no se puede verificar en este entorno
 
