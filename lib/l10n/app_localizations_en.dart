@@ -1319,4 +1319,103 @@ class AppLocalizationsEn extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count days', one: '1 day');
     return '$_temp0';
   }
+
+  @override
+  String get quizQueuedTitle => 'Answers saved';
+
+  @override
+  String get quizQueuedBody =>
+      'You\'re offline: your answers are on this device. They\'ll be sent and graded when you\'re back online; the result comes from the server, not the app.';
+
+  @override
+  String get quizQueuedPending => 'Awaiting grading';
+
+  @override
+  String get quizSeeResult => 'See the latest result';
+
+  @override
+  String get downloadsTitle => 'Downloads';
+
+  @override
+  String get downloadAction => 'Download to read offline';
+
+  @override
+  String get downloadQueued => 'Waiting…';
+
+  @override
+  String downloadProgress(int percent) {
+    return 'Downloading… $percent%';
+  }
+
+  @override
+  String get downloadDone => 'Downloaded · available offline';
+
+  @override
+  String get downloadFailed => 'Download failed';
+
+  @override
+  String get downloadWaitingWifi => 'Waiting for Wi-Fi for the audio';
+
+  @override
+  String get downloadCancel => 'Cancel download';
+
+  @override
+  String get downloadRetry => 'Retry download';
+
+  @override
+  String get downloadRemove => 'Remove download';
+
+  @override
+  String get downloadsEmpty => 'Nothing downloaded yet';
+
+  @override
+  String get downloadsEmptyBody => 'On a reading\'s page, “Download” saves its text, translations, audio and questions so you can read it offline.';
+
+  @override
+  String downloadsStorage(String size) {
+    return 'Using $size on this device';
+  }
+
+  @override
+  String get downloadsWifiOnly => 'Download audio on Wi-Fi only';
+
+  @override
+  String get syncTitle => 'Sync';
+
+  @override
+  String syncPending(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count changes waiting to sync',
+      one: '1 change waiting to sync',
+      zero: 'Everything is in sync',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get syncNow => 'Sync now';
+
+  @override
+  String get syncing => 'Syncing…';
+
+  @override
+  String syncRejected(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count changes', one: '1 change');
+    return 'The server didn\'t accept $_temp0';
+  }
+
+  @override
+  String get syncDiscard => 'Discard';
+
+  @override
+  String syncLast(String time) {
+    return 'Last sync: $time';
+  }
+
+  @override
+  String offlinePending(int count) {
+    return 'Offline · $count changes waiting to sync';
+  }
 }

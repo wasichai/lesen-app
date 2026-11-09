@@ -7,6 +7,7 @@ import '../../../core/audio/narration_engine.dart';
 import '../../../core/networking/api_client.dart';
 import '../../../core/storage/local_store.dart';
 import '../../catalog/domain/reading.dart';
+import '../../downloads/application/downloads_controller.dart';
 import '../../reader/domain/reading_content.dart';
 import '../domain/audio_asset.dart';
 import '../domain/timing_index.dart';
@@ -123,9 +124,11 @@ class PlaybackController extends Notifier<PlaybackState> {
     final config = ref.read(appConfigProvider);
     final saved = await ref.read(localStoreProvider).read(_ns, next.key);
     final start = Duration(milliseconds: (saved?['positionMs'] as num?)?.toInt() ?? 0);
+    // descargada, desde el archivo; si no, en streaming con rangos
+    final local = ref.read(downloadsProvider.notifier).localAudio(content.slug, content.version);
     try {
       await _engine.load(
-        Uri.parse(config.resolve(asset.url)),
+        local != null ? Uri.file(local) : Uri.parse(config.resolve(asset.url)),
         media: NarrationMedia(
           id: next.key,
           title: reading.title,

@@ -51,6 +51,7 @@ class _QuizState extends ConsumerState<_Quiz> {
   final _answers = <String, AnswerDraft>{};
   int _index = 0;
   bool _sending = false;
+  bool _queued = false;
 
   List<Question> get _questions => widget.assessment.questions;
 
@@ -91,9 +92,14 @@ class _QuizState extends ConsumerState<_Quiz> {
         for (final e in _answers.entries)
           if (!e.value.isEmpty) e.key: e.value,
       };
-      final attempt = await ref.read(comprehensionRepositoryProvider).submit(widget.assessment.id, answered);
+      final attempt = await ref.read(comprehensionRepositoryProvider).submit(widget.assessment, answered);
+      if (!mounted) return;
+      if (attempt == null) {
+        setState(() => _queued = true);
+        return;
+      }
       AttemptController.seeds[attempt.summary.id] = attempt;
-      if (mounted) context.pushReplacement(Routes.attempt(attempt.summary.id, slug: widget.assessment.slug, version: widget.assessment.version));
+      context.pushReplacement(Routes.attempt(attempt.summary.id, slug: widget.assessment.slug, version: widget.assessment.version));
     } on ApiFailure catch (e) {
       if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.failure(e))));
     } finally {
@@ -106,6 +112,14 @@ class _QuizState extends ConsumerState<_Quiz> {
     final l10n = context.l10n;
     final text = Theme.of(context).textTheme;
     final last = _index == _questions.length - 1;
+    if (_queued) {
+      return EmptyState(
+        title: l10n.quizQueuedTitle,
+        body: '${l10n.quizQueuedBody}\n\n${l10n.quizQueuedPending}',
+        icon: Icons.cloud_upload_outlined,
+        action: FilledButton(onPressed: () => context.pop(), child: Text(l10n.quizBackToReading)),
+      );
+    }
     return SafeArea(
       child: Center(
         child: ConstrainedBox(

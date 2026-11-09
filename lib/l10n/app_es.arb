@@ -840,5 +840,73 @@
         "type": "int"
       }
     }
+  },
+  "quizQueuedTitle": "Respuestas guardadas",
+  "quizQueuedBody": "No hay conexión: tus respuestas están en el dispositivo. Se enviarán y se corregirán al volver la red; el resultado lo da el servidor, no la app.",
+  "quizQueuedPending": "Pendiente de evaluar",
+  "quizSeeResult": "Ver el último resultado",
+  "downloadsTitle": "Descargas",
+  "downloadAction": "Descargar para leer sin conexión",
+  "downloadQueued": "En espera…",
+  "downloadProgress": "Descargando… {percent} %",
+  "@downloadProgress": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadDone": "Descargada · disponible sin conexión",
+  "downloadFailed": "La descarga falló",
+  "downloadWaitingWifi": "Esperando una red Wi-Fi para el audio",
+  "downloadCancel": "Cancelar la descarga",
+  "downloadRetry": "Reintentar la descarga",
+  "downloadRemove": "Quitar la descarga",
+  "downloadsEmpty": "Nada descargado todavía",
+  "downloadsEmptyBody": "En la ficha de una lectura, «Descargar» guarda su texto, sus traducciones, su audio y sus preguntas para leerla sin conexión.",
+  "downloadsStorage": "Ocupan {size} en el dispositivo",
+  "@downloadsStorage": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "downloadsWifiOnly": "Descargar el audio solo con Wi-Fi",
+  "syncTitle": "Sincronización",
+  "syncPending": "{count, plural, =0{Todo está sincronizado} =1{1 cambio pendiente de enviar} other{{count} cambios pendientes de enviar}}",
+  "@syncPending": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "syncNow": "Sincronizar ahora",
+  "syncing": "Sincronizando…",
+  "syncRejected": "El servidor no aceptó {count, plural, =1{1 cambio} other{{count} cambios}}",
+  "@syncRejected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "syncDiscard": "Descartar",
+  "syncLast": "Última sincronización: {time}",
+  "@syncLast": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "offlinePending": "Sin conexión · {count} cambios esperan para enviarse",
+  "@offlinePending": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   }
 }

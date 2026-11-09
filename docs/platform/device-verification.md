@@ -17,3 +17,13 @@ reales antes de publicar, y se anota el resultado (fecha, dispositivo, versión 
 | Cerrar la app desde multitarea                                  | Para; al volver, la lectura recuerda la posición sin sonar sola | ☐       | ☐   |
 | Velocidad 1,5×                                                  | El resaltado sigue a la voz sin retraso visible                 | ☐       | ☐   |
 | TalkBack/VoiceOver sobre la barra de audio                      | Cada control dice su nombre y la posición «0:12 de 1:12»        | ☐       | ☐   |
+
+## Sin conexión (fase 5)
+
+| Caso                                                         | Esperado                                                 | Android | iOS |
+| ------------------------------------------------------------ | -------------------------------------------------------- | ------- | --- |
+| Descargar una lectura con Wi-Fi                              | Progreso, «Descargada · disponible sin conexión»         | ☐       | ☐   |
+| Con «solo Wi-Fi» y datos móviles                             | El texto se descarga; el audio espera                    | ☐       | ☐   |
+| Modo avión: abrir la lectura descargada, escucharla, avanzar | Todo funciona; aviso discreto con los cambios pendientes | ☐       | ☐   |
+| Quitar el modo avión                                         | Se sincroniza solo; el progreso aparece en la web        | ☐       | ☐   |
+| Responder las preguntas sin red                              | «Respuestas guardadas»; al volver la red se corrigen     | ☐       | ☐   |

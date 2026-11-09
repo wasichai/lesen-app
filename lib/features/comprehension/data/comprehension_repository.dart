@@ -1,20 +1,32 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/networking/api_client.dart';
+import '../../../core/networking/api_failure.dart';
 import '../../../core/networking/json.dart';
+import '../../../core/storage/cache.dart';
+import '../../../core/storage/local_store.dart';
+import '../../../core/sync/outbox.dart';
+import '../../../core/sync/sync.dart';
 import '../domain/assessment.dart';
 
-final comprehensionRepositoryProvider = Provider<ComprehensionRepository>((ref) => ComprehensionRepository(ref.watch(apiProvider)));
+final comprehensionRepositoryProvider = Provider<ComprehensionRepository>(
+  (ref) => ComprehensionRepository(ref.watch(apiProvider), ref.watch(localStoreProvider), ref.watch(outboxProvider)),
+);
 
 class ComprehensionRepository {
-  ComprehensionRepository(this._api);
+  ComprehensionRepository(this._api, this._local, this._outbox);
 
   final Api _api;
+  final LocalStore _local;
+  final Outbox _outbox;
 
   /// Las preguntas de una versión, sin respuestas; `null` si no tiene (404).
   Future<Assessment?> assessment(String slug, int version) async {
-    final j = await _api.getJsonOrNull('/lesen/readings/${Uri.encodeComponent(slug)}/versions/$version/assessment');
-    if (j == null) return null;
+    final j = await _local.networkFirst(
+      'assessment:$slug@$version',
+      () async => await _api.getJsonOrNull('/lesen/readings/${Uri.encodeComponent(slug)}/versions/$version/assessment') ?? const {'none': true},
+    );
+    if (j['none'] == true) return null;
     final last = j.objOrNull('lastAttempt');
     return Assessment(
       id: j['id'].toString(),
@@ -27,15 +39,20 @@ class ComprehensionRepository {
   }
 
   /// Envía las respuestas; el backend corrige lo cerrado al momento y lo abierto queda pendiente o para autoevaluar.
-  Future<Attempt> submit(String assessmentId, Map<String, AnswerDraft> answers) async {
-    final j = await _api.send(
-      'POST',
-      '/lesen/assessments/${Uri.encodeComponent(assessmentId)}/attempts',
-      body: {
-        'answers': [for (final e in answers.entries) e.value.toJson(e.key)],
-      },
-    );
-    return attempt(j!);
+  /// Sin red, el intento queda en la cola y devuelve `null`: se envía y se corrige al volver la conexión (el cliente
+  /// nunca corrige, ADR-0009 del backend).
+  Future<Attempt?> submit(Assessment assessment, Map<String, AnswerDraft> answers) async {
+    final body = {
+      'answers': [for (final e in answers.entries) e.value.toJson(e.key)],
+    };
+    try {
+      final j = await _api.send('POST', '/lesen/assessments/${Uri.encodeComponent(assessment.id)}/attempts', body: body);
+      return attempt(j!);
+    } on ApiFailure catch (e) {
+      if (e is! OfflineFailure && e is! TimeoutFailure) rethrow;
+      await _outbox.enqueue(Ops.attempt, {'assessmentId': assessment.id, 'slug': assessment.slug, 'version': assessment.version, 'body': body});
+      return null;
+    }
   }
 
   Future<Attempt> fetch(String attemptId) async => attempt(await _api.getJson('/lesen/attempts/${Uri.encodeComponent(attemptId)}'));

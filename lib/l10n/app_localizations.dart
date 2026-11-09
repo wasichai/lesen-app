@@ -2413,6 +2413,162 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'{count, plural, =1{1 día} other{{count} días}}'**
   String durDays(int count);
+
+  /// No description provided for @quizQueuedTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Respuestas guardadas'**
+  String get quizQueuedTitle;
+
+  /// No description provided for @quizQueuedBody.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay conexión: tus respuestas están en el dispositivo. Se enviarán y se corregirán al volver la red; el resultado lo da el servidor, no la app.'**
+  String get quizQueuedBody;
+
+  /// No description provided for @quizQueuedPending.
+  ///
+  /// In es, this message translates to:
+  /// **'Pendiente de evaluar'**
+  String get quizQueuedPending;
+
+  /// No description provided for @quizSeeResult.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver el último resultado'**
+  String get quizSeeResult;
+
+  /// No description provided for @downloadsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargas'**
+  String get downloadsTitle;
+
+  /// No description provided for @downloadAction.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargar para leer sin conexión'**
+  String get downloadAction;
+
+  /// No description provided for @downloadQueued.
+  ///
+  /// In es, this message translates to:
+  /// **'En espera…'**
+  String get downloadQueued;
+
+  /// No description provided for @downloadProgress.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargando… {percent} %'**
+  String downloadProgress(int percent);
+
+  /// No description provided for @downloadDone.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargada · disponible sin conexión'**
+  String get downloadDone;
+
+  /// No description provided for @downloadFailed.
+  ///
+  /// In es, this message translates to:
+  /// **'La descarga falló'**
+  String get downloadFailed;
+
+  /// No description provided for @downloadWaitingWifi.
+  ///
+  /// In es, this message translates to:
+  /// **'Esperando una red Wi-Fi para el audio'**
+  String get downloadWaitingWifi;
+
+  /// No description provided for @downloadCancel.
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelar la descarga'**
+  String get downloadCancel;
+
+  /// No description provided for @downloadRetry.
+  ///
+  /// In es, this message translates to:
+  /// **'Reintentar la descarga'**
+  String get downloadRetry;
+
+  /// No description provided for @downloadRemove.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar la descarga'**
+  String get downloadRemove;
+
+  /// No description provided for @downloadsEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Nada descargado todavía'**
+  String get downloadsEmpty;
+
+  /// No description provided for @downloadsEmptyBody.
+  ///
+  /// In es, this message translates to:
+  /// **'En la ficha de una lectura, «Descargar» guarda su texto, sus traducciones, su audio y sus preguntas para leerla sin conexión.'**
+  String get downloadsEmptyBody;
+
+  /// No description provided for @downloadsStorage.
+  ///
+  /// In es, this message translates to:
+  /// **'Ocupan {size} en el dispositivo'**
+  String downloadsStorage(String size);
+
+  /// No description provided for @downloadsWifiOnly.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargar el audio solo con Wi-Fi'**
+  String get downloadsWifiOnly;
+
+  /// No description provided for @syncTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Sincronización'**
+  String get syncTitle;
+
+  /// No description provided for @syncPending.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =0{Todo está sincronizado} =1{1 cambio pendiente de enviar} other{{count} cambios pendientes de enviar}}'**
+  String syncPending(int count);
+
+  /// No description provided for @syncNow.
+  ///
+  /// In es, this message translates to:
+  /// **'Sincronizar ahora'**
+  String get syncNow;
+
+  /// No description provided for @syncing.
+  ///
+  /// In es, this message translates to:
+  /// **'Sincronizando…'**
+  String get syncing;
+
+  /// No description provided for @syncRejected.
+  ///
+  /// In es, this message translates to:
+  /// **'El servidor no aceptó {count, plural, =1{1 cambio} other{{count} cambios}}'**
+  String syncRejected(int count);
+
+  /// No description provided for @syncDiscard.
+  ///
+  /// In es, this message translates to:
+  /// **'Descartar'**
+  String get syncDiscard;
+
+  /// No description provided for @syncLast.
+  ///
+  /// In es, this message translates to:
+  /// **'Última sincronización: {time}'**
+  String syncLast(String time);
+
+  /// No description provided for @offlinePending.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin conexión · {count} cambios esperan para enviarse'**
+  String offlinePending(int count);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

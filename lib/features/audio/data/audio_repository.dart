@@ -3,10 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/networking/api_client.dart';
 import '../../../core/networking/api_failure.dart';
 import '../../../core/networking/json.dart';
+import '../../../core/storage/cache.dart';
+import '../../../core/storage/local_store.dart';
 import '../domain/audio_asset.dart';
 import '../domain/timing_index.dart';
 
-final audioRepositoryProvider = Provider<AudioRepository>((ref) => AudioRepository(ref.watch(apiProvider)));
+final audioRepositoryProvider = Provider<AudioRepository>((ref) => AudioRepository(ref.watch(apiProvider), ref.watch(localStoreProvider)));
 
 /// La narración de una versión; `null` si no tiene (404): el lector funciona igual sin audio.
 final readingAudioProvider = FutureProvider.autoDispose.family<AudioAsset?, ({String slug, int version})>((ref, k) async {
@@ -15,13 +17,20 @@ final readingAudioProvider = FutureProvider.autoDispose.family<AudioAsset?, ({St
 });
 
 class AudioRepository {
-  AudioRepository(this._api);
+  AudioRepository(this._api, this._local);
 
   final Api _api;
+  final LocalStore _local;
 
   Future<AudioAsset?> audio(String slug, int version) async {
-    final j = await _api.getJsonOrNull('/lesen/readings/${Uri.encodeComponent(slug)}/versions/$version/audio');
-    if (j == null) return null;
+    // los tiempos de una versión son inmutables: una vez pedidos, se leen del dispositivo
+    final key = 'audio:$slug@$version';
+    var j = await _local.read(CachedReads.ns, key);
+    if (j == null) {
+      j = await _api.getJsonOrNull('/lesen/readings/${Uri.encodeComponent(slug)}/versions/$version/audio');
+      if (j == null) return null;
+      await _local.write(CachedReads.ns, key, j);
+    }
     final assets = j.list('assets', parseAsset);
     return assets.firstOrNull;
   }

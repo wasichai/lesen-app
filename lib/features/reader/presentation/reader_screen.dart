@@ -150,9 +150,14 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
     _tracker.dispose();
     _scroll.dispose();
     // al salir, la ficha y la biblioteca deben ver el progreso nuevo
-    _container
-      ..invalidate(readingDetailProvider(_content.slug))
-      ..invalidate(libraryProvider);
+    // después del desmontaje: invalidar durante él marcaría para reconstruir un árbol bloqueado
+    final container = _container;
+    final slug = _content.slug;
+    scheduleMicrotask(() {
+      container
+        ..invalidate(readingDetailProvider(slug))
+        ..invalidate(libraryProvider);
+    });
     super.dispose();
   }
 
@@ -265,13 +270,7 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
   Future<void> _toggleBookmark() async {
     final next = !_bookmarked;
     setState(() => _bookmarked = next);
-    try {
-      await ref.read(readerRepositoryProvider).setBookmark(_content.slug, next);
-    } on ApiFailure {
-      if (!mounted) return;
-      setState(() => _bookmarked = !next);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.detailBookmarkFailed)));
-    }
+    await ref.read(readerRepositoryProvider).setBookmark(_content.slug, next);
   }
 
   Future<void> _finish() async {

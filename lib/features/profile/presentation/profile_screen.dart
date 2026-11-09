@@ -7,6 +7,8 @@ import '../../../app/routing/routes.dart';
 import '../../../app/theme/tokens.dart';
 import '../../../core/networking/api_client.dart';
 import '../../../core/session/session_controller.dart';
+import '../../../core/sync/outbox.dart';
+import '../../../core/sync/sync.dart';
 import '../../../core/widgets/feedback_views.dart';
 import '../application/profile_providers.dart';
 
@@ -91,7 +93,16 @@ class ProfileScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
+            const _SyncCard(),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.download_for_offline_outlined),
+              title: Text(l10n.downloadsTitle),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.push(Routes.downloads),
+            ),
+            const SizedBox(height: 16),
             OutlinedButton.icon(
               onPressed: () => ref.read(sessionControllerProvider.notifier).signOut(),
               icon: const Icon(Icons.logout),
@@ -99,6 +110,50 @@ class ProfileScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 24),
             Text(l10n.profileVersion(config.version, config.environment), textAlign: TextAlign.center, style: text.bodySmall),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Lo que espera para enviarse y lo que el servidor rechazó (nunca se borra en silencio).
+class _SyncCard extends ConsumerWidget {
+  const _SyncCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final status = ref.watch(syncStatusProvider).value ?? SyncStatus.idle;
+    final text = Theme.of(context).textTheme;
+    final outbox = ref.read(outboxProvider);
+    return Card(
+      elevation: 0,
+      color: LesenTokens.of(context).surfaceRaised,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(l10n.syncTitle, style: text.titleMedium),
+            const SizedBox(height: 4),
+            Semantics(liveRegion: true, child: Text(status.syncing ? l10n.syncing : l10n.syncPending(status.pending), style: text.bodyMedium)),
+            if (status.rejected.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Text(l10n.syncRejected(status.rejected.length), style: text.bodyMedium?.copyWith(color: Theme.of(context).colorScheme.error)),
+              for (final op in status.rejected)
+                Row(
+                  children: [
+                    Expanded(child: Text('${op.kind} · ${op.error ?? ''}', style: text.bodySmall)),
+                    TextButton(onPressed: () => outbox.discard(op), child: Text(l10n.syncDiscard)),
+                  ],
+                ),
+            ],
+            if (status.pending > 0)
+              Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: TextButton.icon(onPressed: () => outbox.flush(force: true), icon: const Icon(Icons.sync), label: Text(l10n.syncNow)),
+              ),
           ],
         ),
       ),
