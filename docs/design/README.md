@@ -1,40 +1,35 @@
-# Laboratorio de direcciones de diseño
+# Identidades visuales
 
-Un banco de pruebas, reversible y fuera de producción, para ver la app con cuatro direcciones de diseño alternativas a
-«Papel y tinta» (ADR-0008): **Gaceta**, **Pulso**, **Musgo** y **Atlas**. La identidad de la app no cambia: el
-laboratorio solo existe en una compilación de depuración del entorno dev y, fuera de ella, la dirección es siempre
-«Papel y tinta» (`DesignDirection.actual`).
+La app tiene cinco identidades y cada persona elige la suya en **Perfil → Apariencia** (ADR-0011):
 
-Las direcciones se definen una vez, para la web y para la app, en `wasichai/lesen-ui`:
-[`docs/design-system/lesen/explorations/`](https://github.com/wasichai/lesen-ui/tree/main/docs/design-system/lesen/explorations)
-(los tokens en `tokens/<dirección>.json` y su resolución en `scripts/design-directions.mjs`). Aquí solo se traducen a
-Dart.
+- **Musgo**, la de por defecto;
+- **Gaceta**, **Pulso** y **Atlas**;
+- **«Papel y tinta»**, la clásica de la ADR-0008.
 
-## Cómo activarlo
+En la misma tarjeta se elige el modo: sistema, claro u oscuro. Las dos cosas se guardan en el dispositivo
+(`localStore`, `prefs/appearance`) y `main` las lee antes del primer fotograma. La cuenta todavía no las guarda: el
+campo está pedido en `docs/architecture/api-integration.md` (§4). El papel del lector (claro, sepia u oscuro) sigue
+siendo una preferencia de la lectura; la identidad cambia sus colores.
 
-```sh
-flutter run --flavor dev --dart-define-from-file=config/dev.json
-```
-
-Con `APP_ENV == 'dev'` y `kDebugMode` aparece un botón redondo de 44 dp («Laboratorio de diseño», icono de paleta)
-abajo a la izquierda. Abre una hoja para elegir la dirección y el modo (sistema, claro u oscuro). La elección no se
-guarda: al reiniciar la app vuelve «Papel y tinta». El papel del lector (claro, sepia, oscuro) sigue siendo una
-preferencia de la lectura, como siempre; el laboratorio cambia sus colores dentro de la dirección.
+Las identidades se definen una vez, para la web y para la app, en `wasichai/lesen-ui`:
+[`docs/design-system/lesen/explorations/`](https://github.com/wasichai/lesen-ui/tree/main/docs/design-system/lesen/explorations).
+Los tokens están en `tokens/<identidad>.json` y su resolución en `scripts/design-directions.mjs`. Aquí solo se
+traducen a Dart.
 
 ## Piezas
 
-| Pieza                                         | Qué hace                                                                                |
-| --------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `lib/app/theme/tokens.dart`                   | `LesenTokens` lleva colores, tonos, familias, radios y escala tipográfica (`LesenType`) |
-| `lib/app/theme/theme.dart`                    | `buildTheme(brightness, tokens: …)` construye el `ThemeData` con esos tokens            |
-| `lib/app/theme/explorations/<dirección>.dart` | Tokens claro y oscuro y paletas del lector, generados de los JSON de lesen-ui           |
-| `lib/app/theme/explorations/directions.dart`  | `enum DesignDirection { actual, gaceta, pulso, musgo, atlas }`                          |
-| `lib/app/design_lab/design_lab.dart`          | `designDirectionProvider`, `designThemeModeProvider`, el botón y la hoja                |
-| `lib/app/design_lab/explore_fonts.dart`       | Registra con `FontLoader` las familias que la dirección necesita                        |
-| `assets/fonts/explore/`                       | TTF variables de Google Fonts (OFL, con su `OFL-<familia>.txt`)                         |
+| Pieza                                                        | Qué hace                                                                                |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| `lib/app/theme/tokens.dart`                                  | `LesenTokens` lleva colores, tonos, familias, radios y escala tipográfica (`LesenType`) |
+| `lib/app/theme/theme.dart`                                   | `buildTheme(brightness, tokens: …)` construye el `ThemeData` con esos tokens            |
+| `lib/app/theme/directions/<identidad>.dart`                  | Tokens claro y oscuro y paletas del lector, generados de los JSON de lesen-ui           |
+| `lib/app/theme/directions/directions.dart`                   | `enum DesignDirection { musgo, gaceta, pulso, atlas, papel }`; `fallback` es Musgo      |
+| `lib/features/profile/application/appearance_providers.dart` | `appearanceProvider`: identidad y modo, leídos y guardados en `localStore`              |
+| `lib/features/profile/presentation/profile_screen.dart`      | La tarjeta «Apariencia»                                                                 |
+| `assets/fonts/`                                              | TTF variables subconjuntadas, con su `OFL-<familia>.txt`                                |
 
-Los widgets ya no escriben familias ni radios a mano: leen `LesenTokens.of(context)` (`readingFont`, `displayFont`,
-`interfaceFont`, `radiusLg`, `tones`…). `ReaderPalette.of(theme, direction: …)` da el papel del lector de la dirección.
+Los widgets no escriben familias ni radios a mano: leen `LesenTokens.of(context)` (`readingFont`, `displayFont`,
+`interfaceFont`, `radiusLg`, `tones`…). `ReaderPalette.of(theme, direction: …)` da el papel del lector de la identidad.
 
 ## Correspondencia de tokens
 
@@ -69,43 +64,65 @@ Los colores salen de `resolveTheme`: las anclas de `light` o `dark` y, para el l
 
 Notas:
 
-- La familia en Dart es la primera de la pila CSS sin espacios: `'Source Serif 4'` → `SourceSerif4`.
+- La familia en Dart es la primera de la pila CSS, con el mismo nombre (`'Source Serif 4'`), y así se declara en
+  `pubspec.yaml`.
 - El `tracking` va en em y se multiplica por el tamaño (`TypeStep.letterSpacing`); «Papel y tinta» conserva su
   −0,2 px fijo.
 - No se traducen (no hay dónde usarlos todavía en la app): `border`, `border-control`, `accent`, los estados
   (`danger`, `success`, `warning`, `notice`), `mark-saved-ink`, `shadow.*` y `shape.radius.base`.
 
-## Fuentes y flavors
+## Fuentes
 
-Las fuentes de exploración (unos 6,5 MB: Fraunces, Source Serif 4, IBM Plex Sans, Plus Jakarta Sans, Literata,
-Manrope y Geist, con cursiva donde existe) se declaran como assets **solo del flavor dev**:
+Todas van en todos los flavors y en la web, declaradas en el bloque `fonts:` de `pubspec.yaml`. Son Fraunces, Source
+Serif 4, IBM Plex Sans, Plus Jakarta Sans, Literata, Manrope y Geist, con cursiva donde existe (Manrope no la tiene).
+Newsreader y Source Sans 3 son las de siempre y no se tocan.
 
-```yaml
-assets:
-  - path: assets/fonts/explore/
-    flavors: [dev]
+Para que el binario no crezca, cada TTF nueva se reduce así:
+
+- **Peso variable.** Se conserva el eje `wght`: Flutter lo ajusta con `fontWeight`.
+- **Ejes fijados.** Los demás se fijan en su valor por defecto, porque Flutter no los mueve solo: `opsz` (Literata 12,
+  Source Serif 4 20), `wdth`, `SOFT` y `WONK`. Fraunces, que solo se usa en títulos, se fija en `opsz=72`.
+- **Subconjunto.** Latin, latin-ext, signos del AFI y signos de uso común, sin hinting.
+
+| Medida                     | Antes  | Después |
+| -------------------------- | ------ | ------- |
+| Las siete familias nuevas  | 6,4 MB | 2,3 MB  |
+| Todo `assets/fonts/` (TTF) | —      | 4,2 MB  |
+
+Ninguna de las familias nuevas tiene los signos del AFI (ɐ, ʁ, ɪ, ˈ…); solo Source Sans 3. Por eso el tema pone
+`fontFamilyFallback: ['SourceSans3']` en las demás identidades, y la transcripción fonética se ve en todas.
+
+Para regenerarlas, con [fonttools](https://github.com/fonttools/fonttools) (`pip install fonttools`) y los TTF de
+`google/fonts` (`ofl/<familia>/`):
+
+```sh
+U="U+0000-00FF,U+0100-02FF,U+0300-036F,U+1E00-1EFF,U+2000-206F,U+20AC,U+2113,U+2122,U+2190-2193,U+2212,U+2215,U+2248,U+2260,U+2264-2265,U+FEFF,U+FFFD"
+# 1. fijar los ejes que no son el peso (sin ejes extra, como Geist, se salta este paso)
+fonttools varLib.instancer 'Literata[opsz,wght].ttf' opsz=drop -o /tmp/Literata.ttf
+fonttools varLib.instancer 'Fraunces[SOFT,WONK,opsz,wght].ttf' opsz=72 SOFT=drop WONK=drop -o /tmp/Fraunces.ttf
+# 2. subconjunto
+pyftsubset /tmp/Literata.ttf --unicodes="$U" --layout-features='*' --no-hinting --output-file=assets/fonts/Literata.ttf
 ```
 
-y se registran con `FontLoader` al elegir la dirección, antes de cambiar el tema. Atlas usa Newsreader, que ya viene
-de serie.
-
-- **Android e iOS**: `--flavor dev` las incluye; staging y prod, no. Comprobado con el manifiesto de assets que arma
-  la herramienta (`flutter test --flavor dev` lista los 20 archivos de `assets/fonts/explore/`; `--flavor prod` y
-  `--flavor staging`, ninguno).
-- **`flutter test`** sin flavor no las incluye. Los goldens leen los TTF del disco y los registran con `FontLoader`.
-- **Web**: `flutter build web` no admite `--flavor` y deja fuera los assets con flavor. El laboratorio funciona igual
-  (colores, radios, pesos), pero las familias de exploración caen en la de reserva. Para verlas en la web, se quita
-  `flavors` en local, sin hacer commit; cuesta esos 6,5 MB en la descarga de la compilación web.
+`drop` fija el eje en su valor por defecto. Para las cursivas se hace lo mismo con su archivo `-Italic`.
 
 ## Pruebas
 
-- `test/app/design_directions_test.dart`: paridad Dart ↔ JSON (copias en `test/fixtures/design/`), «Papel y tinta»
-  intacta y `copyWith`.
+- `test/features/appearance_test.dart`:
+  - por defecto, Musgo y el modo del sistema; lo elegido se guarda y se recupera; un valor roto vuelve a Musgo;
+  - en el perfil, elegir Gaceta cambia `LesenTokens` del tema; cada opción mide 48 dp y lleva `selected` y `button`.
+- `test/app/design_directions_test.dart`:
+  - paridad Dart ↔ JSON, con copias en `test/fixtures/design/`;
+  - «Papel y tinta» intacta y `copyWith`;
+  - cada familia declarada en `pubspec.yaml`, con sus archivos.
 - `test/app/accessibility_test.dart`: los mismos umbrales de contraste, objetivos táctiles y texto al 200 % en las cinco
-  direcciones.
-- `test/design/direction_goldens_test.dart` (etiqueta `design`): teléfono 390×844 claro y oscuro (Descubrir, catálogo,
-  ficha, lector, hoja del diccionario, mini reproductor, reproductor, vocabulario y progreso) y tableta 1024×768 clara
-  (Descubrir, lector con panel lateral y progreso), en las cinco direcciones. Salen en `test/design/goldens/<dirección>/`.
+  identidades.
+- `test/design/direction_goldens_test.dart` (etiqueta `design`), en las cinco identidades:
+  - teléfono 390×844, claro y oscuro: Descubrir, catálogo, ficha, lector, hoja del diccionario, mini reproductor,
+    reproductor, vocabulario y progreso;
+  - tableta 1024×768, clara: Descubrir, lector con panel lateral y progreso.
+
+  Salen en `test/design/goldens/<identidad>/`, con la hora fijada a las 9 para que el saludo de Descubrir no cambie.
   Dependen de la plataforma que los dibuja (se generaron en macOS), así que la ejecución por defecto los salta:
 
   ```sh
@@ -113,17 +130,17 @@ de serie.
   flutter test --tags design --run-skipped --update-goldens # regenerar
   ```
 
-  `exclude_tags` no sirve para esto: package:test lo combina con `--tags` y no dejaría pedirlos nunca.
+  `exclude_tags` no sirve: package:test lo combina con `--tags`, y así no se podrían pedir nunca.
 
-## Cambiar o borrar una dirección
+## Cambiar, añadir o quitar una identidad
 
-- **Cambiar**: se edita el JSON en lesen-ui, se copia a `test/fixtures/design/` y se regenera
-  `lib/app/theme/explorations/<dirección>.dart`; la prueba de paridad dice si falta algo.
-- **Borrar una**: se quita su valor del `enum` y sus ramas en `directions.dart`, su archivo en `explorations/`, su JSON
-  en `test/fixtures/design/`, sus goldens y las fuentes que solo use ella (de `assets/fonts/explore/` y de
-  `exploreFontFiles`).
-- **Borrar el laboratorio**: además, `lib/app/design_lab/`, `assets/fonts/explore/`, el bloque `assets` de
-  `pubspec.yaml`, las dos líneas de `app.dart` y `reader_screen.dart` que leen los providers, la etiqueta `design` de
-  `dart_test.yaml`, `designOverrides` de `test/support/harness.dart` y `test/design/`. Los tokens en el tema (familias, radios, escala) pueden quedarse: son los de
-  «Papel y tinta».
-- **Adoptar una**: no se hace aquí. Hace falta una ADR nueva que reemplace a la ADR-0008.
+- **Cambiar una.**
+  1. Se edita el JSON en lesen-ui y se copia a `test/fixtures/design/`.
+  2. Se regenera `lib/app/theme/directions/<identidad>.dart`; la prueba de paridad dice si falta algo.
+  3. Se regeneran los goldens.
+- **Quitar una.**
+  1. Se borran su valor del `enum` y sus ramas en `directions.dart`.
+  2. Se borran su archivo, su JSON, sus goldens y su nota en los ARB.
+  3. Se borran las fuentes que solo use ella, de `assets/fonts/` y de `pubspec.yaml`.
+  4. Una preferencia guardada con su nombre vuelve sola a Musgo.
+- **Cambiar la de por defecto.** Se cambia `DesignDirection.fallback` y se escribe una ADR nueva.

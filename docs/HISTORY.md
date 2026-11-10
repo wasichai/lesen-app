@@ -1,5 +1,17 @@
 # Historial
 
+## Identidad seleccionable en el perfil, Musgo por defecto (2026-11-10)
+
+- Perfil → Apariencia: cinco identidades (Musgo, Gaceta, Pulso, Atlas y «Papel y tinta», la clásica), cada una con su
+  muestra, su nombre y una nota, y el modo sistema/claro/oscuro. Se guardan en el dispositivo y se leen antes del
+  primer fotograma. Musgo es la de por defecto (ADR-0011, que reemplaza a la ADR-0008).
+- Se retira el laboratorio de desarrollo; `DesignDirection.actual` pasa a llamarse `papel`.
+- Fuentes en todos los flavors, variables en peso y subconjuntadas: 2,3 MB las siete familias nuevas, frente a
+  6,4 MB. La transcripción fonética cae en Source Sans 3, la única con signos AFI.
+- El saludo de Descubrir lee la hora de `clock`, para que los goldens no dependan de cuándo se ejecutan. Los de
+  `papel` coinciden byte a byte con los de «Papel y tinta» de antes.
+- Pedido al backend: un campo `direction` en las preferencias de cuenta, para sincronizar entre dispositivos.
+
 ## Laboratorio de direcciones de diseño (2026-11-10)
 
 - `LesenTokens` lleva familias (`displayFont`, `readingFont`, `interfaceFont`), radios por instancia, `buttonRadius`,
