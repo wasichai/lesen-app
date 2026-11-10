@@ -1,5 +1,16 @@
 # Historial
 
+## Laboratorio de direcciones de diseño (2026-11-10)
+
+- `LesenTokens` lleva familias (`displayFont`, `readingFont`, `interfaceFont`), radios por instancia, `buttonRadius`,
+  `chipRadius`, `onBrand`, tonos y escala tipográfica (`LesenType`), con «Papel y tinta» por defecto; `copyWith` ya
+  aplica sus argumentos. `buildTheme(brightness, tokens: …)` y `ReaderPalette.of(theme, direction: …)`.
+- Los widgets leen familias, radios y tonos del tema en lugar de escribirlos a mano. «Papel y tinta» queda igual:
+  sus goldens coinciden byte a byte con los de la versión anterior.
+- Cuatro direcciones (Gaceta, Pulso, Musgo, Atlas) generadas de los JSON de lesen-ui, con selector flotante solo en
+  depuración del entorno dev y fuentes variables OFL solo en el flavor dev. Detalles en `docs/design/README.md`.
+- Pruebas: paridad Dart ↔ JSON, accesibilidad en las cinco direcciones y 105 goldens con la etiqueta `design`.
+
 ## Fase 7 — Preparación para producción (2026-11-09)
 
 - Accesibilidad automática (`test/app/accessibility_test.dart`): contraste AA de los tokens y de los tres temas del
