@@ -36,6 +36,11 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
+  # fuentes del laboratorio de diseño (docs/design/README.md): solo en el flavor dev, se cargan con FontLoader
+  assets:
+    - path: assets/fonts/explore/
+      flavors:
+        - dev
   fonts:
     - family: Newsreader
       fonts:

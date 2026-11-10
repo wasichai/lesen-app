@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/theme/explorations/directions.dart';
 import '../../../app/theme/theme.dart';
+import '../../../app/theme/tokens.dart';
 import '../domain/reader_preferences.dart';
 
 /// Colores del papel del lector (`lesen-reader-light|sepia|dark` de la web).
@@ -14,9 +16,13 @@ class ReaderPalette {
     required this.sentence,
     required this.active,
     required this.brightness,
+    this.tokens,
   });
 
-  factory ReaderPalette.of(ReaderTheme theme) => switch (theme) {
+  /// El papel de [theme] en la dirección de diseño [direction] (por defecto, «Papel y tinta»).
+  factory ReaderPalette.of(ReaderTheme theme, {DesignDirection direction = DesignDirection.actual}) => direction.reader(theme) ?? ReaderPalette._paper(theme);
+
+  factory ReaderPalette._paper(ReaderTheme theme) => switch (theme) {
     ReaderTheme.light => const ReaderPalette(
       paper: Color(0xFFFFFDF8),
       ink: Color(0xFF22252E),
@@ -64,9 +70,12 @@ class ReaderPalette {
   final Color active;
   final Brightness brightness;
 
+  /// Tokens de la app bajo este papel; sin ellos, los de «Papel y tinta» para [brightness].
+  final LesenTokens? tokens;
+
   /// El tema de la app con el papel del lector, para hojas y controles dentro de la lectura.
   ThemeData theme() {
-    final base = buildTheme(brightness);
+    final base = buildTheme(brightness, tokens: tokens);
     return base.copyWith(
       scaffoldBackgroundColor: paper,
       colorScheme: base.colorScheme.copyWith(surface: paper, onSurface: ink, primary: brand, onSurfaceVariant: inkMuted),
