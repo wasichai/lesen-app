@@ -52,7 +52,7 @@ class IllustrationView extends ConsumerWidget {
           child: ExcludeSemantics(
             child: AspectRatio(
               aspectRatio: illustration.aspectRatio,
-              child: ClipRRect(borderRadius: BorderRadius.circular(LesenTokens.radiusLg), child: picture),
+              child: ClipRRect(borderRadius: BorderRadius.circular(LesenTokens.of(context).radiusLg), child: picture),
             ),
           ),
         ),

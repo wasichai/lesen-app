@@ -12,6 +12,8 @@ import '../../../core/sync/sync.dart';
 import '../../audio/application/playback_controller.dart';
 import '../../downloads/application/downloads_controller.dart';
 import '../../../core/widgets/feedback_views.dart';
+import '../../../app/theme/directions/directions.dart';
+import '../application/appearance_providers.dart';
 import '../application/profile_providers.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -62,7 +64,7 @@ class ProfileScreen extends ConsumerWidget {
               Card(
                 elevation: 0,
                 color: t.surfaceRaised,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(LesenTokens.radiusCard)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(t.radiusCard)),
                 child: Column(
                   children: [
                     ListTile(title: Text(l10n.profileInterface), trailing: Text(languages?.nameOf(p.interfaceLanguage) ?? p.interfaceLanguage)),
@@ -95,6 +97,8 @@ class ProfileScreen extends ConsumerWidget {
                   ],
                 ),
               ),
+            const SizedBox(height: 16),
+            const _AppearanceCard(),
             const SizedBox(height: 16),
             const _SyncCard(),
             ListTile(
@@ -177,6 +181,126 @@ class _SyncCard extends ConsumerWidget {
                 child: TextButton.icon(onPressed: () => outbox.flush(force: true), icon: const Icon(Icons.sync), label: Text(l10n.syncNow)),
               ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Identidad y modo claro/oscuro (ADR-0011). Se guardan en el dispositivo, como las preferencias del lector.
+class _AppearanceCard extends ConsumerWidget {
+  const _AppearanceCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final t = LesenTokens.of(context);
+    final text = Theme.of(context).textTheme;
+    final appearance = ref.watch(appearanceProvider);
+    final controller = ref.read(appearanceProvider.notifier);
+    return Card(
+      elevation: 0,
+      color: t.surfaceRaised,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(t.radiusCard)),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Semantics(header: true, child: Text(l10n.appearanceTitle, style: text.titleMedium)),
+            ),
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(l10n.appearanceIdentity, style: text.labelLarge?.copyWith(color: t.inkMuted)),
+            ),
+            for (final d in DesignDirection.values)
+              _IdentityOption(direction: d, selected: d == appearance.direction, onTap: () => controller.selectDirection(d)),
+            const SizedBox(height: 12),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(l10n.appearanceMode, style: text.labelLarge?.copyWith(color: t.inkMuted)),
+            ),
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: SegmentedButton<ThemeMode>(
+                style: SegmentedButton.styleFrom(minimumSize: const Size(0, LesenTokens.target)),
+                segments: [
+                  ButtonSegment(value: ThemeMode.system, label: Text(l10n.appearanceModeSystem), icon: const Icon(Icons.brightness_auto_outlined)),
+                  ButtonSegment(value: ThemeMode.light, label: Text(l10n.appearanceModeLight), icon: const Icon(Icons.light_mode_outlined)),
+                  ButtonSegment(value: ThemeMode.dark, label: Text(l10n.appearanceModeDark), icon: const Icon(Icons.dark_mode_outlined)),
+                ],
+                selected: {appearance.themeMode},
+                onSelectionChanged: (s) => controller.selectThemeMode(s.first),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Una identidad: su muestra (el acento sobre el papel de esa identidad), su nombre y una nota. La elegida lleva marca
+/// e icono, no solo color.
+class _IdentityOption extends StatelessWidget {
+  const _IdentityOption({required this.direction, required this.selected, required this.onTap});
+
+  final DesignDirection direction;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    final t = LesenTokens.of(context);
+    final sample = direction.tokens(Theme.of(context).brightness);
+    final note = context.l10n.appearanceNote(direction.name);
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: '${direction.label}. $note',
+      excludeSemantics: true,
+      child: InkWell(
+        onTap: onTap,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: LesenTokens.target),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Row(
+              children: [
+                Container(
+                  width: 44,
+                  height: 32,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: sample.surface,
+                    borderRadius: BorderRadius.circular(sample.radiusSm),
+                    border: Border.all(color: t.inkMuted.withValues(alpha: 0.3)),
+                  ),
+                  child: Text(
+                    'Aa',
+                    style: TextStyle(fontFamily: sample.displayFont, fontSize: 16, fontWeight: FontWeight.w700, color: sample.brand, height: 1),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(direction.label, style: text.titleSmall),
+                      Text(note, style: text.bodySmall),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Icon(selected ? Icons.radio_button_checked : Icons.radio_button_unchecked, color: selected ? t.brand : t.inkMuted),
+              ],
+            ),
+          ),
         ),
       ),
     );

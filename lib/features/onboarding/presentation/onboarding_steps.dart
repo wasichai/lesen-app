@@ -60,11 +60,11 @@ class ChoiceTile extends StatelessWidget {
         child: Material(
           color: selected ? t.brandSoft : t.surfaceRaised,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(LesenTokens.radiusLg),
+            borderRadius: BorderRadius.circular(t.radiusLg),
             side: BorderSide(color: selected ? t.brand : t.inkMuted.withValues(alpha: 0.2), width: selected ? 2 : 1),
           ),
           child: InkWell(
-            borderRadius: BorderRadius.circular(LesenTokens.radiusLg),
+            borderRadius: BorderRadius.circular(t.radiusLg),
             onTap: onTap,
             child: ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 60),

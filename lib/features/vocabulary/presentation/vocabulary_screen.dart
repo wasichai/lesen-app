@@ -70,7 +70,7 @@ class _VocabularyScreenState extends ConsumerState<VocabularyScreen> {
                     padding: const EdgeInsets.all(18),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(colors: [t.brandSoft, t.surfaceRaised]),
-                      borderRadius: BorderRadius.circular(LesenTokens.radiusCard),
+                      borderRadius: BorderRadius.circular(t.radiusCard),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -200,7 +200,7 @@ class _WordTile extends StatelessWidget {
                       item.context!,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: text.bodySmall?.copyWith(fontFamily: 'Newsreader', fontStyle: FontStyle.italic, color: t.inkMuted),
+                      style: text.bodySmall?.copyWith(fontFamily: t.readingFont, fontStyle: FontStyle.italic, color: t.inkMuted),
                       locale: Locale(item.language),
                     ),
                   ],

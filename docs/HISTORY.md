@@ -13,6 +13,29 @@
   para servir a las dos.
 - Pruebas del contrato, del lector (con texto alternativo y fallo de carga), de la descarga y de la lectura sin red.
 
+## Identidad seleccionable en el perfil, Musgo por defecto (2026-11-10)
+
+- Perfil → Apariencia: cinco identidades (Musgo, Gaceta, Pulso, Atlas y «Papel y tinta», la clásica), cada una con su
+  muestra, su nombre y una nota, y el modo sistema/claro/oscuro. Se guardan en el dispositivo y se leen antes del
+  primer fotograma. Musgo es la de por defecto (ADR-0011, que reemplaza a la ADR-0008).
+- Se retira el laboratorio de desarrollo; `DesignDirection.actual` pasa a llamarse `papel`.
+- Fuentes en todos los flavors, variables en peso y subconjuntadas: 2,3 MB las siete familias nuevas, frente a
+  6,4 MB. La transcripción fonética cae en Source Sans 3, la única con signos AFI.
+- El saludo de Descubrir lee la hora de `clock`, para que los goldens no dependan de cuándo se ejecutan. Los de
+  `papel` coinciden byte a byte con los de «Papel y tinta» de antes.
+- Pedido al backend: un campo `direction` en las preferencias de cuenta, para sincronizar entre dispositivos.
+
+## Laboratorio de direcciones de diseño (2026-11-10)
+
+- `LesenTokens` lleva familias (`displayFont`, `readingFont`, `interfaceFont`), radios por instancia, `buttonRadius`,
+  `chipRadius`, `onBrand`, tonos y escala tipográfica (`LesenType`), con «Papel y tinta» por defecto; `copyWith` ya
+  aplica sus argumentos. `buildTheme(brightness, tokens: …)` y `ReaderPalette.of(theme, direction: …)`.
+- Los widgets leen familias, radios y tonos del tema en lugar de escribirlos a mano. «Papel y tinta» queda igual:
+  sus goldens coinciden byte a byte con los de la versión anterior.
+- Cuatro direcciones (Gaceta, Pulso, Musgo, Atlas) generadas de los JSON de lesen-ui, con selector flotante solo en
+  depuración del entorno dev y fuentes variables OFL solo en el flavor dev. Detalles en `docs/design/README.md`.
+- Pruebas: paridad Dart ↔ JSON, accesibilidad en las cinco direcciones y 105 goldens con la etiqueta `design`.
+
 ## Fase 7 — Preparación para producción (2026-11-09)
 
 - Accesibilidad automática (`test/app/accessibility_test.dart`): contraste AA de los tokens y de los tres temas del

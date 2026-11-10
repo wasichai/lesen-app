@@ -26,7 +26,7 @@ class MetricTile extends StatelessWidget {
       excludeSemantics: true,
       child: Container(
         padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(color: t.surfaceRaised, borderRadius: BorderRadius.circular(LesenTokens.radiusLg)),
+        decoration: BoxDecoration(color: t.surfaceRaised, borderRadius: BorderRadius.circular(t.radiusLg)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,7 +34,7 @@ class MetricTile extends StatelessWidget {
             const SizedBox(height: 6),
             Text(
               metric.estimated ? '≈ $value' : value,
-              style: text.headlineSmall?.copyWith(fontFamily: 'SourceSans3', fontWeight: FontWeight.w700),
+              style: text.headlineSmall?.copyWith(fontFamily: t.interfaceFont, fontWeight: FontWeight.w700),
             ),
             Text(label, style: text.bodySmall),
             if (metric.estimated) Text(l10n.metricEstimated, style: text.labelSmall?.copyWith(fontStyle: FontStyle.italic)),
@@ -202,7 +202,7 @@ class AchievementBadge extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: earned ? t.brandSoft : t.surfaceRaised,
-        borderRadius: BorderRadius.circular(LesenTokens.radiusLg),
+        borderRadius: BorderRadius.circular(t.radiusLg),
         border: Border.all(color: earned ? t.brand.withValues(alpha: 0.4) : t.surfaceMuted),
       ),
       child: Column(

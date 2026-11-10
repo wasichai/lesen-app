@@ -13,14 +13,14 @@ class WordStatusBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final (icon, color) = switch (status) {
-      WordStatus.SAVED => (Icons.bookmark_outline, LesenTokens.tones[2]),
-      WordStatus.LEARNING => (Icons.autorenew, LesenTokens.tones[0]),
-      WordStatus.FAMILIAR => (Icons.thumb_up_alt_outlined, LesenTokens.tones[3]),
-      WordStatus.MASTERED => (Icons.verified_outlined, LesenTokens.tones[1]),
+      WordStatus.SAVED => (Icons.bookmark_outline, LesenTokens.of(context).tones[2]),
+      WordStatus.LEARNING => (Icons.autorenew, LesenTokens.of(context).tones[0]),
+      WordStatus.FAMILIAR => (Icons.thumb_up_alt_outlined, LesenTokens.of(context).tones[3]),
+      WordStatus.MASTERED => (Icons.verified_outlined, LesenTokens.of(context).tones[1]),
     };
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-      decoration: BoxDecoration(color: color.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(LesenTokens.radiusSm)),
+      decoration: BoxDecoration(color: color.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(LesenTokens.of(context).radiusSm)),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

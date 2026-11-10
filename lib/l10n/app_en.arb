@@ -511,5 +511,12 @@
   "listsEmptyList": "This list is empty. Add readings from their page.",
   "signOutPendingTitle": "There are unsynced changes",
   "signOutPendingBody": "{count, plural, =1{1 change hasn't reached the server yet.} other{{count} changes haven't reached the server yet.}} If you sign out now, they'll be lost. Connect to sync first.",
-  "signOutAnyway": "Sign out anyway"
+  "signOutAnyway": "Sign out anyway",
+  "appearanceTitle": "Appearance",
+  "appearanceIdentity": "Identity",
+  "appearanceNote": "{direction, select, musgo{Natural calm: sand, moss and slate. The default.} gaceta{Editorial: ivory, midnight blue and oxblood.} pulso{Vibrant: indigo and coral, round shapes.} atlas{Minimal: near white, near black and ultramarine.} other{The classic: warm paper, ink and terracotta.}}",
+  "appearanceMode": "Mode",
+  "appearanceModeSystem": "System",
+  "appearanceModeLight": "Light",
+  "appearanceModeDark": "Dark"
 }

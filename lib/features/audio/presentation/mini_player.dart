@@ -46,7 +46,7 @@ class MiniPlayer extends ConsumerWidget {
                   children: [
                     SizedBox(
                       width: 44,
-                      child: CoverImage(reading: now.reading, radius: LesenTokens.radiusSm, aspectRatio: 1),
+                      child: CoverImage(reading: now.reading, radius: t.radiusSm, aspectRatio: 1),
                     ),
                     const SizedBox(width: 12),
                     Expanded(

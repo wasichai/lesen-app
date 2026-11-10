@@ -19,3 +19,7 @@ Copiadas de `wasichai/lesen-ui/e2e/fixtures/`, que las captura del backend real 
   ADR-0018. Hay que volver a capturarlos de un backend con la ADR-0018 en cuanto se pueda.
 
 Al cambiar el contrato del backend, se vuelven a capturar allí y se copian aquí.
+
+- `design/{gaceta,pulso,musgo,atlas}.json`: las identidades visuales (ADR-0011), copiadas de
+  `wasichai/lesen-ui/docs/design-system/lesen/explorations/tokens/`. La prueba de paridad
+  (`test/app/design_directions_test.dart`) comprueba que `lib/app/theme/explorations/` dice lo mismo.

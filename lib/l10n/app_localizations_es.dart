@@ -1773,4 +1773,34 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get signOutAnyway => 'Cerrar sesión igualmente';
+
+  @override
+  String get appearanceTitle => 'Apariencia';
+
+  @override
+  String get appearanceIdentity => 'Identidad';
+
+  @override
+  String appearanceNote(String direction) {
+    String _temp0 = intl.Intl.selectLogic(direction, {
+      'musgo': 'Calma natural: arena, musgo y pizarra. La de por defecto.',
+      'gaceta': 'Editorial: marfil, azul noche y burdeos.',
+      'pulso': 'Vibrante: índigo y coral, formas redondas.',
+      'atlas': 'Mínima: casi blanco, casi negro y ultramar.',
+      'other': 'La clásica: papel cálido, tinta y terracota.',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get appearanceMode => 'Modo';
+
+  @override
+  String get appearanceModeSystem => 'Sistema';
+
+  @override
+  String get appearanceModeLight => 'Claro';
+
+  @override
+  String get appearanceModeDark => 'Oscuro';
 }

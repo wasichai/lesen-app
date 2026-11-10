@@ -172,7 +172,7 @@ class _WordPanelState extends ConsumerState<WordPanel> {
         const SizedBox(height: 12),
         Text(
           entry.translations.join(', '),
-          style: text.headlineSmall?.copyWith(fontFamily: 'SourceSans3', fontWeight: FontWeight.w600),
+          style: text.headlineSmall?.copyWith(fontFamily: LesenTokens.of(context).interfaceFont, fontWeight: FontWeight.w600),
         ),
         if (first?.definition != null) ...[const SizedBox(height: 6), Text(first!.definition!, style: text.bodyMedium)],
         if (_expanded) ..._details(context, entry, lookup),
@@ -231,7 +231,7 @@ class _WordPanelState extends ConsumerState<WordPanel> {
                 children: [
                   Text(
                     e.text,
-                    style: text.bodyLarge?.copyWith(fontFamily: 'Newsreader'),
+                    style: text.bodyLarge?.copyWith(fontFamily: LesenTokens.of(context).readingFont),
                     locale: Locale(widget.language),
                   ),
                   if (e.translation != null) Text(e.translation!, style: text.bodySmall?.copyWith(color: muted)),
@@ -266,7 +266,7 @@ class _WordPanelState extends ConsumerState<WordPanel> {
     final translations = _showSentence ? ref.watch(translationsProvider((slug: widget.slug, version: widget.version, unit: TranslationUnit.SENTENCE))) : null;
     return Container(
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(color: scheme.surfaceContainer, borderRadius: BorderRadius.circular(LesenTokens.radiusLg)),
+      decoration: BoxDecoration(color: scheme.surfaceContainer, borderRadius: BorderRadius.circular(LesenTokens.of(context).radiusLg)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -274,7 +274,7 @@ class _WordPanelState extends ConsumerState<WordPanel> {
           const SizedBox(height: 6),
           Text(
             sentenceText,
-            style: text.bodyLarge?.copyWith(fontFamily: 'Newsreader', fontSize: 18),
+            style: text.bodyLarge?.copyWith(fontFamily: LesenTokens.of(context).readingFont, fontSize: 18),
             locale: Locale(widget.language),
           ),
           if (translations != null)
@@ -328,7 +328,7 @@ class _Tag extends StatelessWidget {
     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
     decoration: BoxDecoration(
       border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
-      borderRadius: BorderRadius.circular(LesenTokens.radiusSm),
+      borderRadius: BorderRadius.circular(LesenTokens.of(context).radiusSm),
     ),
     child: Text(label, style: Theme.of(context).textTheme.labelMedium),
   );
