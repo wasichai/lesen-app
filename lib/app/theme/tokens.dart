@@ -52,8 +52,8 @@ class LesenType {
 
 /// Tokens de «Papel y tinta» (ADR-0008), los mismos que `lesen-ui/docs/design-system/lesen/tokens.json`.
 ///
-/// Los colores, las familias, los radios y la escala tipográfica viajan en el tema para que las direcciones del
-/// laboratorio de diseño (`docs/design/README.md`) los cambien; los valores por defecto son los de «Papel y tinta».
+/// Los colores, las familias, los radios y la escala tipográfica viajan en el tema para que cada identidad
+/// (ADR-0011, `docs/design/README.md`) los cambie; los valores por defecto son los de «Papel y tinta».
 @immutable
 class LesenTokens extends ThemeExtension<LesenTokens> {
   const LesenTokens({

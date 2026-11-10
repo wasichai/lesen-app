@@ -1,5 +1,5 @@
-// Generado a partir de lesen-ui/docs/design-system/lesen/explorations/tokens/musgo.json (docs/design/README.md).
-// Si la dirección cambia allí, se vuelve a generar; test/app/design_directions_test.dart lo comprueba.
+// Generado a partir de lesen-ui/docs/design-system/lesen/explorations/tokens/musgo.json (docs/design/README.md,
+// ADR-0011). Si cambia allí, se vuelve a generar; test/app/design_directions_test.dart lo comprueba.
 import 'package:flutter/material.dart';
 
 import '../../../features/reader/domain/reader_preferences.dart';
@@ -32,8 +32,8 @@ const musgoLight = LesenTokens(
   markSentence: Color(0xFFE6E7D5),
   onBrand: Color(0xFFFFFFFF),
   tones: [Color(0xFF2F5F6E), Color(0xFF4F6A3E), Color(0xFF7F5B17), Color(0xFF6B4A5E)],
-  displayFont: 'SourceSerif4',
-  readingFont: 'SourceSerif4',
+  displayFont: 'Source Serif 4',
+  readingFont: 'Source Serif 4',
   interfaceFont: 'Manrope',
   typeScale: _type,
   radiusSm: 8,
@@ -60,8 +60,8 @@ const musgoDark = LesenTokens(
   markSentence: Color(0xFF24302A),
   onBrand: Color(0xFF0D1A12),
   tones: [Color(0xFF8FC3CF), Color(0xFFB2CC98), Color(0xFFDCBF7A), Color(0xFFD2ADC4)],
-  displayFont: 'SourceSerif4',
-  readingFont: 'SourceSerif4',
+  displayFont: 'Source Serif 4',
+  readingFont: 'Source Serif 4',
   interfaceFont: 'Manrope',
   typeScale: _type,
   radiusSm: 8,

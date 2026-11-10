@@ -1,5 +1,5 @@
-// Generado a partir de lesen-ui/docs/design-system/lesen/explorations/tokens/gaceta.json (docs/design/README.md).
-// Si la dirección cambia allí, se vuelve a generar; test/app/design_directions_test.dart lo comprueba.
+// Generado a partir de lesen-ui/docs/design-system/lesen/explorations/tokens/gaceta.json (docs/design/README.md,
+// ADR-0011). Si cambia allí, se vuelve a generar; test/app/design_directions_test.dart lo comprueba.
 import 'package:flutter/material.dart';
 
 import '../../../features/reader/domain/reader_preferences.dart';
@@ -33,8 +33,8 @@ const gacetaLight = LesenTokens(
   onBrand: Color(0xFFFFFFFF),
   tones: [Color(0xFF1F5566), Color(0xFF4A6247), Color(0xFF7D5A10), Color(0xFF5F3A5C)],
   displayFont: 'Fraunces',
-  readingFont: 'SourceSerif4',
-  interfaceFont: 'IBMPlexSans',
+  readingFont: 'Source Serif 4',
+  interfaceFont: 'IBM Plex Sans',
   typeScale: _type,
   radiusSm: 2,
   radiusMd: 4,
@@ -61,8 +61,8 @@ const gacetaDark = LesenTokens(
   onBrand: Color(0xFF1A0B0E),
   tones: [Color(0xFF8CC3D1), Color(0xFFA7C3A0), Color(0xFFDFBF73), Color(0xFFD3A9CF)],
   displayFont: 'Fraunces',
-  readingFont: 'SourceSerif4',
-  interfaceFont: 'IBMPlexSans',
+  readingFont: 'Source Serif 4',
+  interfaceFont: 'IBM Plex Sans',
   typeScale: _type,
   radiusSm: 2,
   radiusMd: 4,

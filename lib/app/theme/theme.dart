@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'tokens.dart';
 
+/// Familia con los signos del AFI, empaquetada siempre.
+const ipaFont = 'SourceSans3';
+
 /// El tema de la app para un brillo; [tokens] cambia la dirección de diseño (por defecto, «Papel y tinta»).
 ThemeData buildTheme(Brightness brightness, {LesenTokens? tokens}) {
   final t = tokens ?? (brightness == Brightness.light ? LesenTokens.light : LesenTokens.dark);
@@ -30,12 +33,14 @@ ThemeData buildTheme(Brightness brightness, {LesenTokens? tokens}) {
     outlineVariant: t.inkMuted.withValues(alpha: 0.2),
   );
 
-  final base = ThemeData(useMaterial3: true, colorScheme: scheme, fontFamily: t.interfaceFont);
+  // la transcripción fonética (AFI) solo la cubre Source Sans 3; las demás familias caen en ella para esos signos
+  final fallback = t.interfaceFont == ipaFont ? null : const [ipaFont];
+  final base = ThemeData(useMaterial3: true, colorScheme: scheme, fontFamily: t.interfaceFont, fontFamilyFallback: fallback);
   final type = t.typeScale;
   TextStyle heading(double size, TypeStep step, {double height = 1.15}) =>
       TextStyle(fontFamily: t.displayFont, fontSize: size, fontWeight: step.weight, height: height, color: t.ink, letterSpacing: step.letterSpacing(size));
   TextStyle sans(double size, FontWeight weight, {double height = 1.4, Color? color}) =>
-      TextStyle(fontFamily: t.interfaceFont, fontSize: size, fontWeight: weight, height: height, color: color ?? t.ink);
+      TextStyle(fontFamily: t.interfaceFont, fontFamilyFallback: fallback, fontSize: size, fontWeight: weight, height: height, color: color ?? t.ink);
 
   final text = base.textTheme.copyWith(
     displayLarge: heading(52, type.display),

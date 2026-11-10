@@ -1,25 +1,26 @@
-// Goldens de las direcciones de diseño (docs/design/README.md): las mismas pantallas en «Papel y tinta» y en cada
-// exploración, con las fuentes reales, para compararlas lado a lado. Se generan con
+// Goldens de las identidades (docs/design/README.md, ADR-0011): las mismas pantallas en cada una, con las fuentes
+// reales, para compararlas lado a lado. Se generan con
 // `flutter test --tags design --run-skipped --update-goldens`.
 @Tags(['design'])
 library;
 
 import 'dart:io';
 
+import 'package:clock/clock.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lesen/app/app.dart';
-import 'package:lesen/app/design_lab/explore_fonts.dart';
 import 'package:lesen/app/routing/router.dart';
 import 'package:lesen/app/routing/routes.dart';
-import 'package:lesen/app/theme/explorations/directions.dart';
+import 'package:lesen/app/theme/directions/directions.dart';
 import 'package:lesen/core/audio/narration_engine.dart';
 import 'package:lesen/core/session/session_store.dart';
 
 import '../features/progress_test.dart' show progressRoutes;
 import '../features/reader_test.dart' show profileRoute;
 import '../support/fake_backend.dart';
+import '../support/fonts.dart';
 import '../support/harness.dart';
 import '../support/notebook_routes.dart';
 
@@ -29,20 +30,14 @@ const tablet = Size(1024, 768);
 
 Future<ByteData> _file(String path) async => ByteData.sublistView(await File(path).readAsBytes());
 
-/// Las fuentes de verdad en lugar de la de pruebas: las de serie, las de exploración y los iconos de Material.
+/// Las fuentes de verdad en lugar de la de pruebas: las del bloque `fonts:` de `pubspec.yaml` y los iconos de Material.
 Future<void> loadRealFonts() async {
-  for (final (family, files) in [
-    ('Newsreader', ['Newsreader.ttf', 'Newsreader-Italic.ttf']),
-    ('SourceSans3', ['SourceSans3.ttf', 'SourceSans3-Italic.ttf']),
-  ]) {
-    final loader = FontLoader(family);
+  for (final MapEntry(key: name, value: files) in pubspecFonts.entries) {
+    final loader = FontLoader(name);
     for (final f in files) {
-      loader.addFont(_file('assets/fonts/$f'));
+      loader.addFont(_file(f));
     }
     await loader.load();
-  }
-  for (final d in DesignDirection.values) {
-    await loadExploreFonts(d, load: _file);
   }
   final icons = File('${Platform.environment['FLUTTER_ROOT']}/bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf');
   if (icons.existsSync()) await (FontLoader('MaterialIcons')..addFont(_file(icons.path))).load();
@@ -82,7 +77,7 @@ final phoneScenes = <String, Scene>{
     await _play(tester, router, engine);
     await go(Routes.player)(tester, router, engine);
     // A 390 dp, los siete controles de TransportRow (360 dp) no caben en los 342 dp del reproductor y la fila se
-    // desborda, con cualquier dirección: es un fallo previo al laboratorio, que el golden deja a la vista.
+    // desborda, con cualquier identidad: es un fallo previo a ellas, que el golden deja a la vista.
     final overflow = tester.takeException();
     if (overflow != null) expect('$overflow', contains('overflowed'));
   },
@@ -97,20 +92,23 @@ void main() {
   final routes = {...profileRoute(), ...FakeBackend.readingRoutes(slug), ...notebookRoutes(), ...progressRoutes()};
 
   Future<void> shoot(WidgetTester tester, DesignDirection d, Brightness b, Size size, String name, Scene scene) async {
-    final engine = FakeNarrationEngine();
-    final container = await pumpLesenApp(
-      tester,
-      FakeBackend(routes),
-      store: MemorySessionStore(testSession()),
-      engine: engine,
-      size: size,
-      direction: d,
-      brightness: b,
-    );
-    await scene(tester, container.read(routerProvider), engine);
-    final device = size == phone ? 'phone' : 'tablet';
-    await expectLater(find.byType(LesenApp), matchesGoldenFile('goldens/${d.name}/${device}_${b.name}_$name.png'));
-    await closeApp(tester);
+    // a las 9: el saludo de Descubrir es «Buenos días» siempre, se ejecute cuando se ejecute
+    await withClock(Clock.fixed(DateTime(2026, 11, 10, 9)), () async {
+      final engine = FakeNarrationEngine();
+      final container = await pumpLesenApp(
+        tester,
+        FakeBackend(routes),
+        store: MemorySessionStore(testSession()),
+        engine: engine,
+        size: size,
+        direction: d,
+        brightness: b,
+      );
+      await scene(tester, container.read(routerProvider), engine);
+      final device = size == phone ? 'phone' : 'tablet';
+      await expectLater(find.byType(LesenApp), matchesGoldenFile('goldens/${d.name}/${device}_${b.name}_$name.png'));
+      await closeApp(tester);
+    });
   }
 
   for (final d in DesignDirection.values) {

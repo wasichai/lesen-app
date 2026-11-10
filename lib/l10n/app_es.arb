@@ -1142,5 +1142,20 @@
       }
     }
   },
-  "signOutAnyway": "Cerrar sesión igualmente"
+  "signOutAnyway": "Cerrar sesión igualmente",
+  "appearanceTitle": "Apariencia",
+  "appearanceIdentity": "Identidad",
+  "appearanceNote": "{direction, select, musgo{Calma natural: arena, musgo y pizarra. La de por defecto.} gaceta{Editorial: marfil, azul noche y burdeos.} pulso{Vibrante: índigo y coral, formas redondas.} atlas{Mínima: casi blanco, casi negro y ultramar.} other{La clásica: papel cálido, tinta y terracota.}}",
+  "appearanceMode": "Modo",
+  "appearanceModeSystem": "Sistema",
+  "appearanceModeLight": "Claro",
+  "appearanceModeDark": "Oscuro",
+  "@appearanceNote": {
+    "description": "Nota corta de una identidad visual del perfil (ADR-0011)",
+    "placeholders": {
+      "direction": {
+        "type": "String"
+      }
+    }
+  }
 }

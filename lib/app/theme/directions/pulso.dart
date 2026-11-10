@@ -1,5 +1,5 @@
-// Generado a partir de lesen-ui/docs/design-system/lesen/explorations/tokens/pulso.json (docs/design/README.md).
-// Si la dirección cambia allí, se vuelve a generar; test/app/design_directions_test.dart lo comprueba.
+// Generado a partir de lesen-ui/docs/design-system/lesen/explorations/tokens/pulso.json (docs/design/README.md,
+// ADR-0011). Si cambia allí, se vuelve a generar; test/app/design_directions_test.dart lo comprueba.
 import 'package:flutter/material.dart';
 
 import '../../../features/reader/domain/reader_preferences.dart';
@@ -32,9 +32,9 @@ const pulsoLight = LesenTokens(
   markSentence: Color(0xFFECE9FF),
   onBrand: Color(0xFFFFFFFF),
   tones: [Color(0xFF0F6476), Color(0xFF2E6B45), Color(0xFF8A5300), Color(0xFFA02C5A)],
-  displayFont: 'PlusJakartaSans',
+  displayFont: 'Plus Jakarta Sans',
   readingFont: 'Literata',
-  interfaceFont: 'PlusJakartaSans',
+  interfaceFont: 'Plus Jakarta Sans',
   typeScale: _type,
   radiusSm: 8,
   radiusMd: 14,
@@ -60,9 +60,9 @@ const pulsoDark = LesenTokens(
   markSentence: Color(0xFF232650),
   onBrand: Color(0xFF120E3D),
   tones: [Color(0xFF7FD3E3), Color(0xFF8FD6A8), Color(0xFFF2C063), Color(0xFFFF9FC0)],
-  displayFont: 'PlusJakartaSans',
+  displayFont: 'Plus Jakarta Sans',
   readingFont: 'Literata',
-  interfaceFont: 'PlusJakartaSans',
+  interfaceFont: 'Plus Jakarta Sans',
   typeScale: _type,
   radiusSm: 8,
   radiusMd: 14,

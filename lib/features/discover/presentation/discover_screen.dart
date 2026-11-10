@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -102,7 +103,8 @@ class _Header extends ConsumerWidget {
     final t = LesenTokens.of(context);
     final text = Theme.of(context).textTheme;
     final user = ref.watch(sessionControllerProvider.select((s) => s.session?.user));
-    final hour = DateTime.now().hour;
+    // clock y no DateTime: los goldens fijan la hora para que el saludo no dependa de cuándo se ejecutan
+    final hour = clock.now().hour;
     final greeting = hour < 12 ? l10n.greetingMorning : (hour < 20 ? l10n.greetingAfternoon : l10n.greetingEvening);
     final languageName = profile == null ? null : ref.watch(languagesProvider).value?.nameOf(profile!.targetLanguage);
     return SliverToBoxAdapter(

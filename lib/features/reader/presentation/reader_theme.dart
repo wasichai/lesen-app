@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../app/theme/explorations/directions.dart';
+import '../../../app/theme/directions/directions.dart';
 import '../../../app/theme/theme.dart';
 import '../../../app/theme/tokens.dart';
 import '../domain/reader_preferences.dart';
@@ -19,8 +19,8 @@ class ReaderPalette {
     this.tokens,
   });
 
-  /// El papel de [theme] en la dirección de diseño [direction] (por defecto, «Papel y tinta»).
-  factory ReaderPalette.of(ReaderTheme theme, {DesignDirection direction = DesignDirection.actual}) => direction.reader(theme) ?? ReaderPalette._paper(theme);
+  /// El papel de [theme] en la identidad [direction] (sin ella, «Papel y tinta»).
+  factory ReaderPalette.of(ReaderTheme theme, {DesignDirection direction = DesignDirection.papel}) => direction.reader(theme) ?? ReaderPalette._paper(theme);
 
   factory ReaderPalette._paper(ReaderTheme theme) => switch (theme) {
     ReaderTheme.light => const ReaderPalette(

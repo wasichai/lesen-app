@@ -7,8 +7,7 @@ import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lesen/app/app.dart';
 import 'package:lesen/app/config.dart';
-import 'package:lesen/app/design_lab/design_lab.dart';
-import 'package:lesen/app/theme/explorations/directions.dart';
+import 'package:lesen/app/theme/directions/directions.dart';
 import 'package:lesen/app/theme/theme.dart';
 import 'package:lesen/core/audio/narration_engine.dart';
 import 'package:lesen/features/audio/application/playback_controller.dart';
@@ -21,6 +20,7 @@ import 'package:lesen/core/storage/files.dart';
 import 'package:lesen/core/storage/local_store.dart';
 import 'package:lesen/core/sync/sync.dart';
 import 'package:lesen/features/downloads/application/downloads_controller.dart';
+import 'package:lesen/features/profile/application/appearance_providers.dart';
 import 'package:lesen/l10n/app_localizations.dart';
 
 import 'fake_backend.dart';
@@ -63,14 +63,37 @@ List<Override> backendOverrides(
   reminderSchedulerProvider.overrideWithValue(reminders ?? FakeReminderScheduler()),
 ];
 
-/// Fija la dirección de diseño y el brillo sin pasar por el laboratorio; con los valores por defecto no cambia nada.
-List<Override> designOverrides(DesignDirection direction, Brightness? brightness) => [
-  if (direction != DesignDirection.actual) designDirectionProvider.overrideWith(() => DesignDirectionController(direction)),
-  if (brightness != null)
-    designThemeModeProvider.overrideWith(() => DesignThemeModeController(brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light)),
+/// Una apariencia fija, sin leer el almacén local.
+class FixedAppearance extends AppearanceController {
+  FixedAppearance(this.initial);
+
+  final Appearance initial;
+
+  @override
+  Appearance build() {
+    loaded = Future.value();
+    return initial;
+  }
+}
+
+/// Fija la identidad y el brillo sin pasar por el perfil; sin ellos, la app arranca como siempre (Musgo y el sistema).
+List<Override> appearanceOverrides(DesignDirection? direction, Brightness? brightness) => [
+  if (direction != null || brightness != null)
+    appearanceProvider.overrideWith(
+      () => FixedAppearance(
+        Appearance(
+          direction: direction ?? DesignDirection.fallback,
+          themeMode: switch (brightness) {
+            Brightness.dark => ThemeMode.dark,
+            Brightness.light => ThemeMode.light,
+            null => ThemeMode.system,
+          },
+        ),
+      ),
+    ),
 ];
 
-/// La app entera contra un [FakeBackend], en «Papel y tinta» o en la dirección de diseño [direction].
+/// La app entera contra un [FakeBackend]; [direction] y [brightness] fijan la apariencia.
 Future<ProviderContainer> pumpLesenApp(
   WidgetTester tester,
   FakeBackend backend, {
@@ -80,7 +103,7 @@ Future<ProviderContainer> pumpLesenApp(
   Directory? files,
   ReminderScheduler? reminders,
   Size size = const Size(390, 844),
-  DesignDirection direction = DesignDirection.actual,
+  DesignDirection? direction,
   Brightness? brightness,
   AppConfig config = testConfig,
 }) async {
@@ -94,7 +117,7 @@ Future<ProviderContainer> pumpLesenApp(
     retry: (_, _) => null,
     overrides: [
       ...backendOverrides(backend, store: store, local: local, engine: engine, files: files, reminders: reminders, config: config),
-      ...designOverrides(direction, brightness),
+      ...appearanceOverrides(direction, brightness),
     ],
   );
   addTearDown(container.dispose);
@@ -110,7 +133,7 @@ Future<void> pumpWidgetUnderTest(
   List<Override> overrides = const [],
   Size size = const Size(390, 844),
   Locale locale = const Locale('es'),
-  DesignDirection direction = DesignDirection.actual,
+  DesignDirection direction = DesignDirection.fallback,
   Brightness brightness = Brightness.light,
 }) async {
   tester.view.devicePixelRatio = 1;
@@ -119,10 +142,7 @@ Future<void> pumpWidgetUnderTest(
   await tester.pumpWidget(
     ProviderScope(
       retry: (_, _) => null,
-      overrides: [
-        ...(overrides.isEmpty ? [appConfigProvider.overrideWithValue(testConfig)] : overrides),
-        ...designOverrides(direction, null),
-      ],
+      overrides: overrides.isEmpty ? [appConfigProvider.overrideWithValue(testConfig)] : overrides,
       child: MaterialApp(
         theme: buildTheme(brightness, tokens: direction.tokens(brightness)),
         locale: locale,

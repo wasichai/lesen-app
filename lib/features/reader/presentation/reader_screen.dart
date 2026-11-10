@@ -5,7 +5,6 @@ import 'package:flutter/rendering.dart' show ScrollCacheExtent;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../app/design_lab/design_lab.dart';
 import '../../../app/l10n.dart';
 import '../../../app/routing/routes.dart';
 import '../../../core/networking/api_failure.dart';
@@ -17,6 +16,7 @@ import '../../catalog/application/catalog_providers.dart';
 import '../../catalog/domain/reading.dart';
 import '../../comprehension/application/comprehension_providers.dart';
 import '../../library/data/library_repository.dart';
+import '../../profile/application/appearance_providers.dart';
 import '../../profile/application/profile_providers.dart';
 import '../application/reader_providers.dart';
 import '../application/reading_tracker.dart';
@@ -40,7 +40,10 @@ class ReaderScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final session = ref.watch(readerSessionProvider(slug));
-    final palette = ReaderPalette.of(ref.watch(readerPreferencesProvider.select((p) => p.theme)), direction: ref.watch(designDirectionProvider));
+    final palette = ReaderPalette.of(
+      ref.watch(readerPreferencesProvider.select((p) => p.theme)),
+      direction: ref.watch(appearanceProvider.select((a) => a.direction)),
+    );
     return Theme(
       data: palette.theme(),
       child: switch (session) {

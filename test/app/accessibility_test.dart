@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lesen/app/routing/router.dart';
 import 'package:lesen/app/routing/routes.dart';
-import 'package:lesen/app/theme/explorations/directions.dart';
+import 'package:lesen/app/theme/directions/directions.dart';
 import 'package:lesen/core/session/session_store.dart';
 import 'package:lesen/features/reader/domain/reader_preferences.dart';
 import 'package:lesen/features/reader/presentation/reader_theme.dart';
@@ -27,7 +27,7 @@ double contrast(Color a, Color b) {
 }
 
 void main() {
-  // «Papel y tinta» y las cuatro direcciones del laboratorio cumplen los mismos umbrales
+  // las cinco identidades (ADR-0011) cumplen los mismos umbrales
   for (final direction in DesignDirection.values) {
     group('contraste AA de los tokens, ${direction.label} (como lesen-ui/src/theme/lesen.test.ts)', () {
       for (final (name, t) in [('claro', direction.tokens(Brightness.light)), ('oscuro', direction.tokens(Brightness.dark))]) {
@@ -55,7 +55,7 @@ void main() {
   final routes = {...profileRoute(), ...FakeBackend.readingRoutes('der-alte-leuchtturm'), ...notebookRoutes(), ...progressRoutes()};
 
   for (final direction in DesignDirection.values) {
-    final suffix = direction == DesignDirection.actual ? '' : ' (${direction.label})';
+    final suffix = direction == DesignDirection.papel ? '' : ' (${direction.label})';
     for (final (name, location) in [
       ('Descubrir', Routes.discover),
       ('catálogo', Routes.catalog),

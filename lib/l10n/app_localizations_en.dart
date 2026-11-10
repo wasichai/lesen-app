@@ -1759,4 +1759,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signOutAnyway => 'Sign out anyway';
+
+  @override
+  String get appearanceTitle => 'Appearance';
+
+  @override
+  String get appearanceIdentity => 'Identity';
+
+  @override
+  String appearanceNote(String direction) {
+    String _temp0 = intl.Intl.selectLogic(direction, {
+      'musgo': 'Natural calm: sand, moss and slate. The default.',
+      'gaceta': 'Editorial: ivory, midnight blue and oxblood.',
+      'pulso': 'Vibrant: indigo and coral, round shapes.',
+      'atlas': 'Minimal: near white, near black and ultramarine.',
+      'other': 'The classic: warm paper, ink and terracotta.',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get appearanceMode => 'Mode';
+
+  @override
+  String get appearanceModeSystem => 'System';
+
+  @override
+  String get appearanceModeLight => 'Light';
+
+  @override
+  String get appearanceModeDark => 'Dark';
 }

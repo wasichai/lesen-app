@@ -17,6 +17,7 @@ dependencies:
   flutter_svg: ^2.3.2
   connectivity_plus: ^7.3.2
   intl: ^0.20.3
+  clock: ^1.1.3
   flutter_localizations:
     sdk: flutter
   drift: ^2.35.4
@@ -36,11 +37,6 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
-  # fuentes del laboratorio de diseño (docs/design/README.md): solo en el flavor dev, se cargan con FontLoader
-  assets:
-    - path: assets/fonts/explore/
-      flavors:
-        - dev
   fonts:
     - family: Newsreader
       fonts:
@@ -51,4 +47,38 @@ flutter:
       fonts:
         - asset: assets/fonts/SourceSans3.ttf
         - asset: assets/fonts/SourceSans3-Italic.ttf
+          style: italic
+    # identidades seleccionables (ADR-0011): variables en peso, subconjunto latin, latin-ext y AFI (docs/design/README.md)
+    - family: Fraunces
+      fonts:
+        - asset: assets/fonts/Fraunces.ttf
+        - asset: assets/fonts/Fraunces-Italic.ttf
+          style: italic
+    - family: Source Serif 4
+      fonts:
+        - asset: assets/fonts/SourceSerif4.ttf
+        - asset: assets/fonts/SourceSerif4-Italic.ttf
+          style: italic
+    - family: IBM Plex Sans
+      fonts:
+        - asset: assets/fonts/IBMPlexSans.ttf
+        - asset: assets/fonts/IBMPlexSans-Italic.ttf
+          style: italic
+    - family: Plus Jakarta Sans
+      fonts:
+        - asset: assets/fonts/PlusJakartaSans.ttf
+        - asset: assets/fonts/PlusJakartaSans-Italic.ttf
+          style: italic
+    - family: Literata
+      fonts:
+        - asset: assets/fonts/Literata.ttf
+        - asset: assets/fonts/Literata-Italic.ttf
+          style: italic
+    - family: Manrope
+      fonts:
+        - asset: assets/fonts/Manrope.ttf
+    - family: Geist
+      fonts:
+        - asset: assets/fonts/Geist.ttf
+        - asset: assets/fonts/Geist-Italic.ttf
           style: italic

@@ -1,5 +1,5 @@
-// Generado a partir de lesen-ui/docs/design-system/lesen/explorations/tokens/atlas.json (docs/design/README.md).
-// Si la dirección cambia allí, se vuelve a generar; test/app/design_directions_test.dart lo comprueba.
+// Generado a partir de lesen-ui/docs/design-system/lesen/explorations/tokens/atlas.json (docs/design/README.md,
+// ADR-0011). Si cambia allí, se vuelve a generar; test/app/design_directions_test.dart lo comprueba.
 import 'package:flutter/material.dart';
 
 import '../../../features/reader/domain/reader_preferences.dart';
