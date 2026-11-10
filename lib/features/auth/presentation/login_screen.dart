@@ -138,7 +138,7 @@ class _Notice extends StatelessWidget {
       liveRegion: live,
       child: Container(
         padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(LesenTokens.radiusMd)),
+        decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(LesenTokens.of(context).radiusMd)),
         child: Row(
           children: [
             Icon(Icons.info_outline, color: LesenTokens.of(context).brandStrong),

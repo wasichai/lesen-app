@@ -92,7 +92,7 @@ class _Body extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [t.brandSoft, t.surfaceRaised]),
-        borderRadius: BorderRadius.circular(LesenTokens.radiusCard),
+        borderRadius: BorderRadius.circular(t.radiusCard),
       ),
       child: Row(
         children: [
@@ -115,7 +115,7 @@ class _Body extends StatelessWidget {
 
     final week = Container(
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: t.surfaceRaised, borderRadius: BorderRadius.circular(LesenTokens.radiusCard)),
+      decoration: BoxDecoration(color: t.surfaceRaised, borderRadius: BorderRadius.circular(t.radiusCard)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -220,7 +220,7 @@ class _Body extends StatelessWidget {
           l10n.progressLevel,
           Container(
             padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(color: t.surfaceRaised, borderRadius: BorderRadius.circular(LesenTokens.radiusLg)),
+            decoration: BoxDecoration(color: t.surfaceRaised, borderRadius: BorderRadius.circular(t.radiusLg)),
             child: Row(
               children: [
                 Text(d.level, style: text.displaySmall?.copyWith(color: t.brandStrong)),

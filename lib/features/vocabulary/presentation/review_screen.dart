@@ -82,7 +82,7 @@ class _CardView extends ConsumerWidget {
           Text(
             item.context!,
             textAlign: TextAlign.center,
-            style: text.bodyLarge?.copyWith(fontFamily: 'Newsreader', fontStyle: FontStyle.italic),
+            style: text.bodyLarge?.copyWith(fontFamily: t.readingFont, fontStyle: FontStyle.italic),
             locale: locale,
           ),
         ],
@@ -118,7 +118,7 @@ class _CardView extends ConsumerWidget {
                       padding: const EdgeInsets.all(24),
                       decoration: BoxDecoration(
                         color: t.surfaceRaised,
-                        borderRadius: BorderRadius.circular(LesenTokens.radiusXl),
+                        borderRadius: BorderRadius.circular(t.radiusXl),
                         boxShadow: [BoxShadow(color: t.ink.withValues(alpha: 0.06), blurRadius: 24, offset: const Offset(0, 8))],
                       ),
                       child: SingleChildScrollView(

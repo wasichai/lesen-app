@@ -3157,6 +3157,48 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Cerrar sesión igualmente'**
   String get signOutAnyway;
+
+  /// No description provided for @appearanceTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Apariencia'**
+  String get appearanceTitle;
+
+  /// No description provided for @appearanceIdentity.
+  ///
+  /// In es, this message translates to:
+  /// **'Identidad'**
+  String get appearanceIdentity;
+
+  /// Nota corta de una identidad visual del perfil (ADR-0011)
+  ///
+  /// In es, this message translates to:
+  /// **'{direction, select, musgo{Calma natural: arena, musgo y pizarra. La de por defecto.} gaceta{Editorial: marfil, azul noche y burdeos.} pulso{Vibrante: índigo y coral, formas redondas.} atlas{Mínima: casi blanco, casi negro y ultramar.} other{La clásica: papel cálido, tinta y terracota.}}'**
+  String appearanceNote(String direction);
+
+  /// No description provided for @appearanceMode.
+  ///
+  /// In es, this message translates to:
+  /// **'Modo'**
+  String get appearanceMode;
+
+  /// No description provided for @appearanceModeSystem.
+  ///
+  /// In es, this message translates to:
+  /// **'Sistema'**
+  String get appearanceModeSystem;
+
+  /// No description provided for @appearanceModeLight.
+  ///
+  /// In es, this message translates to:
+  /// **'Claro'**
+  String get appearanceModeLight;
+
+  /// No description provided for @appearanceModeDark.
+  ///
+  /// In es, this message translates to:
+  /// **'Oscuro'**
+  String get appearanceModeDark;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

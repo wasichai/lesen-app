@@ -9,10 +9,12 @@ import '../../domain/reading.dart';
 /// Portada de una lectura. Mientras carga (o si no hay), una composición con su color de acento y su título: nunca un
 /// rectángulo gris.
 class CoverImage extends ConsumerWidget {
-  const CoverImage({super.key, required this.reading, this.radius = LesenTokens.radiusCard, this.aspectRatio = 4 / 3});
+  const CoverImage({super.key, required this.reading, this.radius, this.aspectRatio = 4 / 3});
 
   final ReadingCard reading;
-  final double radius;
+
+  /// Radio de las esquinas; por defecto el de las tarjetas del tema.
+  final double? radius;
   final double aspectRatio;
 
   @override
@@ -24,7 +26,7 @@ class CoverImage extends ConsumerWidget {
       child: AspectRatio(
         aspectRatio: aspectRatio,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(radius),
+          borderRadius: BorderRadius.circular(radius ?? LesenTokens.of(context).radiusCard),
           child: cover == null
               ? fallback
               : switch (ref.watch(coverBytesProvider(cover))) {
@@ -63,7 +65,7 @@ class _CoverFallback extends StatelessWidget {
                 reading.title,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontFamily: 'Newsreader', fontSize: 22, fontWeight: FontWeight.w600, color: Colors.white, height: 1.1),
+                style: TextStyle(fontFamily: LesenTokens.of(context).displayFont, fontSize: 22, fontWeight: FontWeight.w600, color: Colors.white, height: 1.1),
               ),
             ),
           ),

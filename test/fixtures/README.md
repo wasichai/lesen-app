@@ -13,3 +13,7 @@ Copiadas de `wasichai/lesen-ui/e2e/fixtures/`, que las captura del backend real 
 - `progress.json`: panel, resumen semanal, logros, metas y listas capturados del backend local (2026-11-09).
 
 Al cambiar el contrato del backend, se vuelven a capturar allí y se copian aquí.
+
+- `design/{gaceta,pulso,musgo,atlas}.json`: las identidades visuales (ADR-0011), copiadas de
+  `wasichai/lesen-ui/docs/design-system/lesen/explorations/tokens/`. La prueba de paridad
+  (`test/app/design_directions_test.dart`) comprueba que `lib/app/theme/explorations/` dice lo mismo.

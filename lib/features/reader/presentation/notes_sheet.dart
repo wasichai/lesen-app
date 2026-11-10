@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/l10n.dart';
+import '../../../app/theme/tokens.dart';
 import '../../../core/networking/api_failure.dart';
 import '../../../core/widgets/feedback_views.dart';
 import '../application/reader_providers.dart';
@@ -54,7 +55,7 @@ class _NotesSheet extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('«${n.quote}»', style: text.bodyLarge?.copyWith(fontFamily: 'Newsreader')),
+                      Text('«${n.quote}»', style: text.bodyLarge?.copyWith(fontFamily: LesenTokens.of(context).readingFont)),
                       if (n.note != null)
                         Padding(
                           padding: const EdgeInsets.only(top: 6),

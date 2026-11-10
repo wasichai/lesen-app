@@ -1,0 +1,7 @@
+# Configuración de package:test, que también lee `flutter test`.
+tags:
+  # Goldens de las identidades visuales (docs/design/README.md). Dependen de la plataforma que los dibuja, así que se
+  # saltan en la ejecución por defecto y se piden con `flutter test --tags design --run-skipped`. Un `exclude_tags`
+  # no serviría: package:test lo combina con `--tags` y entonces no se podrían pedir nunca.
+  design:
+    skip: 'goldens de las identidades visuales: flutter test --tags design --run-skipped'

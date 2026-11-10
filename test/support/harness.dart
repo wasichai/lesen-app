@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lesen/app/app.dart';
 import 'package:lesen/app/config.dart';
+import 'package:lesen/app/theme/directions/directions.dart';
 import 'package:lesen/app/theme/theme.dart';
 import 'package:lesen/core/audio/narration_engine.dart';
 import 'package:lesen/features/audio/application/playback_controller.dart';
@@ -19,6 +20,7 @@ import 'package:lesen/core/storage/files.dart';
 import 'package:lesen/core/storage/local_store.dart';
 import 'package:lesen/core/sync/sync.dart';
 import 'package:lesen/features/downloads/application/downloads_controller.dart';
+import 'package:lesen/features/profile/application/appearance_providers.dart';
 import 'package:lesen/l10n/app_localizations.dart';
 
 import 'fake_backend.dart';
@@ -48,8 +50,9 @@ List<Override> backendOverrides(
   Directory? files,
   bool wifi = true,
   ReminderScheduler? reminders,
+  AppConfig config = testConfig,
 }) => [
-  appConfigProvider.overrideWithValue(testConfig),
+  appConfigProvider.overrideWithValue(config),
   httpAdapterProvider.overrideWithValue(backend),
   sessionStoreProvider.overrideWithValue(store ?? MemorySessionStore()),
   localStoreProvider.overrideWithValue(local ?? MemoryLocalStore()),
@@ -60,7 +63,37 @@ List<Override> backendOverrides(
   reminderSchedulerProvider.overrideWithValue(reminders ?? FakeReminderScheduler()),
 ];
 
-/// La app entera contra un [FakeBackend].
+/// Una apariencia fija, sin leer el almacén local.
+class FixedAppearance extends AppearanceController {
+  FixedAppearance(this.initial);
+
+  final Appearance initial;
+
+  @override
+  Appearance build() {
+    loaded = Future.value();
+    return initial;
+  }
+}
+
+/// Fija la identidad y el brillo sin pasar por el perfil; sin ellos, la app arranca como siempre (Musgo y el sistema).
+List<Override> appearanceOverrides(DesignDirection? direction, Brightness? brightness) => [
+  if (direction != null || brightness != null)
+    appearanceProvider.overrideWith(
+      () => FixedAppearance(
+        Appearance(
+          direction: direction ?? DesignDirection.fallback,
+          themeMode: switch (brightness) {
+            Brightness.dark => ThemeMode.dark,
+            Brightness.light => ThemeMode.light,
+            null => ThemeMode.system,
+          },
+        ),
+      ),
+    ),
+];
+
+/// La app entera contra un [FakeBackend]; [direction] y [brightness] fijan la apariencia.
 Future<ProviderContainer> pumpLesenApp(
   WidgetTester tester,
   FakeBackend backend, {
@@ -70,6 +103,9 @@ Future<ProviderContainer> pumpLesenApp(
   Directory? files,
   ReminderScheduler? reminders,
   Size size = const Size(390, 844),
+  DesignDirection? direction,
+  Brightness? brightness,
+  AppConfig config = testConfig,
 }) async {
   tester.view.devicePixelRatio = 1;
   tester.view.physicalSize = size;
@@ -79,7 +115,10 @@ Future<ProviderContainer> pumpLesenApp(
   addTearDown(tester.platformDispatcher.clearAllTestValues);
   final container = ProviderContainer(
     retry: (_, _) => null,
-    overrides: backendOverrides(backend, store: store, local: local, engine: engine, files: files, reminders: reminders),
+    overrides: [
+      ...backendOverrides(backend, store: store, local: local, engine: engine, files: files, reminders: reminders, config: config),
+      ...appearanceOverrides(direction, brightness),
+    ],
   );
   addTearDown(container.dispose);
   await tester.pumpWidget(UncontrolledProviderScope(container: container, child: const LesenApp()));
@@ -94,6 +133,8 @@ Future<void> pumpWidgetUnderTest(
   List<Override> overrides = const [],
   Size size = const Size(390, 844),
   Locale locale = const Locale('es'),
+  DesignDirection direction = DesignDirection.fallback,
+  Brightness brightness = Brightness.light,
 }) async {
   tester.view.devicePixelRatio = 1;
   tester.view.physicalSize = size;
@@ -103,7 +144,7 @@ Future<void> pumpWidgetUnderTest(
       retry: (_, _) => null,
       overrides: overrides.isEmpty ? [appConfigProvider.overrideWithValue(testConfig)] : overrides,
       child: MaterialApp(
-        theme: buildTheme(Brightness.light),
+        theme: buildTheme(brightness, tokens: direction.tokens(brightness)),
         locale: locale,
         supportedLocales: AppLocalizations.supportedLocales,
         localizationsDelegates: const [

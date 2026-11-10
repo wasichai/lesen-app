@@ -102,7 +102,7 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
         const SizedBox(height: 20),
         Text(
           r.summary,
-          style: text.bodyLarge?.copyWith(fontFamily: 'Newsreader', fontSize: 19, height: 1.55),
+          style: text.bodyLarge?.copyWith(fontFamily: t.readingFont, fontSize: 19, height: 1.55),
           locale: locale,
         ),
         const SizedBox(height: 24),

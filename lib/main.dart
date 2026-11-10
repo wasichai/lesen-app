@@ -7,6 +7,7 @@ import 'core/audio/just_audio_engine.dart';
 import 'core/audio/narration_engine.dart';
 import 'core/networking/api_client.dart';
 import 'features/audio/application/playback_controller.dart';
+import 'features/profile/application/appearance_providers.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,12 +19,12 @@ Future<void> main() async {
     // sin servicio del sistema (p. ej. la compilación web de desarrollo) la narración suena igual, sin esos controles
     engine = LesenAudioHandler();
   }
-  runApp(
-    ProviderScope(
-      // los fallos se muestran con su botón de reintento; Riverpod no reintenta por su cuenta
-      retry: (_, _) => null,
-      overrides: [appConfigProvider.overrideWithValue(AppConfig.fromEnvironment()), narrationEngineProvider.overrideWithValue(engine)],
-      child: const LesenApp(),
-    ),
+  final container = ProviderContainer(
+    // los fallos se muestran con su botón de reintento; Riverpod no reintenta por su cuenta
+    retry: (_, _) => null,
+    overrides: [appConfigProvider.overrideWithValue(AppConfig.fromEnvironment()), narrationEngineProvider.overrideWithValue(engine)],
   );
+  // la identidad guardada se lee antes del primer fotograma, para no pintar Musgo y saltar a la elegida
+  await container.read(appearanceProvider.notifier).loaded;
+  runApp(UncontrolledProviderScope(container: container, child: const LesenApp()));
 }
