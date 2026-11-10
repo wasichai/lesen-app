@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../../../app/l10n.dart';
 import '../../../app/routing/routes.dart';
+import '../../../app/theme/tokens.dart';
 import '../../../core/networking/api_failure.dart';
 import '../application/vocabulary_providers.dart';
 import '../data/vocabulary_repository.dart';
@@ -97,7 +98,7 @@ class _VocabularyItemSheetState extends ConsumerState<VocabularyItemSheet> {
             ),
             if (item.pos != null) Text(item.pos!, style: text.labelMedium),
             const SizedBox(height: 8),
-            Text(item.translations.join(', '), style: text.titleLarge?.copyWith(fontFamily: 'SourceSans3')),
+            Text(item.translations.join(', '), style: text.titleLarge?.copyWith(fontFamily: LesenTokens.of(context).interfaceFont)),
             if (item.context != null) ...[
               const SizedBox(height: 16),
               Container(
@@ -109,7 +110,7 @@ class _VocabularyItemSheetState extends ConsumerState<VocabularyItemSheet> {
                   children: [
                     Text(
                       item.context!,
-                      style: text.bodyLarge?.copyWith(fontFamily: 'Newsreader', fontSize: 18),
+                      style: text.bodyLarge?.copyWith(fontFamily: LesenTokens.of(context).readingFont, fontSize: 18),
                       locale: Locale(item.language),
                     ),
                     if (item.source != null) ...[const SizedBox(height: 6), Text(l10n.vocabFrom(item.source!.title), style: text.bodySmall)],

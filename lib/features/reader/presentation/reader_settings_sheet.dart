@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/l10n.dart';
+import '../../../app/theme/tokens.dart';
 import '../application/reader_providers.dart';
 import '../domain/reader_preferences.dart';
 import 'reader_theme.dart';
@@ -66,7 +67,7 @@ class ReaderSettingsSheet extends ConsumerWidget {
                 child: Text(
                   'Aa',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontFamily: 'Newsreader', fontSize: p.fontSize),
+                  style: TextStyle(fontFamily: LesenTokens.of(context).readingFont, fontSize: p.fontSize),
                   semanticsLabel: '${l10n.settingsSize}: ${p.fontSize.round()}',
                 ),
               ),

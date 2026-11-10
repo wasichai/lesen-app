@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import '../../../../app/theme/tokens.dart';
 import '../../../audio/application/playback_controller.dart';
 import '../../../vocabulary/domain/known_words.dart';
 import '../../domain/reader_preferences.dart';
@@ -142,7 +143,13 @@ class ParagraphViewState extends State<ParagraphView> {
     }());
     final prefs = widget.preferences;
     final palette = widget.palette;
-    final base = TextStyle(fontFamily: 'Newsreader', fontSize: prefs.fontSize, height: prefs.leading.height, color: palette.ink, letterSpacing: 0.05);
+    final base = TextStyle(
+      fontFamily: LesenTokens.of(context).readingFont,
+      fontSize: prefs.fontSize,
+      height: prefs.leading.height,
+      color: palette.ink,
+      letterSpacing: 0.05,
+    );
     final spans = <InlineSpan>[];
     var offset = 0;
     _sentenceStart.clear();
@@ -219,7 +226,13 @@ class ParagraphViewState extends State<ParagraphView> {
               ),
               child: Text(
                 widget.translation!,
-                style: TextStyle(fontFamily: 'SourceSans3', fontSize: prefs.fontSize * 0.78, height: 1.5, color: palette.inkMuted, fontStyle: FontStyle.italic),
+                style: TextStyle(
+                  fontFamily: LesenTokens.of(context).interfaceFont,
+                  fontSize: prefs.fontSize * 0.78,
+                  height: 1.5,
+                  color: palette.inkMuted,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
             ),
           ),

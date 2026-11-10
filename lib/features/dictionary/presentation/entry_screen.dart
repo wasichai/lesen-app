@@ -136,7 +136,7 @@ class _EntryBodyState extends ConsumerState<_EntryBody> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('${i + 1}. ${s.translations.join(', ')}', style: text.titleLarge?.copyWith(fontFamily: 'SourceSans3')),
+                      Text('${i + 1}. ${s.translations.join(', ')}', style: text.titleLarge?.copyWith(fontFamily: t.interfaceFont)),
                       if (s.definition != null) Text(s.definition!, style: text.bodyMedium),
                       for (final ex in s.examples)
                         Padding(
@@ -146,7 +146,7 @@ class _EntryBodyState extends ConsumerState<_EntryBody> {
                             children: [
                               Text(
                                 ex.text,
-                                style: text.bodyLarge?.copyWith(fontFamily: 'Newsreader', fontStyle: FontStyle.italic),
+                                style: text.bodyLarge?.copyWith(fontFamily: t.readingFont, fontStyle: FontStyle.italic),
                                 locale: locale,
                               ),
                               if (ex.translation != null) Text(ex.translation!, style: text.bodySmall),

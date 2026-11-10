@@ -46,7 +46,7 @@ class _Choices extends StatelessWidget {
         if (question.type == QuestionType.VOCABULARY_IN_CONTEXT && question.word != null) ...[
           Container(
             padding: const EdgeInsets.all(14),
-            decoration: BoxDecoration(color: t.surfaceMuted, borderRadius: BorderRadius.circular(LesenTokens.radiusLg)),
+            decoration: BoxDecoration(color: t.surfaceMuted, borderRadius: BorderRadius.circular(t.radiusLg)),
             child: Text.rich(
               TextSpan(
                 children: _highlight(
@@ -55,7 +55,7 @@ class _Choices extends StatelessWidget {
                   TextStyle(fontWeight: FontWeight.w700, backgroundColor: t.markSaved),
                 ),
               ),
-              style: text.bodyLarge?.copyWith(fontFamily: 'Newsreader', fontSize: 19),
+              style: text.bodyLarge?.copyWith(fontFamily: t.readingFont, fontSize: 19),
               locale: Locale(language),
             ),
           ),
@@ -109,11 +109,11 @@ class _OptionTile extends StatelessWidget {
       child: Material(
         color: selected ? t.brandSoft : t.surfaceRaised,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(LesenTokens.radiusLg),
+          borderRadius: BorderRadius.circular(t.radiusLg),
           side: BorderSide(color: selected ? t.brand : t.inkMuted.withValues(alpha: 0.25), width: selected ? 2 : 1),
         ),
         child: InkWell(
-          borderRadius: BorderRadius.circular(LesenTokens.radiusLg),
+          borderRadius: BorderRadius.circular(t.radiusLg),
           onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
@@ -190,7 +190,7 @@ class _Completion extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(color: t.surfaceMuted, borderRadius: BorderRadius.circular(LesenTokens.radiusLg)),
+          decoration: BoxDecoration(color: t.surfaceMuted, borderRadius: BorderRadius.circular(t.radiusLg)),
           child: Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
             runSpacing: 8,
@@ -199,7 +199,7 @@ class _Completion extends StatelessWidget {
                 if (p.blank == null)
                   Text(
                     p.text ?? '',
-                    style: text.bodyLarge?.copyWith(fontFamily: 'Newsreader', fontSize: 19),
+                    style: text.bodyLarge?.copyWith(fontFamily: t.readingFont, fontSize: 19),
                     locale: Locale(language),
                   )
                 else

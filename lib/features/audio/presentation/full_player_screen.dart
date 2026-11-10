@@ -48,7 +48,7 @@ class FullPlayerScreen extends ConsumerWidget {
                 key: ValueKey(s?.id),
                 constraints: const BoxConstraints(minHeight: 96),
                 padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(color: t.surfaceMuted, borderRadius: BorderRadius.circular(LesenTokens.radiusLg)),
+                decoration: BoxDecoration(color: t.surfaceMuted, borderRadius: BorderRadius.circular(t.radiusLg)),
                 child: Text(
                   s?.text ?? '',
                   textAlign: TextAlign.center,

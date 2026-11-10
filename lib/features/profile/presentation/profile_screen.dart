@@ -62,7 +62,7 @@ class ProfileScreen extends ConsumerWidget {
               Card(
                 elevation: 0,
                 color: t.surfaceRaised,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(LesenTokens.radiusCard)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(t.radiusCard)),
                 child: Column(
                   children: [
                     ListTile(title: Text(l10n.profileInterface), trailing: Text(languages?.nameOf(p.interfaceLanguage) ?? p.interfaceLanguage)),

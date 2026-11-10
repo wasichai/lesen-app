@@ -67,7 +67,7 @@ class _Result extends ConsumerWidget {
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: [t.brandSoft, t.surfaceRaised]),
-            borderRadius: BorderRadius.circular(LesenTokens.radiusCard),
+            borderRadius: BorderRadius.circular(t.radiusCard),
           ),
           child: Row(
             children: [
@@ -160,11 +160,11 @@ class _AnswerCard extends ConsumerWidget {
     final t = LesenTokens.of(context);
     final text = Theme.of(context).textTheme;
     final (icon, color) = switch (outcome.result) {
-      AnswerResult.CORRECT => (Icons.check_circle, LesenTokens.tones[1]),
-      AnswerResult.PARTIAL => (Icons.timelapse, LesenTokens.tones[2]),
+      AnswerResult.CORRECT => (Icons.check_circle, t.tones[1]),
+      AnswerResult.PARTIAL => (Icons.timelapse, t.tones[2]),
       AnswerResult.INCORRECT => (Icons.cancel_outlined, t.brand),
       AnswerResult.PENDING => (Icons.hourglass_top, t.inkMuted),
-      _ => (Icons.rate_review_outlined, LesenTokens.tones[0]),
+      _ => (Icons.rate_review_outlined, t.tones[0]),
     };
     final evaluator = switch (outcome.evaluator) {
       Evaluator.AI => l10n.quizAssisted,
@@ -180,7 +180,7 @@ class _AnswerCard extends ConsumerWidget {
       margin: const EdgeInsets.only(bottom: 12),
       color: t.surfaceRaised,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(LesenTokens.radiusLg),
+        borderRadius: BorderRadius.circular(t.radiusLg),
         side: BorderSide(color: color.withValues(alpha: 0.4)),
       ),
       child: Padding(
@@ -218,7 +218,7 @@ class _AnswerCard extends ConsumerWidget {
                     ),
                     child: Text(
                       q,
-                      style: text.bodyMedium?.copyWith(fontFamily: 'Newsreader', fontStyle: FontStyle.italic),
+                      style: text.bodyMedium?.copyWith(fontFamily: t.readingFont, fontStyle: FontStyle.italic),
                       locale: content == null ? null : Locale(content!.language),
                     ),
                   ),

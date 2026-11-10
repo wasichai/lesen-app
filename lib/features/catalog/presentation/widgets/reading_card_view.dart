@@ -28,7 +28,7 @@ class ReadingCardView extends ConsumerWidget {
       excludeSemantics: true,
       child: Material(
         color: t.surfaceRaised,
-        borderRadius: BorderRadius.circular(LesenTokens.radiusCard),
+        borderRadius: BorderRadius.circular(t.radiusCard),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: onTap,
@@ -44,7 +44,7 @@ class ReadingCardView extends ConsumerWidget {
                       top: 10,
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(color: t.ink.withValues(alpha: 0.78), borderRadius: BorderRadius.circular(LesenTokens.radiusSm)),
+                        decoration: BoxDecoration(color: t.ink.withValues(alpha: 0.78), borderRadius: BorderRadius.circular(t.radiusSm)),
                         child: Text(badge!, style: text.labelSmall?.copyWith(color: t.surface)),
                       ),
                     ),
@@ -107,7 +107,7 @@ class ReadingListTile extends ConsumerWidget {
       excludeSemantics: true,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(LesenTokens.radiusLg),
+        borderRadius: BorderRadius.circular(t.radiusLg),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Row(
@@ -115,7 +115,7 @@ class ReadingListTile extends ConsumerWidget {
             children: [
               SizedBox(
                 width: 104,
-                child: CoverImage(reading: reading, radius: LesenTokens.radiusLg, aspectRatio: 1),
+                child: CoverImage(reading: reading, radius: t.radiusLg, aspectRatio: 1),
               ),
               const SizedBox(width: 14),
               Expanded(

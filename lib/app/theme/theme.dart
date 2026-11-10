@@ -2,21 +2,19 @@ import 'package:flutter/material.dart';
 
 import 'tokens.dart';
 
-const readingFont = 'Newsreader';
-const interfaceFont = 'SourceSans3';
-
-ThemeData buildTheme(Brightness brightness) {
-  final t = brightness == Brightness.light ? LesenTokens.light : LesenTokens.dark;
-  final onBrand = brightness == Brightness.light ? Colors.white : const Color(0xFF2A130B);
+/// El tema de la app para un brillo; [tokens] cambia la dirección de diseño (por defecto, «Papel y tinta»).
+ThemeData buildTheme(Brightness brightness, {LesenTokens? tokens}) {
+  final t = tokens ?? (brightness == Brightness.light ? LesenTokens.light : LesenTokens.dark);
+  final onBrand = t.onBrand;
   final scheme = ColorScheme(
     brightness: brightness,
     primary: t.brand,
     onPrimary: onBrand,
     primaryContainer: t.brandSoft,
     onPrimaryContainer: t.brandStrong,
-    secondary: LesenTokens.tones[0],
+    secondary: t.tones[0],
     onSecondary: Colors.white,
-    tertiary: LesenTokens.tones[2],
+    tertiary: t.tones[2],
     onTertiary: Colors.white,
     error: const Color(0xFFB3261E),
     onError: Colors.white,
@@ -32,31 +30,33 @@ ThemeData buildTheme(Brightness brightness) {
     outlineVariant: t.inkMuted.withValues(alpha: 0.2),
   );
 
-  final base = ThemeData(useMaterial3: true, colorScheme: scheme, fontFamily: interfaceFont);
-  TextStyle serif(double size, FontWeight weight, {double height = 1.15}) =>
-      TextStyle(fontFamily: readingFont, fontSize: size, fontWeight: weight, height: height, color: t.ink, letterSpacing: -0.2);
+  final base = ThemeData(useMaterial3: true, colorScheme: scheme, fontFamily: t.interfaceFont);
+  final type = t.typeScale;
+  TextStyle heading(double size, TypeStep step, {double height = 1.15}) =>
+      TextStyle(fontFamily: t.displayFont, fontSize: size, fontWeight: step.weight, height: height, color: t.ink, letterSpacing: step.letterSpacing(size));
   TextStyle sans(double size, FontWeight weight, {double height = 1.4, Color? color}) =>
-      TextStyle(fontFamily: interfaceFont, fontSize: size, fontWeight: weight, height: height, color: color ?? t.ink);
+      TextStyle(fontFamily: t.interfaceFont, fontSize: size, fontWeight: weight, height: height, color: color ?? t.ink);
 
   final text = base.textTheme.copyWith(
-    displayLarge: serif(52, FontWeight.w500),
-    displayMedium: serif(40, FontWeight.w500),
-    displaySmall: serif(34, FontWeight.w500),
-    headlineLarge: serif(30, FontWeight.w600),
-    headlineMedium: serif(26, FontWeight.w600),
-    headlineSmall: serif(23, FontWeight.w600),
-    titleLarge: serif(21, FontWeight.w600, height: 1.2),
+    displayLarge: heading(52, type.display),
+    displayMedium: heading(40, type.display),
+    displaySmall: heading(34, type.display),
+    headlineLarge: heading(30, type.h1),
+    headlineMedium: heading(26, type.h2),
+    headlineSmall: heading(23, type.h3),
+    titleLarge: heading(21, type.h4, height: 1.2),
     titleMedium: sans(17, FontWeight.w600),
     titleSmall: sans(15, FontWeight.w600),
     bodyLarge: sans(17, FontWeight.w400, height: 1.5),
     bodyMedium: sans(15, FontWeight.w400, height: 1.45),
     bodySmall: sans(13, FontWeight.w400, color: t.inkMuted),
-    labelLarge: sans(15, FontWeight.w600),
-    labelMedium: sans(13, FontWeight.w600),
-    labelSmall: sans(12, FontWeight.w600, color: t.inkMuted),
+    labelLarge: sans(15, type.label.weight),
+    labelMedium: sans(13, type.label.weight),
+    labelSmall: sans(12, type.label.weight, color: t.inkMuted),
   );
 
-  final shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(LesenTokens.radiusLg));
+  OutlinedBorder rounded(double radius) => radius >= 9999 ? const StadiumBorder() : RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius));
+  final shape = rounded(t.buttonRadius);
   const minSize = Size(LesenTokens.target, LesenTokens.target);
   return base.copyWith(
     extensions: [t],
@@ -91,22 +91,22 @@ ThemeData buildTheme(Brightness brightness) {
       selectedColor: t.brandSoft,
       side: BorderSide(color: scheme.outlineVariant),
       labelStyle: text.labelMedium,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(LesenTokens.radiusXl)),
+      shape: rounded(t.chipRadius),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: t.surfaceRaised,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(LesenTokens.radiusMd),
+        borderRadius: BorderRadius.circular(t.radiusMd),
         borderSide: BorderSide(color: scheme.outline),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(LesenTokens.radiusMd),
+        borderRadius: BorderRadius.circular(t.radiusMd),
         borderSide: BorderSide(color: scheme.outline),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(LesenTokens.radiusMd),
+        borderRadius: BorderRadius.circular(t.radiusMd),
         borderSide: BorderSide(color: t.focus, width: 2),
       ),
     ),
@@ -129,7 +129,7 @@ ThemeData buildTheme(Brightness brightness) {
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: t.surfaceRaised,
       showDragHandle: true,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(LesenTokens.radiusXl))),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(t.radiusXl))),
     ),
     dividerTheme: DividerThemeData(color: scheme.outlineVariant, space: 1),
     snackBarTheme: SnackBarThemeData(

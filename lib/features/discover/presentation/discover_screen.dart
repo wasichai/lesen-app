@@ -175,7 +175,7 @@ class _Hero extends StatelessWidget {
         button: true,
         child: Material(
           color: t.surfaceRaised,
-          borderRadius: BorderRadius.circular(LesenTokens.radiusXl),
+          borderRadius: BorderRadius.circular(t.radiusXl),
           clipBehavior: Clip.antiAlias,
           child: InkWell(
             onTap: onTap,
@@ -298,7 +298,7 @@ class _TopicsSection extends ConsumerWidget {
             children: [
               for (final (i, topic) in topics.indexed)
                 ActionChip(
-                  avatar: CircleAvatar(backgroundColor: LesenTokens.tones[i % LesenTokens.tones.length], radius: 6),
+                  avatar: CircleAvatar(backgroundColor: LesenTokens.of(context).tones[i % LesenTokens.of(context).tones.length], radius: 6),
                   label: Text('${labels[topic.slug] ?? topic.slug} · ${topic.readings}'),
                   tooltip: l10n.readingsCount(topic.readings),
                   onPressed: () => context.go(Routes.catalogWith(topic: topic.slug)),
@@ -340,9 +340,9 @@ class _LevelsSection extends StatelessWidget {
                 excludeSemantics: true,
                 child: Material(
                   color: Color.lerp(t.brandSoft, t.surfaceRaised, i / 6),
-                  borderRadius: BorderRadius.circular(LesenTokens.radiusLg),
+                  borderRadius: BorderRadius.circular(t.radiusLg),
                   child: InkWell(
-                    borderRadius: BorderRadius.circular(LesenTokens.radiusLg),
+                    borderRadius: BorderRadius.circular(t.radiusLg),
                     onTap: () => context.go(Routes.catalogWith(level: level.name, language: language)),
                     child: SizedBox(
                       width: 168,

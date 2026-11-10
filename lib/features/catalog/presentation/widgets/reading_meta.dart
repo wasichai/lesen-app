@@ -16,7 +16,7 @@ class LevelBadge extends StatelessWidget {
     final t = LesenTokens.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-      decoration: BoxDecoration(color: onCover ? Colors.white.withValues(alpha: 0.92) : t.brandSoft, borderRadius: BorderRadius.circular(LesenTokens.radiusSm)),
+      decoration: BoxDecoration(color: onCover ? Colors.white.withValues(alpha: 0.92) : t.brandSoft, borderRadius: BorderRadius.circular(t.radiusSm)),
       child: Text(
         level.name,
         style: Theme.of(context).textTheme.labelMedium?.copyWith(color: onCover ? const Color(0xFF1F2430) : t.brandStrong, letterSpacing: 0.4),
@@ -57,7 +57,7 @@ class ReadingMetaLine extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.check_circle, size: 14, color: LesenTokens.tones[1]),
+              Icon(Icons.check_circle, size: 14, color: t.tones[1]),
               const SizedBox(width: 3),
               Text(l10n.cardCompleted, style: style),
             ],
