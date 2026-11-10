@@ -9,10 +9,12 @@ import '../../../core/networking/api_client.dart';
 import '../../../core/networking/api_failure.dart';
 import '../../../core/storage/files.dart';
 import '../../../core/storage/local_store.dart';
+import '../../../core/storage/public_files.dart';
 import '../../audio/data/audio_repository.dart';
 import '../../catalog/application/cover_provider.dart';
 import '../../catalog/data/catalog_repository.dart';
 import '../../comprehension/data/comprehension_repository.dart';
+import '../../reader/application/illustration_provider.dart';
 import '../../reader/data/reader_repository.dart';
 import '../domain/download.dart';
 
@@ -46,8 +48,8 @@ final wifiCheckProvider = Provider<WifiCheck>(
 
 final downloadsProvider = NotifierProvider<DownloadsController, Map<String, DownloadInfo>>(DownloadsController.new);
 
-/// Descarga lo que una lectura necesita sin conexión: ficha, contenido, traducciones, preguntas, portada, tiempos y
-/// audio. Todo lo de una versión es inmutable, así que se guarda una vez (ADR-0007, ADR-0010).
+/// Descarga lo que una lectura necesita sin conexión: ficha, contenido, ilustraciones, traducciones, preguntas, portada,
+/// tiempos y audio. Todo lo de una versión es inmutable, así que se guarda una vez (ADR-0007, ADR-0010).
 class DownloadsController extends Notifier<Map<String, DownloadInfo>> {
   static const ns = 'downloads';
   final _cancels = <String, CancelToken>{};
@@ -89,7 +91,19 @@ class DownloadsController extends Notifier<Map<String, DownloadInfo>> {
       var d = DownloadInfo(slug: slug, version: version, title: detail.reading.title, state: DownloadState.downloading, progress: 0.05);
       await _put(d);
       final reader = ref.read(readerRepositoryProvider);
-      await reader.content(slug, version);
+      final content = await reader.content(slug, version);
+      // las ilustraciones entre párrafos son parte del texto: sin ellas, la lectura no está completa sin conexión
+      final images = <String>[];
+      var imageBytes = 0;
+      for (final illustration in content.illustrations) {
+        if (await loadPublicFile(ref, illustration.url, illustrationsFolder) == null) throw UnknownFailure('ilustración ${illustration.id} no disponible');
+        final file = await publicFileFor(ref, illustration.url, illustrationsFolder);
+        if (file != null && file.existsSync()) {
+          images.add(file.path);
+          imageBytes += await file.length();
+        }
+      }
+      await _put(d = d.copyWith(bytes: imageBytes, illustrationFiles: images));
       await reader.translations(slug, version, TranslationUnit.SENTENCE);
       await reader.translations(slug, version, TranslationUnit.PARAGRAPH);
       await ref.read(comprehensionRepositoryProvider).assessment(slug, version);
@@ -122,11 +136,11 @@ class DownloadsController extends Notifier<Map<String, DownloadInfo>> {
               if (total <= 0) return;
               final p = 0.2 + 0.8 * got / total;
               // como mucho una actualización por cada 2 %
-              if (p - (state[slug]?.progress ?? 0) >= 0.02) state = {...state, slug: state[slug]!.copyWith(progress: p, bytes: got)};
+              if (p - (state[slug]?.progress ?? 0) >= 0.02) state = {...state, slug: state[slug]!.copyWith(progress: p, bytes: imageBytes + got)};
             },
           );
       await partial.rename(file.path);
-      await _put(d.copyWith(state: DownloadState.done, progress: 1, bytes: await file.length(), audioFile: () => file.path));
+      await _put(d.copyWith(state: DownloadState.done, progress: 1, bytes: imageBytes + await file.length(), audioFile: () => file.path));
     } on DioException catch (e) {
       final current = state[slug];
       if (current == null) return;
@@ -141,12 +155,12 @@ class DownloadsController extends Notifier<Map<String, DownloadInfo>> {
 
   void cancel(String slug) => _cancels[slug]?.cancel();
 
-  /// Quita la descarga y su audio. El texto cacheado se queda (pesa poco y es inmutable).
+  /// Quita la descarga, su audio y sus ilustraciones. El texto cacheado se queda (pesa poco y es inmutable).
   Future<void> remove(String slug) async {
     cancel(slug);
     final d = state[slug];
-    if (d?.audioFile != null) {
-      final f = File(d!.audioFile!);
+    for (final path in [?d?.audioFile, ...?d?.illustrationFiles]) {
+      final f = File(path);
       if (f.existsSync()) await f.delete();
     }
     state = {...state}..remove(slug);

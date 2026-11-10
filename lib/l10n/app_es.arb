@@ -340,6 +340,7 @@
   },
   "readerTranslateParagraph": "Traducir el párrafo",
   "readerHideParagraph": "Ocultar la traducción",
+  "readerIllustrationMissing": "No se pudo cargar esta ilustración.",
   "readerNoParagraphTranslation": "Este párrafo aún no tiene traducción.",
   "readerSavePending": "Guardado en el dispositivo; se enviará al volver la conexión.",
   "readerFinish": "Terminé de leer",

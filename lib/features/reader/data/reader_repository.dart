@@ -133,28 +133,69 @@ class ReaderRepository {
     createdAt: j.dateOrNull('createdAt'),
   );
 
-  static ReadingContent parseContent(Json j) => ReadingContent(
-    slug: j.str('slug'),
-    version: j.integer('version'),
-    language: j.str('language'),
-    current: j.boolean('current', fallback: true),
-    paragraphs: j.list(
-      'paragraphs',
-      (p) => Paragraph(
-        id: p.str('id'),
-        sentences: p.list(
-          'sentences',
-          (s) => Sentence(
-            id: s.str('id'),
-            tokens: s.list(
-              'tokens',
-              (t) => Token(
-                id: t.str('id'),
-                text: t.str('text'),
-                kind: t.strOrNull('kind') == 'WORD' ? TokenKind.WORD : TokenKind.PUNCT,
-                space: t.boolean('space'),
-                entry: t.strOrNull('entry'),
-              ),
+  static ReadingContent parseContent(Json j) {
+    final paragraphs = _paragraphs(j);
+    return ReadingContent(
+      slug: j.str('slug'),
+      version: j.integer('version'),
+      language: j.str('language'),
+      current: j.boolean('current', fallback: true),
+      paragraphs: paragraphs,
+      blocks: _blocks(j, paragraphs),
+    );
+  }
+
+  /// `blocks` (ADR-0018): el orden de lectura cuando la versión tiene ilustraciones; `null` sin ellas. Cada párrafo
+  /// aparece una vez; un tipo de bloque desconocido se ignora, para que uno nuevo no rompa el lector.
+  static List<ContentBlock>? _blocks(Json j, List<Paragraph> paragraphs) {
+    final raw = j.opt<List>('blocks');
+    if (raw == null) return null;
+    final at = {for (var i = 0; i < paragraphs.length; i++) paragraphs[i].id: i};
+    final seen = <int>{};
+    final blocks = <ContentBlock>[];
+    for (final item in raw) {
+      final b = (item as Map).cast<String, dynamic>();
+      switch (b.strOrNull('type')) {
+        case 'paragraph':
+          final id = b.str('id');
+          final i = at[id];
+          if (i == null || !seen.add(i)) throw ContractException('blocks: el párrafo "$id" no existe o se repite');
+          blocks.add(ParagraphBlock(i));
+        case 'image':
+          blocks.add(IllustrationBlock(parseIllustration(b)));
+      }
+    }
+    if (seen.length != paragraphs.length) throw ContractException('blocks: faltan párrafos del texto');
+    return blocks;
+  }
+
+  static Illustration parseIllustration(Json b) {
+    final id = b.str('id');
+    final alt = b.str('alt').trim();
+    if (alt.isEmpty) throw ContractException('ilustración "$id": sin texto alternativo');
+    final width = b.integer('width');
+    final height = b.integer('height');
+    if (width <= 0 || height <= 0) throw ContractException('ilustración "$id": medidas no válidas');
+    final caption = b.strOrNull('caption')?.trim();
+    return Illustration(id: id, url: b.str('url'), width: width, height: height, alt: alt, caption: caption == null || caption.isEmpty ? null : caption);
+  }
+
+  static List<Paragraph> _paragraphs(Json j) => j.list(
+    'paragraphs',
+    (p) => Paragraph(
+      id: p.str('id'),
+      sentences: p.list(
+        'sentences',
+        (s) => Sentence(
+          id: s.str('id'),
+          tokens: s.list(
+            'tokens',
+            (t) => Token(
+              id: t.str('id'),
+              text: t.str('text'),
+              kind: t.strOrNull('kind') == 'WORD' ? TokenKind.WORD : TokenKind.PUNCT,
+              space: t.boolean('space'),
+              entry: t.strOrNull('entry'),
             ),
           ),
         ),

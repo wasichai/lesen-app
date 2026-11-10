@@ -580,6 +580,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get readerHideParagraph => 'Hide translation';
 
   @override
+  String get readerIllustrationMissing => 'This illustration could not be loaded.';
+
+  @override
   String get readerNoParagraphTranslation => 'This paragraph has no translation yet.';
 
   @override

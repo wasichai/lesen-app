@@ -5,18 +5,23 @@
 La app usa el contrato **existente** de `wasichai/lesen`, descrito en su `docs/architecture/api-design.md` y publicado en
 `/api/lesen/public/openapi`. No hay endpoints propios del móvil.
 
-| Grupo       | Endpoints que usa la app                                                                    |
-| ----------- | ------------------------------------------------------------------------------------------- |
-| Acceso      | `POST /api/auth/login` → `{token, expiresAt, user}`; `GET /api/auth/me/permissions`         |
-| Público     | `public/languages`, `public/topics`, `public/covers/{f}.svg`, `public/audio/{f}` (rangos)   |
-| Perfil      | `GET/PUT learner/profile` (404 = sin onboarding)                                            |
-| Catálogo    | `discover`, `readings?…`, `readings/{slug}`                                                 |
-| Lectura     | `readings/{slug}/versions/{n}/{content,translations,audio,assessment}`                      |
-| Biblioteca  | `library`, `readings/{slug}/{progress,completion,bookmark,notes}`, `notes/{id}`, `lists/**` |
-| Diccionario | `dictionary/{lookup,search,entries/{key},history,favorites}`                                |
-| Vocabulario | `vocabulary`, `vocabulary/{id,keys,known,stats}`, `vocabulary/reviews{,/next}`              |
-| Comprensión | `assessments/{id}/attempts`, `attempts/{id}`, `attempts/{id}/answers/{q}/self-assessment`   |
-| Progreso    | `progress/{dashboard,weekly,achievements,goals}`                                            |
+| Grupo       | Endpoints que usa la app                                                                                                                             |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Acceso      | `POST /api/auth/login` → `{token, expiresAt, user}`; `GET /api/auth/me/permissions`                                                                  |
+| Público     | `public/languages`, `public/topics`, `public/covers/{f}.svg`, `public/illustrations/{f}`, `public/audio/{f}` (rangos)                                |
+| Perfil      | `GET/PUT learner/profile` (404 = sin onboarding)                                                                                                     |
+| Catálogo    | `discover`, `readings?…`, `readings/{slug}`                                                                                                          |
+| Lectura     | `readings/{slug}/versions/{n}/{content,translations,audio,assessment}`; `content.blocks` con las ilustraciones entre párrafos (ADR-0018 del backend) |
+| Biblioteca  | `library`, `readings/{slug}/{progress,completion,bookmark,notes}`, `notes/{id}`, `lists/**`                                                          |
+| Diccionario | `dictionary/{lookup,search,entries/{key},history,favorites}`                                                                                         |
+| Vocabulario | `vocabulary`, `vocabulary/{id,keys,known,stats}`, `vocabulary/reviews{,/next}`                                                                       |
+| Comprensión | `assessments/{id}/attempts`, `attempts/{id}`, `attempts/{id}/answers/{q}/self-assessment`                                                            |
+| Progreso    | `progress/{dashboard,weekly,achievements,goals}`                                                                                                     |
+
+Las ilustraciones entre párrafos (`content.blocks`, ADR-0018 de `wasichai/lesen`, pedido en wasichai/lesen#7) se leen en
+`ReaderRepository.parseContent`. Sin `blocks`, el texto es solo sus párrafos. Un párrafo desconocido, repetido o que
+falta, o una imagen sin `alt` o sin medidas, es un `ContractException`, y un tipo de bloque nuevo se ignora. Sus
+archivos se guardan como las portadas (`core/storage/public_files.dart`), entran en la descarga y se borran con ella.
 
 ## 2. DTO
 
@@ -40,19 +45,18 @@ sesión; un 403 es «tu cuenta no tiene acceso a esto».
 
 Lo que el móvil necesitaría y el backend no tiene. Ninguno se simula: la app lo rodea en el cliente y lo dice.
 
-| Hueco                      | Efecto en la app hoy                                                                | Contrato propuesto (para `wasichai/lesen` o Wasichai)                                                                                                            | Dónde              |
-| -------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| Refresco de token          | Al caducar, se vuelve a pedir la contraseña; lo pendiente se conserva               | `POST /api/auth/refresh` con un token de refresco rotatorio de un solo uso, ligado al dispositivo                                                                | Wasichai           |
-| Registro público           | Sin alta desde la app: la cuenta la crea quien administra                           | Ya pedido aguas arriba por el backend (roadmap §Aguas arriba)                                                                                                    | Wasichai           |
-| Avisos push                | Recordatorios **locales** programados en el dispositivo                             | `PUT /api/lesen/devices/{installationId}` `{platform, pushToken, locale, timeZone}`; `DELETE` al salir                                                           | Wasichai + `lesen` |
-| Paquete para descargar     | Cinco peticiones por lectura (contenido, traducciones, audio, evaluación, portada)  | `GET readings/{slug}/versions/{n}/bundle` con todo lo inmutable de la versión y un `ETag`                                                                        | `lesen`            |
-| Cambios desde una fecha    | La biblioteca y el cuaderno se piden enteros al sincronizar                         | `?updatedSince=` en `library`, `vocabulary` y `vocabulary/known`                                                                                                 | `lesen`            |
-| URL absolutas              | Portadas y audio llegan relativas; el cliente las resuelve contra su `API_BASE_URL` | Aceptable; si se mueven a wasichai-files (fase 6 del backend), que lleguen absolutas                                                                             | `lesen`            |
-| Texto de oración y offsets | El cliente reconstruye el texto con `text + space`                                  | Opcional: `sentence.text` en la vista de contenido                                                                                                               | `lesen`            |
-| Varios idiomas de estudio  | El perfil tiene un solo `targetLanguage`; cambiarlo es editar el perfil             | Perfiles por idioma; fuera del alcance actual                                                                                                                    | `lesen`            |
-| Audio de pronunciación     | El panel muestra la IPA; no hay audio por palabra (la narración llega en la fase 3) | `audioUrl` opcional en la entrada del diccionario, generado como la narración                                                                                    | `lesen`            |
-| Ilustraciones en el texto  | Solo hay portada; la lectura y su descarga no llevan imágenes entre párrafos        | Bloque `{type: "image", id, url, width, height, alt, caption?}` entre párrafos en `content`, inmutable por versión y con `alt` obligatorio; entra en el `bundle` | `lesen`            |
-| Borrado de cuenta          | Requisito de las tiendas: se documenta el procedimiento manual                      | `DELETE /api/lesen/me` (y el de Wasichai) antes de publicar en las tiendas                                                                                       | Wasichai + `lesen` |
+| Hueco                      | Efecto en la app hoy                                                                | Contrato propuesto (para `wasichai/lesen` o Wasichai)                                                  | Dónde              |
+| -------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------ |
+| Refresco de token          | Al caducar, se vuelve a pedir la contraseña; lo pendiente se conserva               | `POST /api/auth/refresh` con un token de refresco rotatorio de un solo uso, ligado al dispositivo      | Wasichai           |
+| Registro público           | Sin alta desde la app: la cuenta la crea quien administra                           | Ya pedido aguas arriba por el backend (roadmap §Aguas arriba)                                          | Wasichai           |
+| Avisos push                | Recordatorios **locales** programados en el dispositivo                             | `PUT /api/lesen/devices/{installationId}` `{platform, pushToken, locale, timeZone}`; `DELETE` al salir | Wasichai + `lesen` |
+| Paquete para descargar     | Cinco peticiones por lectura (contenido, traducciones, audio, evaluación, portada)  | `GET readings/{slug}/versions/{n}/bundle` con todo lo inmutable de la versión y un `ETag`              | `lesen`            |
+| Cambios desde una fecha    | La biblioteca y el cuaderno se piden enteros al sincronizar                         | `?updatedSince=` en `library`, `vocabulary` y `vocabulary/known`                                       | `lesen`            |
+| URL absolutas              | Portadas y audio llegan relativas; el cliente las resuelve contra su `API_BASE_URL` | Aceptable; si se mueven a wasichai-files (fase 6 del backend), que lleguen absolutas                   | `lesen`            |
+| Texto de oración y offsets | El cliente reconstruye el texto con `text + space`                                  | Opcional: `sentence.text` en la vista de contenido                                                     | `lesen`            |
+| Varios idiomas de estudio  | El perfil tiene un solo `targetLanguage`; cambiarlo es editar el perfil             | Perfiles por idioma; fuera del alcance actual                                                          | `lesen`            |
+| Audio de pronunciación     | El panel muestra la IPA; no hay audio por palabra (la narración llega en la fase 3) | `audioUrl` opcional en la entrada del diccionario, generado como la narración                          | `lesen`            |
+| Borrado de cuenta          | Requisito de las tiendas: se documenta el procedimiento manual                      | `DELETE /api/lesen/me` (y el de Wasichai) antes de publicar en las tiendas                             | Wasichai + `lesen` |
 
 Nada de esto se implementa en el backend desde este repositorio: se abrirá como issue allí cuando haga falta.
 

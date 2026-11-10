@@ -1,5 +1,18 @@
 # Historial
 
+## Ilustraciones en el lector y en las descargas (2026-11-11)
+
+- El contenido de una versión puede llevar `blocks` con ilustraciones entre párrafos (ADR-0018 de `wasichai/lesen`):
+  `Illustration` y `ContentBlock` en `ReadingContent`, interpretados en `ReaderRepository.parseContent`. Una imagen sin
+  `alt` o un párrafo que no cuadra es un `ContractException`.
+- Lector: `IllustrationView` reserva el hueco con `width` y `height`, se anuncia como imagen con su texto alternativo en
+  el idioma de la lectura, lleva su pie y, si el archivo no llega, lo dice. Párrafos, claves, posición y audio siguen
+  igual: las ilustraciones solo se intercalan.
+- Descargas: las ilustraciones se guardan con la lectura, suman a sus bytes y se borran con `remove()`. Si una no se
+  puede bajar, la descarga falla y se puede reintentar. La caché de portadas pasa a `core/storage/public_files.dart`
+  para servir a las dos.
+- Pruebas del contrato, del lector (con texto alternativo y fallo de carga), de la descarga y de la lectura sin red.
+
 ## Fase 7 — Preparación para producción (2026-11-09)
 
 - Accesibilidad automática (`test/app/accessibility_test.dart`): contraste AA de los tokens y de los tres temas del

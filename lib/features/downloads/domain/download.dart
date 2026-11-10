@@ -10,6 +10,7 @@ class DownloadInfo {
     this.progress = 0,
     this.bytes = 0,
     this.audioFile,
+    this.illustrationFiles = const [],
     this.error,
     this.updatedAt,
   });
@@ -22,6 +23,7 @@ class DownloadInfo {
     progress: (j['progress'] as num?)?.toDouble() ?? 0,
     bytes: (j['bytes'] as num?)?.toInt() ?? 0,
     audioFile: j['audioFile'] as String?,
+    illustrationFiles: (j['illustrationFiles'] as List?)?.whereType<String>().toList(growable: false) ?? const [],
     error: j['error'] as String?,
     updatedAt: j['updatedAt'] == null ? null : DateTime.tryParse(j['updatedAt'] as String),
   );
@@ -37,6 +39,10 @@ class DownloadInfo {
 
   /// Ruta del audio en el dispositivo, si la lectura tiene narración y ya se descargó.
   final String? audioFile;
+
+  /// Rutas de las ilustraciones entre párrafos guardadas en el dispositivo (ADR-0018 del backend); sus bytes cuentan en
+  /// [bytes] y se borran con la descarga.
+  final List<String> illustrationFiles;
   final String? error;
   final DateTime? updatedAt;
 
@@ -45,7 +51,14 @@ class DownloadInfo {
   /// El texto ya está en el dispositivo (aunque el audio espere al Wi-Fi).
   bool get readableOffline => state == DownloadState.done || state == DownloadState.waitingWifi;
 
-  DownloadInfo copyWith({DownloadState? state, double? progress, int? bytes, String? Function()? audioFile, String? Function()? error}) => DownloadInfo(
+  DownloadInfo copyWith({
+    DownloadState? state,
+    double? progress,
+    int? bytes,
+    String? Function()? audioFile,
+    List<String>? illustrationFiles,
+    String? Function()? error,
+  }) => DownloadInfo(
     slug: slug,
     version: version,
     title: title,
@@ -53,6 +66,7 @@ class DownloadInfo {
     progress: progress ?? this.progress,
     bytes: bytes ?? this.bytes,
     audioFile: audioFile != null ? audioFile() : this.audioFile,
+    illustrationFiles: illustrationFiles ?? this.illustrationFiles,
     error: error != null ? error() : this.error,
     updatedAt: DateTime.now().toUtc(),
   );
@@ -65,6 +79,7 @@ class DownloadInfo {
     'progress': progress,
     'bytes': bytes,
     'audioFile': audioFile,
+    'illustrationFiles': illustrationFiles,
     'error': error,
     'updatedAt': updatedAt?.toIso8601String(),
   };

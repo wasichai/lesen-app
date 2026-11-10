@@ -1,0 +1,35 @@
+{
+  "slug": "der-alte-leuchtturm",
+  "version": 1,
+  "blocks": [
+    {
+      "type": "paragraph",
+      "id": "p1"
+    },
+    {
+      "type": "paragraph",
+      "id": "p2"
+    },
+    {
+      "type": "paragraph",
+      "id": "p3"
+    },
+    {
+      "type": "image",
+      "id": "img-1",
+      "url": "/api/lesen/public/illustrations/der-alte-leuchtturm-sturm.svg",
+      "width": 1200,
+      "height": 800,
+      "alt": "Ein weißer Leuchtturm mit roten Streifen steht im Sturm. Seine Lampe ist dunkel, das Meer ist grau und wild.",
+      "caption": "Plötzlich geht das Licht aus."
+    },
+    {
+      "type": "paragraph",
+      "id": "p4"
+    },
+    {
+      "type": "paragraph",
+      "id": "p5"
+    }
+  ]
+}
