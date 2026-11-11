@@ -1124,6 +1124,12 @@ abstract class AppLocalizations {
   /// **'Ocultar la traducción'**
   String get readerHideParagraph;
 
+  /// No description provided for @readerIllustrationMissing.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo cargar esta ilustración.'**
+  String get readerIllustrationMissing;
+
   /// No description provided for @readerNoParagraphTranslation.
   ///
   /// In es, this message translates to:

@@ -33,10 +33,53 @@ class Paragraph {
   final List<Sentence> sentences;
 }
 
+/// Una ilustración entre párrafos (ADR-0018 del backend). Sus medidas reservan el hueco antes de que llegue el archivo,
+/// y `alt` es obligatorio: sin texto alternativo, el contenido no cumple el contrato.
+class Illustration {
+  const Illustration({required this.id, required this.url, required this.width, required this.height, required this.alt, this.caption});
+
+  final String id;
+
+  /// Ruta pública (`/api/lesen/public/illustrations/…`), relativa como las portadas.
+  final String url;
+  final int width;
+  final int height;
+
+  /// Texto alternativo y pie, los dos en el idioma de la lectura.
+  final String alt;
+  final String? caption;
+
+  double get aspectRatio => width / height;
+}
+
+/// Un elemento del orden de lectura: un párrafo (por su posición en `paragraphs`) o una ilustración.
+sealed class ContentBlock {
+  const ContentBlock();
+}
+
+final class ParagraphBlock extends ContentBlock {
+  const ParagraphBlock(this.index);
+
+  final int index;
+}
+
+final class IllustrationBlock extends ContentBlock {
+  const IllustrationBlock(this.illustration);
+
+  final Illustration illustration;
+}
+
 /// El contenido de una versión publicada e inmutable (ADR-0003 y ADR-0004 del backend): los ids son estables.
 class ReadingContent {
-  ReadingContent({required this.slug, required this.version, required this.language, required this.current, required this.paragraphs})
-    : index = ReaderIndex._(paragraphs);
+  ReadingContent({
+    required this.slug,
+    required this.version,
+    required this.language,
+    required this.current,
+    required this.paragraphs,
+    List<ContentBlock>? blocks,
+  }) : blocks = blocks ?? [for (var i = 0; i < paragraphs.length; i++) ParagraphBlock(i)],
+       index = ReaderIndex._(paragraphs);
 
   final String slug;
   final int version;
@@ -45,7 +88,15 @@ class ReadingContent {
   /// Si es la versión vigente; una lectura empezada en una versión anterior se sigue leyendo en esa.
   final bool current;
   final List<Paragraph> paragraphs;
+
+  /// El orden de lectura: los párrafos y, entre ellos, las ilustraciones. Sin ilustraciones, solo los párrafos.
+  final List<ContentBlock> blocks;
   final ReaderIndex index;
+
+  List<Illustration> get illustrations => [
+    for (final b in blocks)
+      if (b is IllustrationBlock) b.illustration,
+  ];
 }
 
 /// Índices planos del texto, como `readerModel.ts` de la web: orden de oraciones y palabras y a quién pertenece cada una.

@@ -82,9 +82,12 @@ class FakeBackend implements HttpClientAdapter {
   };
 
   /// Las rutas del lector para una lectura capturada (`der-alte-leuchtturm` tiene todo: audio, traducciones, preguntas).
-  static Map<String, Handler> readingRoutes(String slug) {
+  /// Con [illustrated], el contenido lleva además sus `blocks` con ilustraciones (`test/fixtures/illustrations/`) y se
+  /// sirven sus archivos.
+  static Map<String, Handler> readingRoutes(String slug, {bool illustrated = false}) {
     final r = (fixtures['readings'] as Map)[slug] as Map<String, dynamic>;
-    final content = r['content'] as Map<String, dynamic>;
+    final blocks = illustrated ? illustratedBlocks(slug) : null;
+    final content = {...r['content'] as Map<String, dynamic>, 'blocks': ?blocks};
     final version = content['version'];
     final entries = ((r['entries'] as Map)['es'] as Map).cast<String, dynamic>();
     final base = '/lesen/readings/$slug';
@@ -103,6 +106,8 @@ class FakeBackend implements HttpClientAdapter {
       },
       'GET $base/notes': (_) => <Object>[],
       'GET $base/versions/$version/audio': (_) => r['audio'] ?? const Reply(404, {'status': 404}),
+      for (final b in blocks ?? const <Map<String, dynamic>>[])
+        if (b['type'] == 'image') 'GET ${pathOf(RequestOptions(path: b['url'] as String))}': (_) => illustrationBytes(b['url'] as String),
       'GET /lesen/public/audio/$slug.mp3': (_) =>
           File('test/fixtures/audio/$slug.mp3').existsSync() ? File('test/fixtures/audio/$slug.mp3').readAsBytesSync() : const Reply(404),
       'GET /lesen/vocabulary/known': (_) => {'saved': <Object>[], 'encountered': <Object>[]},
@@ -132,6 +137,13 @@ class FakeBackend implements HttpClientAdapter {
       },
     };
   }
+
+  /// Los `blocks` de una lectura con ilustraciones (ADR-0018 del backend), de `test/fixtures/illustrations/`.
+  static List<Map<String, dynamic>> illustratedBlocks(String slug) =>
+      ((jsonDecode(File('test/fixtures/illustrations/$slug.blocks.json').readAsStringSync()) as Map)['blocks'] as List).cast<Map<String, dynamic>>();
+
+  /// El archivo de una ilustración de las fixtures, por su URL pública.
+  static Uint8List illustrationBytes(String url) => File('test/fixtures/illustrations/${Uri.parse(url).pathSegments.last}').readAsBytesSync();
 
   /// La ruta bajo `/api`, venga relativa o absoluta (portadas y audio se piden por URL completa).
   static String pathOf(RequestOptions r) {

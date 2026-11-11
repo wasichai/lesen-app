@@ -172,6 +172,7 @@
   "readerOldVersion": "You're reading version {version}, the one you started. A newer version is available.",
   "readerTranslateParagraph": "Translate paragraph",
   "readerHideParagraph": "Hide translation",
+  "readerIllustrationMissing": "This illustration could not be loaded.",
   "readerNoParagraphTranslation": "This paragraph has no translation yet.",
   "readerSavePending": "Saved on this device; it will sync when you're back online.",
   "readerFinish": "I've finished reading",

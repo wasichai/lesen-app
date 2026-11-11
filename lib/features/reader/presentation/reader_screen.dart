@@ -26,6 +26,7 @@ import 'end_of_reading.dart';
 import 'notes_sheet.dart';
 import 'reader_settings_sheet.dart';
 import 'reader_theme.dart';
+import 'widgets/illustration_view.dart';
 import 'widgets/paragraph_view.dart';
 import 'widgets/word_panel.dart';
 
@@ -315,7 +316,7 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
       controller: _scroll,
       padding: EdgeInsets.fromLTRB(24, 8, 24, 48 + MediaQuery.paddingOf(context).bottom),
       scrollCacheExtent: const ScrollCacheExtent.pixels(1600),
-      itemCount: _content.paragraphs.length + 2,
+      itemCount: _content.blocks.length + 2,
       itemBuilder: (context, i) {
         Widget centered(Widget child) => Center(
           child: ConstrainedBox(
@@ -324,7 +325,7 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
           ),
         );
         if (i == 0) return centered(_Intro(reading: reading, content: _content, palette: palette));
-        if (i == _content.paragraphs.length + 1) {
+        if (i == _content.blocks.length + 1) {
           return centered(
             Padding(
               padding: const EdgeInsets.only(top: 32),
@@ -351,7 +352,17 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
             ),
           );
         }
-        final paragraph = _content.paragraphs[i - 1];
+        final block = _content.blocks[i - 1];
+        if (block is IllustrationBlock) {
+          return centered(
+            Padding(
+              padding: const EdgeInsets.only(top: 6, bottom: 28),
+              child: IllustrationView(illustration: block.illustration, language: _content.language, palette: palette),
+            ),
+          );
+        }
+        final p = (block as ParagraphBlock).index;
+        final paragraph = _content.paragraphs[p];
         final shown = prefs.paragraphTranslations || _revealed.contains(paragraph.id);
         final translation = shown ? (paragraphTranslations.value ?? const <String, String>{})[paragraph.id] : null;
         final missing = shown && paragraphTranslations.hasValue && translation == null;
@@ -359,7 +370,7 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
           Padding(
             padding: const EdgeInsets.only(bottom: 22),
             child: ParagraphView(
-              key: _keys[i - 1],
+              key: _keys[p],
               paragraph: paragraph,
               language: _content.language,
               preferences: prefs,
@@ -367,7 +378,7 @@ class _ReaderViewState extends ConsumerState<ReaderView> {
               known: known,
               selectedToken: _selected?.token.id,
               onWordTap: _onWordTap,
-              index: i - 1,
+              index: p,
               active: hasAudio ? _playback.active : null,
               translation: missing ? l10n.readerNoParagraphTranslation : translation,
               trailing: prefs.paragraphTranslations

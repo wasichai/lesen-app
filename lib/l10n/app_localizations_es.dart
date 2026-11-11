@@ -580,6 +580,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get readerHideParagraph => 'Ocultar la traducción';
 
   @override
+  String get readerIllustrationMissing => 'No se pudo cargar esta ilustración.';
+
+  @override
   String get readerNoParagraphTranslation => 'Este párrafo aún no tiene traducción.';
 
   @override
